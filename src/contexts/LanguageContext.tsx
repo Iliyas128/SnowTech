@@ -1,0 +1,532 @@
+import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+
+export type Language = 'en' | 'ru' | 'kz';
+
+interface LanguageContextType {
+  language: Language;
+  setLanguage: (lang: Language) => void;
+  t: (key: string) => string;
+}
+
+const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
+
+export const translations = {
+  en: {
+    // Navigation
+    'nav.services': 'Services',
+    'nav.whyUs': 'Why Us',
+    'nav.cases': 'Cases',
+    'nav.pricing': 'Pricing',
+    'nav.blog': 'Blog',
+    'nav.contacts': 'Contacts',
+    'nav.discuss': 'Discuss Project',
+
+    // Hero Section
+    'hero.badge': 'IT Solutions for Business',
+    'hero.title1': 'We Create',
+    'hero.title2': 'Digital Products',
+    'hero.title3': 'That Drive Business',
+    'hero.description': 'Website development, mobile apps, chatbots, AI solutions, and targeted advertising. We turn ideas into working products.',
+    'hero.cta1': 'Start Project',
+    'hero.cta2': 'Our Cases',
+    'hero.stats.projects': 'Projects',
+    'hero.stats.clients': 'Happy Clients',
+    'hero.stats.years': 'Years Experience',
+
+    // Services Section
+    'services.badge': 'Services',
+    'services.title': 'What We',
+    'services.titleHighlight': 'Create',
+    'services.description': 'Full cycle of digital product development — from idea to launch and support.',
+    'services.web.title': 'Website Development',
+    'services.web.description': 'Landing pages, corporate sites, online stores, complex web platforms. Modern technologies and responsive design.',
+    'services.mobile.title': 'Mobile Apps',
+    'services.mobile.description': 'Native and cross-platform apps for iOS and Android. From MVP to enterprise solutions.',
+    'services.chatbot.title': 'Chatbots',
+    'services.chatbot.description': 'Intelligent bots for WhatsApp, Telegram, and websites. Automation of customer communication.',
+    'services.rag.title': 'RAG Chatbots',
+    'services.rag.description': 'AI bots with knowledge base. Answers based on your documents and data.',
+    'services.ml.title': 'Machine Learning',
+    'services.ml.description': 'Predictive analytics, recommendations, process automation using AI.',
+    'services.cv.title': 'Computer Vision',
+    'services.cv.description': 'Image and video recognition, object detection, quality control systems.',
+    'services.ads.title': 'Targeted Advertising',
+    'services.ads.description': 'Effective advertising campaigns on Instagram, TikTok, Facebook. Precise audience targeting and ROI optimization.',
+    'services.learnMore': 'Learn More',
+
+    // Why Us Section
+    'whyUs.badge': 'Advantages',
+    'whyUs.title': 'Why',
+    'whyUs.titleHighlight': 'Choose Us',
+    'whyUs.description': 'We combine deep tech expertise with understanding of business tasks.',
+    'whyUs.expertise.title': 'Deep Expertise',
+    'whyUs.expertise.description': 'A team of specialists with experience in large projects. We know how to solve complex problems.',
+    'whyUs.approach.title': 'Individual Approach',
+    'whyUs.approach.description': 'We dive deep into each client\'s specifics. No template solutions.',
+    'whyUs.deadlines.title': 'On-time Delivery',
+    'whyUs.deadlines.description': 'Transparent development process and timely delivery. You always know what\'s happening.',
+    'whyUs.support.title': 'Support & Development',
+    'whyUs.support.description': 'We don\'t abandon projects. Technical support and continuous improvement.',
+    'whyUs.tech.title': 'Technology Stack',
+    'whyUs.tech.description': 'We use modern technologies for reliable and scalable solutions.',
+
+    // Cases Section
+    'cases.badge': 'Cases',
+    'cases.title': 'Projects We\'re',
+    'cases.titleHighlight': 'Proud Of',
+    'cases.description': 'Real results for real businesses. See how we solve client challenges.',
+    'cases.viewAll': 'View All Projects',
+    'cases.ecommerce.title': 'E-commerce Platform',
+    'cases.ecommerce.client': 'Retail Chain',
+    'cases.ecommerce.description': 'Developed a scalable online store with ML-based personalized recommendations.',
+    'cases.ecommerce.result1': '+180% conversion',
+    'cases.ecommerce.result2': '3 months development',
+    'cases.ecommerce.result3': '50K+ users',
+    'cases.rag.title': 'Support RAG Bot',
+    'cases.rag.client': 'Fintech Company',
+    'cases.rag.description': 'Created a smart support bot that answers questions from 500+ knowledge base documents.',
+    'cases.rag.result1': '-70% support load',
+    'cases.rag.result2': '2 months development',
+    'cases.rag.result3': '10K+ dialogues/month',
+    'cases.cv.title': 'Automatization Document System',
+    'cases.cv.client': 'Manufacturing',
+    'cases.cv.description': 'Implemented Computer Vision system for automatic detection of stamps, signatures, and QR codes.',
+    'cases.cv.result1': '99.2% accuracy',
+    'cases.cv.result2': '4 months development',
+    'cases.cv.result3': '-85% defects',
+
+    // Contact Section
+    'contact.badge': 'Contacts',
+    'contact.title': 'Let\'s Discuss Your',
+    'contact.titleHighlight': 'Project',
+    'contact.description': 'Leave a request and we\'ll contact you within 24 hours to discuss details.',
+    'contact.form.name': 'Your Name',
+    'contact.form.email': 'Email',
+    'contact.form.phone': 'Phone',
+    'contact.form.message': 'Tell us about your project',
+    'contact.form.submit': 'Send Request',
+    'contact.form.success': 'Request sent!',
+    'contact.form.successDesc': 'We\'ll contact you shortly.',
+    'contact.messenger': 'Or write via messenger:',
+
+    // Footer
+    'footer.description': 'Developing digital products that drive business. From websites to AI solutions.',
+    'footer.services': 'Services',
+    'footer.company': 'Company',
+    'footer.about': 'About Us',
+    'footer.subscribe': 'Subscribe to Updates',
+    'footer.subscribeBtn': 'Subscribe',
+    'footer.rights': 'All rights reserved.',
+
+    // Pricing Page
+    'pricing.title': 'Pricing',
+    'pricing.subtitle': 'Transparent pricing for all services. Choose your tier or order a custom calculation.',
+    'pricing.badge': 'Transparent pricing',
+    'pricing.from': 'from',
+    'pricing.websites': 'Websites',
+    'pricing.additional': 'Additional Services',
+    'pricing.landing': 'Landing Page',
+    'pricing.landingDesc': 'One-page site for advertising campaigns',
+    'pricing.corporate': 'Corporate Site',
+    'pricing.corporateDesc': 'Multi-page site with admin panel',
+    'pricing.store': 'Online Store',
+    'pricing.storeDesc': 'Full e-commerce with payment integration',
+    'pricing.platform': 'Web Platform',
+    'pricing.platformDesc': 'Complex system with custom logic',
+    'pricing.mobile': 'Mobile App',
+    'pricing.mobileDesc': 'iOS/Android app',
+    'pricing.chatbot': 'Chatbot',
+    'pricing.chatbotDesc': 'Bot for messengers',
+    'pricing.ragbot': 'RAG Chatbot',
+    'pricing.ragbotDesc': 'AI bot with knowledge base',
+    'pricing.ml': 'ML Solution',
+    'pricing.mlDesc': 'Custom ML model',
+    'pricing.cv': 'Computer Vision',
+    'pricing.cvDesc': 'Video/image recognition',
+    'pricing.instagram': 'Instagram Targeting',
+    'pricing.instagramDesc': 'Advertising setup + management',
+    'pricing.tiktok': 'TikTok Ads',
+    'pricing.tiktokDesc': 'Ad campaign setup',
+    'pricing.support': 'Monthly Support',
+    'pricing.supportDesc': 'Technical support and updates',
+    'pricing.order': 'Order',
+    'pricing.custom': 'Custom Calculation',
+    'pricing.customDesc': 'Need something special? We\'ll calculate individual cost for your project.',
+    'pricing.customBtn': 'Get Calculation',
+
+    // Blog Page
+    'blog.title': 'Blog',
+    'blog.subtitle': 'Useful articles about marketing, advertising, and business promotion in Kazakhstan.',
+    'blog.readMore': 'Read More',
+    'blog.categories': 'Categories',
+    'blog.all': 'All',
+    'blog.seo': 'SEO',
+    'blog.smm': 'SMM',
+    'blog.advertising': 'Advertising',
+    'blog.automation': 'Automation',
+
+    // Cases Page
+    'casesPage.title': 'Our Projects',
+    'casesPage.subtitle': 'Real cases with measurable results. See how we help businesses grow.',
+    'casesPage.empty': 'Cases will be added soon',
+    'casesPage.emptyDesc': 'We are preparing detailed descriptions of our projects. Stay tuned!',
+  },
+  ru: {
+    // Navigation
+    'nav.services': 'Услуги',
+    'nav.whyUs': 'Почему мы',
+    'nav.cases': 'Кейсы',
+    'nav.pricing': 'Цены',
+    'nav.blog': 'Блог',
+    'nav.contacts': 'Контакты',
+    'nav.discuss': 'Обсудить проект',
+
+    // Hero Section
+    'hero.badge': 'IT-решения для бизнеса',
+    'hero.title1': 'Создаём',
+    'hero.title2': 'Цифровые продукты',
+    'hero.title3': 'Которые двигают бизнес',
+    'hero.description': 'Разработка сайтов, мобильных приложений, чат-ботов, AI-решений и таргетированной рекламы. Превращаем идеи в работающие продукты.',
+    'hero.cta1': 'Начать проект',
+    'hero.cta2': 'Наши кейсы',
+    'hero.stats.projects': 'Проектов',
+    'hero.stats.clients': 'Довольных клиентов',
+    'hero.stats.years': 'Лет опыта',
+
+    // Services Section
+    'services.badge': 'Услуги',
+    'services.title': 'Что мы',
+    'services.titleHighlight': 'создаём',
+    'services.description': 'Полный цикл разработки цифровых продуктов — от идеи до запуска и поддержки.',
+    'services.web.title': 'Разработка сайтов',
+    'services.web.description': 'Лендинги, корпоративные сайты, интернет-магазины, сложные веб-платформы. Современные технологии и адаптивный дизайн.',
+    'services.mobile.title': 'Мобильные приложения',
+    'services.mobile.description': 'Нативные и кроссплатформенные приложения для iOS и Android. От MVP до enterprise решений.',
+    'services.chatbot.title': 'Чат-боты',
+    'services.chatbot.description': 'Умные боты для WhatsApp, Telegram и веб-сайтов. Автоматизация коммуникации с клиентами.',
+    'services.rag.title': 'RAG-чат-боты',
+    'services.rag.description': 'AI-боты с базой знаний. Ответы на основе ваших документов и данных.',
+    'services.ml.title': 'Machine Learning',
+    'services.ml.description': 'Предиктивная аналитика, рекомендательные системы, автоматизация процессов с помощью AI.',
+    'services.cv.title': 'Computer Vision',
+    'services.cv.description': 'Распознавание изображений и видео, детекция объектов, системы контроля качества.',
+    'services.ads.title': 'Таргетированная реклама',
+    'services.ads.description': 'Эффективные рекламные кампании в Instagram, TikTok, Facebook. Точный таргетинг и оптимизация ROI.',
+    'services.learnMore': 'Подробнее',
+
+    // Why Us Section
+    'whyUs.badge': 'Преимущества',
+    'whyUs.title': 'Почему',
+    'whyUs.titleHighlight': 'выбирают нас',
+    'whyUs.description': 'Мы объединяем глубокую техническую экспертизу с пониманием бизнес-задач.',
+    'whyUs.expertise.title': 'Глубокая экспертиза',
+    'whyUs.expertise.description': 'Команда специалистов с опытом в крупных проектах. Знаем, как решать сложные задачи.',
+    'whyUs.approach.title': 'Индивидуальный подход',
+    'whyUs.approach.description': 'Погружаемся в специфику каждого клиента. Никаких шаблонных решений.',
+    'whyUs.deadlines.title': 'Соблюдение сроков',
+    'whyUs.deadlines.description': 'Прозрачный процесс разработки и своевременная сдача. Вы всегда знаете, что происходит.',
+    'whyUs.support.title': 'Поддержка и развитие',
+    'whyUs.support.description': 'Не бросаем проекты. Техническая поддержка и постоянное улучшение.',
+    'whyUs.tech.title': 'Технологический стек',
+    'whyUs.tech.description': 'Используем современные технологии для надёжных и масштабируемых решений.',
+
+    // Cases Section
+    'cases.badge': 'Кейсы',
+    'cases.title': 'Проекты, которыми мы',
+    'cases.titleHighlight': 'гордимся',
+    'cases.description': 'Реальные результаты для реального бизнеса. Смотрите, как мы решаем задачи клиентов.',
+    'cases.viewAll': 'Смотреть все проекты',
+    'cases.ecommerce.title': 'E-commerce платформа',
+    'cases.ecommerce.client': 'Розничная сеть',
+    'cases.ecommerce.description': 'Разработали масштабируемый интернет-магазин с персонализированными рекомендациями на основе ML.',
+    'cases.ecommerce.result1': '+180% конверсия',
+    'cases.ecommerce.result2': '3 месяца разработки',
+    'cases.ecommerce.result3': '50K+ пользователей',
+    'cases.rag.title': 'RAG-бот для поддержки',
+    'cases.rag.client': 'Финтех компания',
+    'cases.rag.description': 'Создали умного бота для техподдержки, который отвечает на вопросы по 500+ документам базы знаний.',
+    'cases.rag.result1': '-70% нагрузки на саппорт',
+    'cases.rag.result2': '2 месяца разработки',
+    'cases.rag.result3': '10K+ диалогов/месяц',
+    'cases.cv.title': 'Система автоматизаций документов',
+    'cases.cv.client': 'Производство',
+    'cases.cv.description': 'Внедрили Computer Vision систему для автоматического обнаружения печатей,подписей и qr .',
+    'cases.cv.result1': '99.2% точность',
+    'cases.cv.result2': '4 месяца разработки',
+    'cases.cv.result3': '-85% брака',
+
+    // Contact Section
+    'contact.badge': 'Контакты',
+    'contact.title': 'Давайте обсудим ваш',
+    'contact.titleHighlight': 'проект',
+    'contact.description': 'Оставьте заявку, и мы свяжемся с вами в течение 24 часов для обсуждения деталей.',
+    'contact.form.name': 'Ваше имя',
+    'contact.form.email': 'Email',
+    'contact.form.phone': 'Телефон',
+    'contact.form.message': 'Расскажите о вашем проекте',
+    'contact.form.submit': 'Отправить заявку',
+    'contact.form.success': 'Заявка отправлена!',
+    'contact.form.successDesc': 'Мы свяжемся с вами в ближайшее время.',
+    'contact.messenger': 'Или напишите в мессенджер:',
+
+    // Footer
+    'footer.description': 'Разрабатываем цифровые продукты, которые двигают бизнес. От сайтов до AI-решений.',
+    'footer.services': 'Услуги',
+    'footer.company': 'Компания',
+    'footer.about': 'О нас',
+    'footer.subscribe': 'Подпишитесь на обновления',
+    'footer.subscribeBtn': 'Подписаться',
+    'footer.rights': 'Все права защищены.',
+
+    // Pricing Page
+    'pricing.title': 'Цены',
+    'pricing.subtitle': 'Прозрачные цены на все услуги. Выберите подходящий тариф или закажите индивидуальный расчёт.',
+    'pricing.badge': 'Прозрачные цены',
+    'pricing.from': 'от',
+    'pricing.websites': 'Сайты',
+    'pricing.additional': 'Дополнительные услуги',
+    'pricing.landing': 'Лендинг',
+    'pricing.landingDesc': 'Одностраничный сайт для рекламных кампаний',
+    'pricing.corporate': 'Корпоративный сайт',
+    'pricing.corporateDesc': 'Многостраничный сайт с админ-панелью',
+    'pricing.store': 'Интернет-магазин',
+    'pricing.storeDesc': 'Полноценный e-commerce с интеграцией оплаты',
+    'pricing.platform': 'Веб-платформа',
+    'pricing.platformDesc': 'Сложная система с кастомной логикой',
+    'pricing.mobile': 'Мобильное приложение',
+    'pricing.mobileDesc': 'iOS/Android приложение',
+    'pricing.chatbot': 'Чат-бот',
+    'pricing.chatbotDesc': 'Бот для мессенджеров',
+    'pricing.ragbot': 'RAG-чат-бот',
+    'pricing.ragbotDesc': 'AI-бот с базой знаний',
+    'pricing.ml': 'ML-решение',
+    'pricing.mlDesc': 'Кастомная ML-модель',
+    'pricing.cv': 'Computer Vision',
+    'pricing.cvDesc': 'Распознавание видео/изображений',
+    'pricing.instagram': 'Таргет Instagram',
+    'pricing.instagramDesc': 'Настройка рекламы + ведение',
+    'pricing.tiktok': 'Реклама TikTok',
+    'pricing.tiktokDesc': 'Настройка рекламной кампании',
+    'pricing.support': 'Поддержка в месяц',
+    'pricing.supportDesc': 'Техническая поддержка и обновления',
+    'pricing.order': 'Заказать',
+    'pricing.custom': 'Индивидуальный расчёт',
+    'pricing.customDesc': 'Нужно что-то особенное? Рассчитаем индивидуальную стоимость для вашего проекта.',
+    'pricing.customBtn': 'Получить расчёт',
+
+    // Blog Page
+    'blog.title': 'Блог',
+    'blog.subtitle': 'Полезные статьи о маркетинге, рекламе и продвижении бизнеса в Казахстане.',
+    'blog.readMore': 'Читать далее',
+    'blog.categories': 'Категории',
+    'blog.all': 'Все',
+    'blog.seo': 'SEO',
+    'blog.smm': 'SMM',
+    'blog.advertising': 'Реклама',
+    'blog.automation': 'Автоматизация',
+
+    // Cases Page
+    'casesPage.title': 'Наши проекты',
+    'casesPage.subtitle': 'Реальные кейсы с измеримыми результатами. Смотрите, как мы помогаем бизнесу расти.',
+    'casesPage.empty': 'Кейсы скоро появятся',
+    'casesPage.emptyDesc': 'Мы готовим подробные описания наших проектов. Следите за обновлениями!',
+  },
+  kz: {
+    // Navigation
+    'nav.services': 'Қызметтер',
+    'nav.whyUs': 'Неге біз',
+    'nav.cases': 'Кейстер',
+    'nav.pricing': 'Бағалар',
+    'nav.blog': 'Блог',
+    'nav.contacts': 'Байланыс',
+    'nav.discuss': 'Жобаны талқылау',
+
+    // Hero Section
+    'hero.badge': 'Бизнеске арналған IT-шешімдер',
+    'hero.title1': 'Біз',
+    'hero.title2': 'Цифрлық өнімдер',
+    'hero.title3': 'жасаймыз',
+    'hero.description': 'Сайттар, мобильді қосымшалар, чат-боттар, AI-шешімдер және таргеттелген жарнама. Идеяларды жұмыс істейтін өнімдерге айналдырамыз.',
+    'hero.cta1': 'Жобаны бастау',
+    'hero.cta2': 'Біздің кейстер',
+    'hero.stats.projects': 'Жобалар',
+    'hero.stats.clients': 'Риза клиенттер',
+    'hero.stats.years': 'Жыл тәжірибе',
+
+    // Services Section
+    'services.badge': 'Қызметтер',
+    'services.title': 'Біз не',
+    'services.titleHighlight': 'жасаймыз',
+    'services.description': 'Цифрлық өнімдерді жасаудың толық циклі — идеядан іске қосу мен қолдауға дейін.',
+    'services.web.title': 'Сайт әзірлеу',
+    'services.web.description': 'Лендингтер, корпоративтік сайттар, интернет-дүкендер, күрделі веб-платформалар. Заманауи технологиялар мен адаптивті дизайн.',
+    'services.mobile.title': 'Мобильді қосымшалар',
+    'services.mobile.description': 'iOS және Android үшін нативті және кросс-платформалық қосымшалар. MVP-ден enterprise шешімдерге дейін.',
+    'services.chatbot.title': 'Чат-боттар',
+    'services.chatbot.description': 'WhatsApp, Telegram және веб-сайттар үшін ақылды боттар. Клиенттермен қарым-қатынасты автоматтандыру.',
+    'services.rag.title': 'RAG-чат-боттар',
+    'services.rag.description': 'Білім базасы бар AI-боттар. Сіздің құжаттарыңыз бен деректеріңіз негізінде жауаптар.',
+    'services.ml.title': 'Machine Learning',
+    'services.ml.description': 'Болжамды аналитика, ұсыныс жүйелері, AI көмегімен процестерді автоматтандыру.',
+    'services.cv.title': 'Computer Vision',
+    'services.cv.description': 'Суреттер мен бейнелерді тану, объектілерді анықтау, сапаны бақылау жүйелері.',
+    'services.ads.title': 'Таргеттелген жарнама',
+    'services.ads.description': 'Instagram, TikTok, Facebook-та тиімді жарнама науқандары. Нақты таргетинг және ROI оңтайландыру.',
+    'services.learnMore': 'Толығырақ',
+
+    // Why Us Section
+    'whyUs.badge': 'Артықшылықтар',
+    'whyUs.title': 'Неге бізді',
+    'whyUs.titleHighlight': 'таңдайды',
+    'whyUs.description': 'Біз терең техникалық сараптаманы бизнес-міндеттерді түсінумен біріктіреміз.',
+    'whyUs.expertise.title': 'Терең сараптама',
+    'whyUs.expertise.description': 'Ірі жобаларда тәжірибесі бар мамандар командасы. Күрделі міндеттерді қалай шешуді білеміз.',
+    'whyUs.approach.title': 'Жеке көзқарас',
+    'whyUs.approach.description': 'Әр клиенттің ерекшеліктеріне терең енеміз. Шаблондық шешімдер жоқ.',
+    'whyUs.deadlines.title': 'Мерзімдерді сақтау',
+    'whyUs.deadlines.description': 'Мөлдір әзірлеу процесі және уақытылы тапсыру. Сіз әрқашан не болып жатқанын білесіз.',
+    'whyUs.support.title': 'Қолдау және дамыту',
+    'whyUs.support.description': 'Жобаларды тастамаймыз. Техникалық қолдау және үнемі жетілдіру.',
+    'whyUs.tech.title': 'Технологиялық стек',
+    'whyUs.tech.description': 'Сенімді және масштабталатын шешімдер үшін заманауи технологияларды қолданамыз.',
+
+    // Cases Section
+    'cases.badge': 'Кейстер',
+    'cases.title': 'Біз мақтанатын',
+    'cases.titleHighlight': 'жобалар',
+    'cases.description': 'Нақты бизнес үшін нақты нәтижелер. Клиенттердің міндеттерін қалай шешетінімізді қараңыз.',
+    'cases.viewAll': 'Барлық жобаларды көру',
+    'cases.ecommerce.title': 'E-commerce платформа',
+    'cases.ecommerce.client': 'Бөлшек сауда желісі',
+    'cases.ecommerce.description': 'ML негізінде жекелендірілген ұсыныстары бар масштабталатын интернет-дүкен әзірледік.',
+    'cases.ecommerce.result1': '+180% конверсия',
+    'cases.ecommerce.result2': '3 ай әзірлеу',
+    'cases.ecommerce.result3': '50K+ пайдаланушы',
+    'cases.rag.title': 'Қолдауға арналған RAG-бот',
+    'cases.rag.client': 'Финтех компания',
+    'cases.rag.description': 'Білім базасының 500+ құжаты бойынша сұрақтарға жауап беретін ақылды бот жасадық.',
+    'cases.rag.result1': '-70% қолдау жүктемесі',
+    'cases.rag.result2': '2 ай әзірлеу',
+    'cases.rag.result3': '10K+ диалог/ай',
+    'cases.cv.title': 'Сапаны бақылау жүйесі',
+    'cases.cv.client': 'Өндіріс',
+    'cases.cv.description': 'Өндірістік желіде ақауларды автоматты анықтау үшін Computer Vision жүйесін енгіздік.',
+    'cases.cv.result1': '99.2% дәлдік',
+    'cases.cv.result2': '4 ай әзірлеу',
+    'cases.cv.result3': '-85% ақау',
+
+    // Contact Section
+    'contact.badge': 'Байланыс',
+    'contact.title': 'Сіздің жобаңызды',
+    'contact.titleHighlight': 'талқылайық',
+    'contact.description': 'Өтініш қалдырыңыз, біз 24 сағат ішінде мәліметтерді талқылау үшін хабарласамыз.',
+    'contact.form.name': 'Сіздің атыңыз',
+    'contact.form.email': 'Email',
+    'contact.form.phone': 'Телефон',
+    'contact.form.message': 'Жобаңыз туралы айтыңыз',
+    'contact.form.submit': 'Өтініш жіберу',
+    'contact.form.success': 'Өтініш жіберілді!',
+    'contact.form.successDesc': 'Біз жақын арада хабарласамыз.',
+    'contact.messenger': 'Немесе мессенджерге жазыңыз:',
+
+    // Footer
+    'footer.description': 'Бизнесті алға жылжытатын цифрлық өнімдер әзірлейміз. Сайттардан AI-шешімдерге дейін.',
+    'footer.services': 'Қызметтер',
+    'footer.company': 'Компания',
+    'footer.about': 'Біз туралы',
+    'footer.subscribe': 'Жаңалықтарға жазылыңыз',
+    'footer.subscribeBtn': 'Жазылу',
+    'footer.rights': 'Барлық құқықтар қорғалған.',
+
+    // Pricing Page
+    'pricing.title': 'Бағалар',
+    'pricing.subtitle': 'Барлық қызметтерге мөлдір бағалар. Қолайлы тарифті таңдаңыз немесе жеке есептеуге тапсырыс беріңіз.',
+    'pricing.badge': 'Мөлдір бағалар',
+    'pricing.from': 'бастап',
+    'pricing.websites': 'Сайттар',
+    'pricing.additional': 'Қосымша қызметтер',
+    'pricing.landing': 'Лендинг',
+    'pricing.landingDesc': 'Жарнамалық науқандарға арналған бір беттік сайт',
+    'pricing.corporate': 'Корпоративтік сайт',
+    'pricing.corporateDesc': 'Админ панелі бар көп беттік сайт',
+    'pricing.store': 'Интернет-дүкен',
+    'pricing.storeDesc': 'Төлем интеграциясы бар толыққанды e-commerce',
+    'pricing.platform': 'Веб-платформа',
+    'pricing.platformDesc': 'Кастомдық логикасы бар күрделі жүйе',
+    'pricing.mobile': 'Мобильді қосымша',
+    'pricing.mobileDesc': 'iOS/Android қосымшасы',
+    'pricing.chatbot': 'Чат-бот',
+    'pricing.chatbotDesc': 'Мессенджерлерге арналған бот',
+    'pricing.ragbot': 'RAG-чат-бот',
+    'pricing.ragbotDesc': 'Білім базасы бар AI-бот',
+    'pricing.ml': 'ML-шешім',
+    'pricing.mlDesc': 'Кастомдық ML-модель',
+    'pricing.cv': 'Computer Vision',
+    'pricing.cvDesc': 'Бейне/сурет тану',
+    'pricing.instagram': 'Instagram таргет',
+    'pricing.instagramDesc': 'Жарнама баптау + жүргізу',
+    'pricing.tiktok': 'TikTok жарнамасы',
+    'pricing.tiktokDesc': 'Жарнама науқанын баптау',
+    'pricing.support': 'Айлық қолдау',
+    'pricing.supportDesc': 'Техникалық қолдау және жаңартулар',
+    'pricing.order': 'Тапсырыс беру',
+    'pricing.custom': 'Жеке есептеу',
+    'pricing.customDesc': 'Ерекше нәрсе керек пе? Жобаңыз үшін жеке құнын есептейміз.',
+    'pricing.customBtn': 'Есептеу алу',
+
+    // Blog Page
+    'blog.title': 'Блог',
+    'blog.subtitle': 'Қазақстанда маркетинг, жарнама және бизнесті жылжыту туралы пайдалы мақалалар.',
+    'blog.readMore': 'Толығырақ оқу',
+    'blog.categories': 'Санаттар',
+    'blog.all': 'Барлығы',
+    'blog.seo': 'SEO',
+    'blog.smm': 'SMM',
+    'blog.advertising': 'Жарнама',
+    'blog.automation': 'Автоматтандыру',
+
+    // Cases Page
+    'casesPage.title': 'Біздің жобалар',
+    'casesPage.subtitle': 'Өлшенетін нәтижелері бар нақты кейстер. Бизнестің өсуіне қалай көмектесетінімізді қараңыз.',
+    'casesPage.empty': 'Кейстер жақында қосылады',
+    'casesPage.emptyDesc': 'Жобаларымыздың толық сипаттамаларын дайындап жатырмыз. Жаңалықтарды қадағалаңыз!',
+  },
+};
+
+interface LanguageProviderProps {
+  children: ReactNode;
+}
+
+export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) => {
+  const [language, setLanguageState] = useState<Language>(() => {
+    const saved = localStorage.getItem('language');
+    return (saved as Language) || 'ru';
+  });
+
+  useEffect(() => {
+    localStorage.setItem('language', language);
+    document.documentElement.lang = language === 'kz' ? 'kk' : language;
+  }, [language]);
+
+  const setLanguage = (lang: Language) => {
+    setLanguageState(lang);
+  };
+
+  const t = (key: string): string => {
+    return translations[language][key as keyof typeof translations['en']] || key;
+  };
+
+  return (
+    <LanguageContext.Provider value={{ language, setLanguage, t }}>
+      {children}
+    </LanguageContext.Provider>
+  );
+};
+
+export const useLanguage = () => {
+  const context = useContext(LanguageContext);
+  if (!context) {
+    throw new Error('useLanguage must be used within a LanguageProvider');
+  }
+  return context;
+};
