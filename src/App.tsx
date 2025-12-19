@@ -11,6 +11,7 @@ import Blog from "./pages/Blog";
 import BlogArticle from "./pages/BlogArticle";
 import Cases from "./pages/Cases";
 import NotFound from "./pages/NotFound";
+import Snowfall from "react-snowfall";
 
 // Create a stable query client instance
 const queryClient = new QueryClient();
@@ -22,6 +23,20 @@ const App = () => (
         <TooltipProvider>
           <Toaster />
           <Sonner />
+          <Snowfall
+            snowflakeCount={120}
+            radius={[0.6, 2.2]}
+            speed={[0.5, 1.8]}
+            wind={[-0.3, 0.3]}
+            style={{
+              position: "fixed",
+              width: "100vw",
+              height: "100vh",
+              zIndex: 50,
+              pointerEvents: "none",
+            }}
+          />
+          
           <BrowserRouter>
             <Routes>
               <Route path="/" element={<Index />} />
