@@ -3,6 +3,7 @@ import { useInView } from 'framer-motion';
 import { useRef } from 'react';
 import { Globe, Bot, Database, Brain, Eye, ArrowUpRight, Smartphone, Target } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { useNavigate } from 'react-router-dom';
 
 const ServicesSection = () => {
   const { t } = useLanguage();
@@ -75,7 +76,7 @@ const ServicesSection = () => {
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-6">
           {services.map((service, index) => {
             const Icon = service.icon;
             return (
@@ -86,6 +87,7 @@ const ServicesSection = () => {
                 description={t(service.descriptionKey)}
                 features={service.features}
                 index={index}
+                titleKey={service.titleKey}
               />
             );
           })}
@@ -101,15 +103,27 @@ const ServiceCard = ({
   description,
   features,
   index,
+  titleKey,
 }: {
   icon: typeof Globe;
   title: string;
   description: string;
   features: string[];
   index: number;
+  titleKey: string;
 }) => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-100px' });
+  const navigate = useNavigate();
+
+  // Check if this card should navigate to pricing
+  const shouldNavigateToPricing = titleKey === 'services.web.title' || titleKey === 'services.mobile.title';
+
+  const handleClick = () => {
+    if (shouldNavigateToPricing) {
+      navigate('/pricing');
+    }
+  };
 
   return (
     <motion.div
@@ -117,29 +131,32 @@ const ServiceCard = ({
       initial={{ opacity: 0, y: 50 }}
       animate={isInView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.5, delay: index * 0.1 }}
-      className="group glass-card hover:border-primary/30 transition-all duration-500 relative overflow-hidden"
+      className={`group glass-card hover:border-primary/30 transition-all duration-500 relative overflow-hidden ${
+        shouldNavigateToPricing ? 'cursor-pointer' : ''
+      }`}
+      onClick={handleClick}
     >
       <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-accent/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
       
-      <div className="relative z-10">
-        <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform duration-300">
-          <Icon className="w-7 h-7 text-primary" />
+      <div className="relative z-10 p-4 md:p-6">
+        <div className="w-10 h-10 md:w-14 md:h-14 rounded-2xl bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center mb-3 md:mb-5 group-hover:scale-110 transition-transform duration-300">
+          <Icon className="w-5 h-5 md:w-7 md:h-7 text-primary" />
         </div>
 
-        <div className="flex items-start justify-between mb-3">
-          <h3 className="text-xl font-semibold text-foreground">{title}</h3>
-          <ArrowUpRight className="w-5 h-5 text-muted-foreground group-hover:text-primary group-hover:translate-x-1 group-hover:-translate-y-1 transition-all duration-300" />
+        <div className="flex items-start justify-between mb-2 md:mb-3">
+          <h3 className="text-sm md:text-xl font-semibold text-foreground line-clamp-2">{title}</h3>
+          <ArrowUpRight className="w-4 h-4 md:w-5 md:h-5 text-muted-foreground group-hover:text-primary group-hover:translate-x-1 group-hover:-translate-y-1 transition-all duration-300 flex-shrink-0 ml-1" />
         </div>
 
-        <p className="text-muted-foreground mb-5 text-sm leading-relaxed">
+        <p className="text-muted-foreground mb-3 md:mb-5 text-xs md:text-sm leading-relaxed line-clamp-2 md:line-clamp-none">
           {description}
         </p>
 
-        <div className="flex flex-wrap gap-2">
-          {features.map((feature, i) => (
+        <div className="flex flex-wrap gap-1 md:gap-2">
+          {features.slice(0, 2).map((feature, i) => (
             <span
               key={i}
-              className="px-3 py-1 rounded-full bg-secondary text-xs text-muted-foreground"
+              className="px-2 py-0.5 md:px-3 md:py-1 rounded-full bg-secondary text-[10px] md:text-xs text-muted-foreground"
             >
               {feature}
             </span>

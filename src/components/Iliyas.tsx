@@ -4,8 +4,17 @@ import UnicornScene from 'unicornstudio-react';
 import { ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
+const Loader = () => {
+  return (
+    <div className="absolute inset-0 flex items-center justify-center bg-black/50 backdrop-blur-sm z-50">
+      <div className="w-12 h-12 border-4 border-primary border-t-transparent rounded-full animate-spin"></div>
+    </div>
+  );
+};
+
 const Iliyas = () => {
   const [dimensions, setDimensions] = useState({ width: 1440, height: 900 });
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     const updateDimensions = () => {
@@ -50,7 +59,9 @@ const Iliyas = () => {
   ];
 
   return (
-    <div className="relative w-full h-full flex flex-col md:block overflow-hidden">
+    <div className="relative w-full h-full flex flex-col md:block overflow-hidden pb-10 md:pb-0">
+      {isLoading && <Loader />}
+      
       {/* Mobile Layout: Content on top, Photo on bottom */}
       <div className="flex flex-col md:hidden w-full h-full">
         {/* Top Section - Content */}
@@ -103,7 +114,7 @@ const Iliyas = () => {
         </div>
 
         {/* Button - Above photo */}
-        <div className="absolute bottom-5 left-1/2 -translate-x-1/2 z-20 flex-shrink-0 px-4 pb-2 pointer-events-auto">
+        <div className="absolute bottom-5 left-1/2 -translate-x-1/2 z-20 flex-shrink-0 px-4 pb-12 pointer-events-auto">
           <Link
             to="/about/nurtore"
             className="inline-flex items-center justify-center w-full h-10 bg-black/90 backdrop-blur-sm border border-red-500 hover:bg-red-700/90 hover:border-red-400 text-white text-xs px-3 py-2 rounded-lg transition-all duration-300"
@@ -116,11 +127,13 @@ const Iliyas = () => {
         {/* Bottom Section - Photo */}
         <div className="relative z-10 flex-shrink-0 flex items-center justify-center relative">
           <div className="relative w-full flex items-center justify-center">
-            <UnicornScene 
-              projectId="dt5CSkWrk8JFLTT8R2Dh" 
-              width={dimensions.width} 
-              height={dimensions.height} 
-            />
+            {!isLoading && (
+              <UnicornScene 
+                projectId="VwBzCqfaV1cFJnu3FX9x" 
+                width={dimensions.width} 
+                height={dimensions.height} 
+              />
+            )}
           </div>
         </div>
       </div>
@@ -129,11 +142,13 @@ const Iliyas = () => {
       <div className="hidden md:block relative w-full h-full">
         {/* Unicorn Studio Scene - Center */}
         <div className="relative z-0 flex items-center justify-center w-full h-full">
-          <UnicornScene 
-            projectId="dt5CSkWrk8JFLTT8R2Dh" 
-            width={dimensions.width} 
-            height={dimensions.height} 
-          />
+          {!isLoading && (
+            <UnicornScene 
+              projectId="VwBzCqfaV1cFJnu3FX9x" 
+              width={dimensions.width} 
+              height={dimensions.height} 
+            />
+          )}
         </div>
 
         {/* Text Overlay */}
