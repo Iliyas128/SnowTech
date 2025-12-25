@@ -18,6 +18,7 @@ export const translations = {
     'nav.cases': 'Cases',
     'nav.pricing': 'Pricing',
     'nav.blog': 'Blog',
+    'nav.about': 'About Us',
     'nav.contacts': 'Contacts',
     'nav.discuss': 'Discuss Project',
 
@@ -170,6 +171,27 @@ export const translations = {
     'casesPage.subtitle': 'Real cases with measurable results. See how we help businesses grow.',
     'casesPage.empty': 'Cases will be added soon',
     'casesPage.emptyDesc': 'We are preparing detailed descriptions of our projects. Stay tuned!',
+
+    // About Page
+    'about.badge': 'About Us',
+    'about.title': 'About SnowTEch',
+    'about.subtitle': 'We are a team of IT professionals creating digital products that drive business growth in Kazakhstan.',
+    'about.demo.title': 'Interactive Components',
+    'about.demo.rotate': 'Rotating',
+    'about.demo.hover': 'Hover Effect',
+    'about.demo.color': 'Color Change',
+    'about.values.title': 'Our Values',
+    'about.values.innovation.title': 'Innovation',
+    'about.values.innovation.description': 'We use cutting-edge technologies to create modern solutions.',
+    'about.values.team.title': 'Team',
+    'about.values.team.description': 'Experienced professionals working together to achieve your goals.',
+    'about.values.quality.title': 'Quality',
+    'about.values.quality.description': 'We deliver high-quality products that meet your expectations.',
+    'about.values.passion.title': 'Passion',
+    'about.values.passion.description': 'We love what we do and it shows in our work.',
+    'about.cta.title': 'Ready to work with us?',
+    'about.cta.description': 'Let\'s discuss your project and create something amazing together.',
+    'about.cta.button': 'Get in Touch',
   },
   ru: {
     // Navigation
@@ -178,6 +200,7 @@ export const translations = {
     'nav.cases': 'Кейсы',
     'nav.pricing': 'Цены',
     'nav.blog': 'Блог',
+    'nav.about': 'О нас',
     'nav.contacts': 'Контакты',
     'nav.discuss': 'Обсудить проект',
 
@@ -330,6 +353,27 @@ export const translations = {
     'casesPage.subtitle': 'Реальные кейсы с измеримыми результатами. Смотрите, как мы помогаем бизнесу расти.',
     'casesPage.empty': 'Кейсы скоро появятся',
     'casesPage.emptyDesc': 'Мы готовим подробные описания наших проектов. Следите за обновлениями!',
+
+    // About Page
+    'about.badge': 'О нас',
+    'about.title': 'О SnowTEch',
+    'about.subtitle': 'Мы команда IT-профессионалов, создающих цифровые продукты, которые двигают бизнес в Казахстане.',
+    'about.demo.title': 'Интерактивные компоненты',
+    'about.demo.rotate': 'Вращение',
+    'about.demo.hover': 'Эффект наведения',
+    'about.demo.color': 'Смена цвета',
+    'about.values.title': 'Наши ценности',
+    'about.values.innovation.title': 'Инновации',
+    'about.values.innovation.description': 'Используем передовые технологии для создания современных решений.',
+    'about.values.team.title': 'Команда',
+    'about.values.team.description': 'Опытные профессионалы, работающие вместе для достижения ваших целей.',
+    'about.values.quality.title': 'Качество',
+    'about.values.quality.description': 'Создаём качественные продукты, соответствующие вашим ожиданиям.',
+    'about.values.passion.title': 'Страсть',
+    'about.values.passion.description': 'Мы любим то, что делаем, и это видно в нашей работе.',
+    'about.cta.title': 'Готовы работать с нами?',
+    'about.cta.description': 'Давайте обсудим ваш проект и создадим что-то удивительное вместе.',
+    'about.cta.button': 'Связаться с нами',
   },
   kz: {
     // Navigation
@@ -338,6 +382,7 @@ export const translations = {
     'nav.cases': 'Кейстер',
     'nav.pricing': 'Бағалар',
     'nav.blog': 'Блог',
+    'nav.about': 'Біз туралы',
     'nav.contacts': 'Байланыс',
     'nav.discuss': 'Жобаны талқылау',
 
@@ -490,6 +535,27 @@ export const translations = {
     'casesPage.subtitle': 'Өлшенетін нәтижелері бар нақты кейстер. Бизнестің өсуіне қалай көмектесетінімізді қараңыз.',
     'casesPage.empty': 'Кейстер жақында қосылады',
     'casesPage.emptyDesc': 'Жобаларымыздың толық сипаттамаларын дайындап жатырмыз. Жаңалықтарды қадағалаңыз!',
+
+    // About Page
+    'about.badge': 'Біз туралы',
+    'about.title': 'SnowTEch туралы',
+    'about.subtitle': 'Біз Қазақстанда бизнесті алға жылжытатын цифрлық өнімдер жасайтын IT мамандары командасымыз.',
+    'about.demo.title': 'Интерактивті компоненттер',
+    'about.demo.rotate': 'Айналу',
+    'about.demo.hover': 'Үстінен өту эффектісі',
+    'about.demo.color': 'Түс өзгерту',
+    'about.values.title': 'Біздің құндылықтарымыз',
+    'about.values.innovation.title': 'Инновация',
+    'about.values.innovation.description': 'Заманауи шешімдер жасау үшін озық технологияларды қолданамыз.',
+    'about.values.team.title': 'Команда',
+    'about.values.team.description': 'Сіздің мақсаттарыңызға қол жеткізу үшін бірге жұмыс істейтін тәжірибелі мамандар.',
+    'about.values.quality.title': 'Сапа',
+    'about.values.quality.description': 'Сіздің күтулеріңізге сәйкес келетін сапалы өнімдер жасаймыз.',
+    'about.values.passion.title': 'Құмарлық',
+    'about.values.passion.description': 'Біз не істейтінімізді жақсы көреміз және бұл біздің жұмысымызда көрінеді.',
+    'about.cta.title': 'Бізбен жұмыс істеуге дайынсыз ба?',
+    'about.cta.description': 'Жобаңызды талқылап, бірге керемет нәрсе жасайық.',
+    'about.cta.button': 'Байланысу',
   },
 };
 

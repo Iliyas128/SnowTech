@@ -15,7 +15,7 @@ const Footer = () => {
       { labelKey: 'services.cv.title', href: '/#services' },
     ],
     company: [
-      { labelKey: 'footer.about', href: '/#why-us' },
+      { labelKey: 'footer.about', href: '/about' },
       { labelKey: 'nav.cases', href: '/cases' },
       { labelKey: 'nav.pricing', href: '/pricing' },
       { labelKey: 'nav.blog', href: '/blog' },
