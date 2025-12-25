@@ -58,7 +58,7 @@ const About = () => {
         </div>
 
         {/* Main Content - Iliyas Component */}
-        <main className="relative z-10 h-[calc(100vh-2.5rem)] md:h-screen flex md:items-center justify-center pt-20 pb-10 md:pb-0">
+        <main className="relative z-10 h-[calc(100vh-2.5rem)] md:h-screen flex md:items-center justify-center pt-20 md:pb-0">
           <Iliyas />
         </main>
       </div>
