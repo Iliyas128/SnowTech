@@ -59,13 +59,13 @@ const Iliyas = () => {
   ];
 
   return (
-    <div className="relative w-full h-full flex flex-col md:block overflow-hidden pb-10 md:pb-0">
+    <div className="relative w-full h-full flex flex-col md:block md:overflow-hidden">
       {isLoading && <Loader />}
       
       {/* Mobile Layout: Content on top, Photo on bottom */}
       <div className="flex flex-col md:hidden w-full h-full">
         {/* Top Section - Content */}
-        <div className="flex-1 flex flex-col justify-start pt-4 px-4 pb-2 space-y-4">
+        <div className="flex-1 flex flex-col justify-start pt-4 px-4 pb-2 space-y-4 min-h-0">
           {/* Title and Stats Row */}
           <div className="flex justify-between items-start">
             {/* Left - Title */}
@@ -114,7 +114,7 @@ const Iliyas = () => {
         </div>
 
         {/* Button - Above photo */}
-        <div className="absolute bottom-5 left-1/2 -translate-x-1/2 z-20 flex-shrink-0 px-4 pb-12 pointer-events-auto">
+        <div className="absolute bottom-5 left-1/2 -translate-x-1/2 z-20 flex-shrink-0 px-4 pb-2 pointer-events-auto">
           <Link
             to="/about/nurtore"
             className="inline-flex items-center justify-center w-full h-10 bg-black/90 backdrop-blur-sm border border-red-500 hover:bg-red-700/90 hover:border-red-400 text-white text-xs px-3 py-2 rounded-lg transition-all duration-300"
