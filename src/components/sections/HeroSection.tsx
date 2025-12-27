@@ -105,10 +105,10 @@ const HeroSection = () => {
             className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8"
           >
             {[
-              { value: '20+', label: t('hero.stats.projects') },
+              { value: '2+', label: t('hero.stats.projects') },
               { value: '3+', label: t('hero.stats.years') },
-              { value: '12+', label: t('hero.stats.clients') },
-              { value: '99%', label: t('hero.stats.clients') },
+              { value: '2+', label: t('hero.stats.clients') },
+              { value: '100%', label: t('hero.stats.clients') },
             ].map((stat, index) => (
               <div key={index} className="glass-card text-center">
                 <div className="text-3xl md:text-4xl font-bold gradient-text mb-1">

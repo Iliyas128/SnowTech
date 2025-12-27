@@ -4,7 +4,7 @@ import { useRef } from 'react';
 import { ExternalLink, TrendingUp, Clock, Users } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useLanguage } from '@/contexts/LanguageContext';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import eCommerceImage from '@/assets/e-commerce.jpg';
 
 const CasesSection = () => {
@@ -114,15 +114,21 @@ const CaseCard = ({
   t: (key: string) => string;
 }) => {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: '-100px' });
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate('/pricing');
+  };
 
   return (
     <motion.div
       ref={ref}
       initial={{ opacity: 0, y: 50 }}
-      animate={isInView ? { opacity: 1, y: 0 } : {}}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: '-50px' }}
       transition={{ duration: 0.6, delay: index * 0.2 }}
-      className="group"
+      className="group cursor-pointer"
+      onClick={handleClick}
     >
       <div className="glass rounded-3xl overflow-hidden hover:border-primary/30 transition-all duration-500">
         <div className="relative h-56 overflow-hidden">

@@ -1,4 +1,4 @@
-import { Helmet } from 'react-helmet-async';
+import SEO from '@/components/SEO';
 import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef, useState } from 'react';
@@ -8,6 +8,7 @@ import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { generateBreadcrumbSchema } from '@/utils/seo';
 
 export const articles = [
   {
@@ -734,38 +735,45 @@ const Blog = () => {
       ? articles
       : articles.filter((article) => article.categoryId === activeCategory);
 
+  const seoData = {
+    ru: {
+      title: 'Блог о рекламе и маркетинге | SnowTEch — Полезные статьи для бизнеса',
+      description: 'Полезные статьи о маркетинге, рекламе и продвижении бизнеса в Казахстане. SEO, SMM, таргетированная реклама и автоматизация.',
+      keywords: 'блог о маркетинге, статьи о рекламе, SMM Казахстан, SEO статьи, таргетированная реклама, маркетинг для бизнеса',
+    },
+    en: {
+      title: 'Marketing and advertising blog | SnowTEch — Useful articles for business',
+      description: 'Useful articles about marketing, advertising and business promotion in Kazakhstan. SEO, SMM, targeted advertising and automation.',
+      keywords: 'marketing blog, advertising articles, SMM Kazakhstan, SEO articles, targeted advertising, business marketing',
+    },
+    kz: {
+      title: 'Маркетинг және жарнама блогы | SnowTEch — Бизнеске арналған пайдалы мақалалар',
+      description: 'Қазақстанда маркетинг, жарнама және бизнесті жылжыту туралы пайдалы мақалалар. SEO, SMM, таргеттелген жарнама және автоматтандыру.',
+      keywords: 'маркетинг блогы, жарнама мақалалары, SMM Қазақстан, SEO мақалалары, таргеттелген жарнама, бизнес маркетингі',
+    },
+  };
+
+  const currentSeo = seoData[language] || seoData.ru;
+
+  const structuredData = generateBreadcrumbSchema([
+    { name: 'Главная', url: '/' },
+    { name: 'Блог', url: '/blog' },
+  ]);
+
   return (
     <>
-      <Helmet>
-        <title>
-          {language === 'en'
-            ? 'Marketing and advertising blog | SnowTEch — Useful articles for business'
-            : language === 'kz'
-            ? 'Маркетинг және жарнама блогы | SnowTEch — Бизнеске арналған пайдалы мақалалар'
-            : 'Блог о рекламе и маркетинге | SnowTEch — Полезные статьи для бизнеса'}
-        </title>
-        <meta
-          name="description"
-          content={
-            language === 'en'
-              ? 'SnowTEch blog: articles on how to build a website for business, set up Instagram and TikTok ads, launch SEO and marketing in Kazakhstan.'
-              : language === 'kz'
-              ? 'SnowTEch блогы: бизнеске сайт жасау, Instagram және TikTok-та таргетті баптау, SEO және маркетингті іске қосу туралы мақалалар.'
-              : 'Блог SnowTEch: статьи о том, как сделать сайт для бизнеса, заказать таргет в Instagram и TikTok, запустить SEO-продвижение и маркетинг в Казахстане. Практические инструкции и кейсы.'
-          }
-        />
-        <meta
-          name="keywords"
-          content={
-            language === 'en'
-              ? 'SnowTEch blog, build a website, Kazakhstan website development, order targeting, Instagram ads, TikTok ads, SEO Kazakhstan'
-              : language === 'kz'
-              ? 'SnowTEch блогы, сайт жасау, Қазақстан сайт әзірлеу, таргетке тапсырыс беру, Instagram таргет, TikTok жарнама, SEO Қазақстан'
-              : 'SnowTEch, сделать сайт, разработка сайта Казахстан, заказать таргет, таргетированная реклама Instagram, реклама TikTok, SEO продвижение Казахстан'
-          }
-        />
-        <link rel="canonical" href="https://snowtech.kz/blog" />
-      </Helmet>
+      <SEO
+        title={currentSeo.title}
+        description={currentSeo.description}
+        keywords={currentSeo.keywords}
+        canonical="/blog"
+        alternateLanguages={[
+          { lang: 'ru', url: '/blog' },
+          { lang: 'en', url: '/blog' },
+          { lang: 'kk', url: '/blog' },
+        ]}
+        structuredData={structuredData}
+      />
 
       <div className="min-h-screen bg-background">
         <Header />

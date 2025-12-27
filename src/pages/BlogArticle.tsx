@@ -1,4 +1,5 @@
-import { Helmet } from 'react-helmet-async';
+import SEO from '@/components/SEO';
+import { generateArticleSchema, generateBreadcrumbSchema } from '@/utils/seo';
 import { motion } from 'framer-motion';
 import { useParams, Link } from 'react-router-dom';
 import { Calendar, Clock, ArrowLeft, Tag, Share2 } from 'lucide-react';
@@ -32,18 +33,40 @@ const BlogArticle = () => {
     );
   }
 
+  const structuredData = [
+    generateArticleSchema(
+      article.title,
+      article.excerpt,
+      article.image,
+      article.date,
+      article.date,
+      'SnowTEch'
+    ),
+    generateBreadcrumbSchema([
+      { name: 'Главная', url: '/' },
+      { name: 'Блог', url: '/blog' },
+      { name: article.title, url: `/blog/${article.id}` },
+    ]),
+  ];
+
   return (
     <>
-      <Helmet>
-        <title>{article.title} | SnowTEch Blog</title>
-        <meta name="description" content={article.excerpt} />
-        <meta name="keywords" content={`${article.category}, маркетинг, реклама Казахстан`} />
-        <link rel="canonical" href={`https://snowtech.kz/blog/${article.id}`} />
-        <meta property="og:title" content={article.title} />
-        <meta property="og:description" content={article.excerpt} />
-        <meta property="og:image" content={article.image} />
-        <meta property="og:type" content="article" />
-      </Helmet>
+      <SEO
+        title={`${article.title} | SnowTEch Blog`}
+        description={article.excerpt}
+        keywords={`${article.category}, маркетинг, реклама Казахстан`}
+        canonical={`/blog/${article.id}`}
+        ogType="article"
+        ogImage={article.image}
+        article={{
+          publishedTime: article.date,
+          modifiedTime: article.date,
+          author: 'SnowTEch',
+          section: article.category,
+          tags: [article.category, 'маркетинг', 'реклама'],
+        }}
+        structuredData={structuredData}
+      />
 
       <div className="min-h-screen bg-background">
         <Header />

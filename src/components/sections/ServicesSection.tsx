@@ -113,27 +113,20 @@ const ServiceCard = ({
   titleKey: string;
 }) => {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: '-100px' });
   const navigate = useNavigate();
 
-  // Check if this card should navigate to pricing
-  const shouldNavigateToPricing = titleKey === 'services.web.title' || titleKey === 'services.mobile.title';
-
   const handleClick = () => {
-    if (shouldNavigateToPricing) {
-      navigate('/pricing');
-    }
+    navigate('/pricing');
   };
 
   return (
     <motion.div
       ref={ref}
       initial={{ opacity: 0, y: 50 }}
-      animate={isInView ? { opacity: 1, y: 0 } : {}}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: '-50px' }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
-      className={`group glass-card hover:border-primary/30 transition-all duration-500 relative overflow-hidden ${
-        shouldNavigateToPricing ? 'cursor-pointer' : ''
-      }`}
+      className="group glass-card hover:border-primary/30 transition-all duration-500 relative overflow-hidden cursor-pointer"
       onClick={handleClick}
     >
       <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-accent/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />

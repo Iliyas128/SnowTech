@@ -1,4 +1,4 @@
-import { Helmet } from 'react-helmet-async';
+import SEO from '@/components/SEO';
 import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useMemo, useRef, useState } from 'react';
@@ -7,6 +7,7 @@ import { Button } from '@/components/ui/button';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { generateBreadcrumbSchema, generateServiceSchema } from '@/utils/seo';
 
 type PricingPlan = {
   name: string;
@@ -336,38 +337,48 @@ const Pricing = () => {
     ];
   }, [language]);
 
+  const seoData = {
+    ru: {
+      title: 'Цены на IT-услуги | SnowTEch — Разработка сайтов, приложений, AI-решений',
+      description: 'Прозрачные цены на разработку сайтов, мобильных приложений, AI-ботов и таргетированную рекламу в Казахстане. От лендингов до сложных платформ.',
+      keywords: 'цены на разработку сайта, стоимость сайта, цена мобильного приложения, стоимость AI-бота, таргетированная реклама цена, разработка сайта Казахстан',
+    },
+    en: {
+      title: 'Pricing for IT services | SnowTEch — Websites, apps, AI solutions',
+      description: 'Transparent pricing for website development, mobile apps, AI bots and targeted advertising in Kazakhstan. From landing pages to complex platforms.',
+      keywords: 'website development price, website cost, mobile app price, AI bot cost, targeted advertising price, Kazakhstan website development',
+    },
+    kz: {
+      title: 'IT-қызметтер бағалары | SnowTEch — Сайттар, қосымшалар, AI-шешімдер',
+      description: 'Қазақстанда сайт әзірлеу, мобильді қосымшалар, AI-боттар және таргеттелген жарнама үшін мөлдір бағалар. Лендингтерден күрделі платформаларға дейін.',
+      keywords: 'сайт әзірлеу бағасы, сайт құны, мобильді қосымша бағасы, AI-бот құны, таргеттелген жарнама бағасы, Қазақстанда сайт әзірлеу',
+    },
+  };
+
+  const currentSeo = seoData[language] || seoData.ru;
+
+  const structuredData = [
+    generateBreadcrumbSchema([
+      { name: 'Главная', url: '/' },
+      { name: 'Цены', url: '/pricing' },
+    ]),
+    generateServiceSchema('IT Services', currentSeo.description),
+  ];
+
   return (
     <>
-      <Helmet>
-        <title>
-          {language === 'en'
-            ? 'Pricing for IT services | SnowTEch — Websites, apps, AI solutions'
-            : language === 'kz'
-            ? 'IT-қызметтер бағалары | SnowTEch — Сайттар, қосымшалар, AI-шешімдер'
-            : 'Цены на IT-услуги | SnowTEch — Разработка сайтов, приложений, AI-решений'}
-        </title>
-        <meta
-          name="description"
-          content={
-            language === 'en'
-              ? 'Website development from 150 000 ₸, mobile apps from 1 200 000 ₸, Instagram targeting from 100 000 ₸/month. Transparent pricing in KZT.'
-              : language === 'kz'
-              ? 'Сайттарды 150 000 ₸-ден, мобильді қосымшаларды 1 200 000 ₸-ден, Instagram таргетін 100 000 ₸/ай-дан басталатын баға. Ашық бағалар.'
-              : 'Стоимость разработки сайтов от 150 000 ₸, мобильных приложений от 1 200 000 ₸, таргета в Instagram от 100 000 ₸/мес. Прозрачные цены в тенге.'
-          }
-        />
-        <meta
-          name="keywords"
-          content={
-            language === 'en'
-              ? 'SnowTEch pricing, website development price Kazakhstan, mobile app cost, Instagram ads price, IT services Astana'
-              : language === 'kz'
-              ? 'SnowTEch бағалары, сайт әзірлеу бағасы, мобильді қосымша құны, Instagram таргет бағасы, IT-қызметтер Астана'
-              : 'цены разработка сайтов Казахстан, стоимость мобильного приложения, таргет инстаграм цена, IT-услуги Астана'
-          }
-        />
-        <link rel="canonical" href="https://snowtech.kz/pricing" />
-      </Helmet>
+      <SEO
+        title={currentSeo.title}
+        description={currentSeo.description}
+        keywords={currentSeo.keywords}
+        canonical="/pricing"
+        alternateLanguages={[
+          { lang: 'ru', url: '/pricing' },
+          { lang: 'en', url: '/pricing' },
+          { lang: 'kk', url: '/pricing' },
+        ]}
+        structuredData={structuredData}
+      />
 
       <div className="min-h-screen bg-background">
         <Header />

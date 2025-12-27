@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://snowtech.kz/</loc>
+    <lastmod>2024-12-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://snowtech.kz/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://snowtech.kz/" />
+    <xhtml:link rel="alternate" hreflang="kk" href="https://snowtech.kz/" />
+  </url>
+  <url>
+    <loc>https://snowtech.kz/pricing</loc>
+    <lastmod>2024-12-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://snowtech.kz/pricing" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://snowtech.kz/pricing" />
+    <xhtml:link rel="alternate" hreflang="kk" href="https://snowtech.kz/pricing" />
+  </url>
+  <url>
+    <loc>https://snowtech.kz/blog</loc>
+    <lastmod>2024-12-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://snowtech.kz/blog" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://snowtech.kz/blog" />
+    <xhtml:link rel="alternate" hreflang="kk" href="https://snowtech.kz/blog" />
+  </url>
+  <url>
+    <loc>https://snowtech.kz/cases</loc>
+    <lastmod>2024-12-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://snowtech.kz/cases" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://snowtech.kz/cases" />
+    <xhtml:link rel="alternate" hreflang="kk" href="https://snowtech.kz/cases" />
+  </url>
+  <url>
+    <loc>https://snowtech.kz/about</loc>
+    <lastmod>2024-12-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://snowtech.kz/about" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://snowtech.kz/about" />
+    <xhtml:link rel="alternate" hreflang="kk" href="https://snowtech.kz/about" />
+  </url>
+  <url>
+    <loc>https://snowtech.kz/about/nurtore</loc>
+    <lastmod>2024-12-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://snowtech.kz/about/nurtore" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://snowtech.kz/about/nurtore" />
+    <xhtml:link rel="alternate" hreflang="kk" href="https://snowtech.kz/about/nurtore" />
+  </url>
+</urlset>
+

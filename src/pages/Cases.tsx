@@ -1,20 +1,54 @@
 import { motion } from 'framer-motion';
-import { Helmet } from 'react-helmet-async';
+import SEO from '@/components/SEO';
 import { Folder, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { generateBreadcrumbSchema } from '@/utils/seo';
 
 const Cases = () => {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
+
+  const seoData = {
+    ru: {
+      title: 'Наши проекты | SnowTEch — Кейсы и портфолио',
+      description: 'Реальные кейсы с измеримыми результатами. Смотрите, как мы помогаем бизнесу расти с помощью IT-решений.',
+      keywords: 'кейсы SnowTEch, портфолио IT-компании, примеры работ, проекты разработки сайтов, успешные кейсы',
+    },
+    en: {
+      title: 'Our Projects | SnowTEch — Cases and Portfolio',
+      description: 'Real cases with measurable results. See how we help businesses grow with IT solutions.',
+      keywords: 'SnowTEch cases, IT company portfolio, work examples, website development projects, success cases',
+    },
+    kz: {
+      title: 'Біздің жобалар | SnowTEch — Кейстер және портфолио',
+      description: 'Өлшенетін нәтижелері бар нақты кейстер. Бизнестің өсуіне қалай көмектесетінімізді қараңыз.',
+      keywords: 'SnowTEch кейстері, IT компания портфолиосы, жұмыс мысалдары, сайт әзірлеу жобалары, табысты кейстер',
+    },
+  };
+
+  const currentSeo = seoData[language] || seoData.ru;
+
+  const structuredData = generateBreadcrumbSchema([
+    { name: 'Главная', url: '/' },
+    { name: 'Кейсы', url: '/cases' },
+  ]);
 
   return (
     <>
-      <Helmet>
-        <title>{t('casesPage.title')} | SnowTEch</title>
-        <meta name="description" content={t('casesPage.subtitle')} />
-      </Helmet>
+      <SEO
+        title={currentSeo.title}
+        description={currentSeo.description}
+        keywords={currentSeo.keywords}
+        canonical="/cases"
+        alternateLanguages={[
+          { lang: 'ru', url: '/cases' },
+          { lang: 'en', url: '/cases' },
+          { lang: 'kk', url: '/cases' },
+        ]}
+        structuredData={structuredData}
+      />
 
       <div className="min-h-screen bg-background">
         <Header />

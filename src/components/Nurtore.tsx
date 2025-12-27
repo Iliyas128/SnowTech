@@ -1,31 +1,43 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import UnicornScene from 'unicornstudio-react';
+import { ArrowRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { TypeText } from './TypeText';
+import { useLanguage } from '@/contexts/LanguageContext';
+
+const Loader = () => {
+  return (
+    <div className="absolute inset-0 flex items-center justify-center bg-black/50 backdrop-blur-sm z-50">
+      <div className="w-12 h-12 border-4 border-primary border-t-transparent rounded-full animate-spin"></div>
+    </div>
+  );
+};
 
 const Nurtore = () => {
+  const { t } = useLanguage();
   const [dimensions, setDimensions] = useState({ width: 1440, height: 900 });
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     const updateDimensions = () => {
       const containerWidth = window.innerWidth;
       const containerHeight = window.innerHeight - 80; // Subtract header height
-      const maxWidth = 1440;
-      const maxHeight = 900;
       const aspectRatio = 1440 / 900;
+      const isMobile = containerWidth < 768; // Mobile breakpoint
       
-      let width = containerWidth;
-      let height = containerWidth / aspectRatio;
+      // On mobile: crop from sides (make width smaller to allow cropping)
+      // On desktop: use full width
+      let width = isMobile ? containerWidth * 1.55 : containerWidth; // 85% width on mobile for cropping
+      let height = width / aspectRatio;
       
+      // If height exceeds container, scale based on height instead
       if (height > containerHeight) {
         height = containerHeight;
         width = height * aspectRatio;
       }
       
-      if (width > maxWidth) {
-        width = maxWidth;
-        height = maxHeight;
-      }
-      
+      // No max width/height limit - allow scaling on large screens
       setDimensions({ width, height });
     };
 
@@ -37,15 +49,186 @@ const Nurtore = () => {
     };
   }, []);
 
+  const techStack = [
+    'Flutter',
+    'Dart',
+    'Firebase',
+    'Supabase',
+    'MongoDB',
+    'PostgreSQL',
+    'Docker',
+    'AWS',
+    'GraphQL',
+    'Redis',
+  ];
+
   return (
-    <div className="relative w-full h-full flex items-center justify-center">
-      {/* Unicorn Studio Scene - Center */}
-      <div className="relative z-0 flex items-center justify-center">
-        <UnicornScene 
-          projectId="dt5CSkWrk8JFLTT8R2Dh" 
-          width={dimensions.width} 
-          height={dimensions.height} 
-        />
+    <div className="relative w-full h-full flex flex-col md:block md:overflow-hidden">
+      {isLoading && <Loader />}
+      
+      {/* Mobile Layout: Content on top, Photo on bottom */}
+      <div className="flex flex-col md:hidden w-full h-full">
+        {/* Top Section - Content */}
+        <div className="flex-1 flex flex-col justify-start pt-4 px-4 pb-2 space-y-4 min-h-0">
+          {/* Title and Stats Row */}
+          <div className="flex justify-between items-start">
+            {/* Left - Title */}
+            <div>
+              <div className="text-white text-[10px] font-medium uppercase tracking-wider mb-1">
+                {t('employee.nurtore.roleMobile')}
+              </div>
+              <h1 className="text-2xl font-bold leading-tight">
+                <span className="text-white">{t('employee.nurtore.firstName')}</span>
+                <br />
+                <span className="text-amber-400">{t('employee.nurtore.lastName')}</span>
+              </h1>
+              <div className="w-20 h-0.5 bg-amber-400 mt-1"></div>
+            </div>
+
+            {/* Right - Stats */}
+            <div className="flex flex-col gap-2">
+              <div className="border border-amber-400 p-2 bg-black/50 backdrop-blur-sm">
+                <div className="text-amber-400 text-2xl font-bold">3+</div>
+                <div className="text-white text-[8px] uppercase mt-0.5">{t('employee.nurtore.experience')}</div>
+              </div>
+              <div className="border border-amber-400 p-2 bg-black/50 backdrop-blur-sm">
+                <div className="text-amber-400 text-2xl font-bold">12+</div>
+                <div className="text-white text-[8px] uppercase mt-0.5">{t('employee.nurtore.technologies')}</div>
+              </div>
+            </div>
+          </div>
+
+          {/* Tech Stack */}
+          <div>
+            <div className="text-amber-400 text-[10px] font-mono mb-2">// {t('employee.nurtore.techStack')}</div>
+            <div className="flex flex-wrap gap-1.5">
+              {techStack.map((tech, index) => (
+                <motion.div
+                  key={tech}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: index * 0.1 }}
+                  className="border border-amber-400 px-2 py-1 bg-black/50 backdrop-blur-sm"
+                >
+                  <span className="text-white text-[10px]">{tech}</span>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Button - Above photo */}
+        <div className="absolute bottom-5 left-1/2 -translate-x-1/2 z-20 flex-shrink-0 px-4 pb-2 pointer-events-auto">
+          <Link
+            to="/about"
+            className="inline-flex items-center justify-center w-full h-10 bg-black/90 backdrop-blur-sm border border-amber-400 hover:bg-amber-600/90 hover:border-amber-300 text-white text-xs px-3 py-2 rounded-lg transition-all duration-300"
+          >
+            <span className="whitespace-nowrap text-xs">{t('employee.nurtore.previousEmployee')}</span>
+            <ArrowRight className="w-3 h-3 ml-2 rotate-180" />
+          </Link>
+        </div>
+
+        {/* Bottom Section - Photo */}
+        <div className="relative z-10 flex-shrink-0 flex items-center justify-center relative">
+          <div className="relative w-full flex items-center justify-center">
+            {!isLoading && (
+              <UnicornScene 
+                projectId="twNYXJjUCRSGK7W5hiNk" 
+                width={dimensions.width} 
+                height={dimensions.height} 
+              />
+            )}
+          </div>
+        </div>
+      </div>
+
+      {/* Desktop Layout: Absolute positioning */}
+      <div className="hidden md:block relative w-full h-full">
+        {/* Unicorn Studio Scene - Center */}
+        <div className="relative z-0 flex items-center justify-center w-full h-full">
+          {!isLoading && (
+            <UnicornScene 
+              projectId="twNYXJjUCRSGK7W5hiNk" 
+              width={dimensions.width} 
+              height={dimensions.height} 
+            />
+          )}
+        </div>
+
+        {/* Text Overlay */}
+        <div className="absolute inset-0 z-10 pointer-events-none">
+          {/* Top Left - Title */}
+          <div className="absolute top-4 left-4 md:top-8 md:left-8 lg:top-12 lg:left-12">
+            <div className="text-white text-[10px] md:text-xs lg:text-sm font-medium uppercase tracking-wider mb-1 md:mb-2">
+              {t('employee.nurtore.role')}
+            </div>
+            <h1 className="text-2xl md:text-4xl lg:text-5xl xl:text-6xl font-bold leading-tight">
+              <span className="text-white">{t('employee.nurtore.firstName')}</span>
+              <br />
+              <span className="text-amber-400">{t('employee.nurtore.lastName')}</span>
+            </h1>
+            <div className="w-16 md:w-24 lg:w-32 h-0.5 bg-amber-400 mt-1 md:mt-2"></div>
+          </div>
+
+          {/* Top Right - Stats */}
+          <div className="absolute top-4 right-4 md:top-8 md:right-8 lg:top-12 lg:right-12 flex flex-col gap-2 md:gap-4">
+            <div className="border border-amber-400 p-2 md:p-4 lg:p-6 bg-black/50 backdrop-blur-sm">
+              <div className="text-amber-400 text-2xl md:text-4xl lg:text-5xl font-bold">3+</div>
+              <div className="text-white text-[10px] md:text-xs lg:text-sm uppercase mt-1">{t('employee.nurtore.experience')}</div>
+            </div>
+            <div className="border border-amber-400 p-2 md:p-4 lg:p-6 bg-black/50 backdrop-blur-sm">
+              <div className="text-amber-400 text-2xl md:text-4xl lg:text-5xl font-bold">12+</div>
+              <div className="text-white text-[10px] md:text-xs lg:text-sm uppercase mt-1">{t('employee.nurtore.technologies')}</div>
+            </div>
+          </div>
+
+          {/* Bottom Left - Tech Stack */}
+          <div className="absolute bottom-4 left-4 md:bottom-8 md:left-8 lg:bottom-12 lg:left-12">
+            <div className="text-amber-400 text-[10px] md:text-xs lg:text-sm font-mono mb-2 md:mb-3">// {t('employee.nurtore.techStack')}</div>
+            <div className="flex flex-wrap gap-1.5 md:gap-2 max-w-[200px] md:max-w-xs lg:max-w-md">
+              {techStack.map((tech, index) => (
+                <motion.div
+                  key={tech}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: index * 0.1 }}
+                  className="border border-amber-400 px-2 py-1 md:px-3 md:py-1.5 bg-black/50 backdrop-blur-sm"
+                >
+                  <span className="text-white text-[10px] md:text-xs lg:text-sm">{tech}</span>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+
+          {/* Bottom Right - Quote (Desktop only) */}
+          <div className="hidden md:block absolute bottom-4 right-4 md:bottom-8 md:right-8 lg:bottom-12 lg:right-12 max-w-[180px] md:max-w-xs lg:max-w-md">
+            <div className="text-white text-[10px] md:text-xs lg:text-sm xl:text-base leading-relaxed mb-1 md:mb-2 min-h-[1.5em]">
+              <TypeText
+                text={t('employee.nurtore.quote')}
+                speed={50}
+                delay={0}
+              />
+            </div>
+            <div className="text-amber-400 text-[9px] md:text-[10px] lg:text-xs xl:text-sm font-medium min-h-[1.2em]">
+              <TypeText
+                text={t('employee.nurtore.quoteAuthor')}
+                speed={50}
+                delay={2000}
+              />
+            </div>
+          </div>
+        </div>
+
+        {/* Bottom Center - Previous Employee Link */}
+        <div className="absolute bottom-3 md:bottom-6 lg:bottom-7 left-1/2 -translate-x-1/2 z-20 pointer-events-auto">
+          <Link
+            to="/about"
+            className="inline-flex items-center justify-center bg-black/90 backdrop-blur-sm border border-amber-400 hover:bg-amber-600/90 hover:border-amber-300 text-white text-xs md:text-sm lg:text-base px-3 md:px-4 lg:px-6 py-2.5 md:py-3 lg:py-4 rounded-lg transition-all duration-300"
+          >
+            <span className="whitespace-nowrap text-xs md:text-sm lg:text-base">{t('employee.nurtore.previousEmployee')}</span>
+            <ArrowRight className="w-3 sm:w-3 md:w-4 md:h-4 ml-2 rotate-180" />
+          </Link>
+        </div>
       </div>
     </div>
   );

@@ -1,9 +1,10 @@
-import { Helmet } from 'react-helmet-async';
+import SEO from '@/components/SEO';
 import { useEffect } from 'react';
 import Header from '@/components/layout/Header';
 import Nurtore from '@/components/Nurtore';
 import { useLanguage } from '@/contexts/LanguageContext';
 import backgroundCity from '@/assets/backgroundCity.jpg';
+import { generateBreadcrumbSchema } from '@/utils/seo';
 
 const AboutNurtore = () => {
   const { language } = useLanguage();
@@ -17,28 +18,46 @@ const AboutNurtore = () => {
     };
   }, []);
 
+  const seoData = {
+    ru: {
+      title: 'Нурторе Келесов | SnowTEch — Backend Developer',
+      description: 'Нурторе Келесов — Backend Developer в команде SnowTEch. Опыт разработки мобильных приложений, backend-систем и AI-решений.',
+      keywords: 'Нурторе Келесов, Backend Developer, мобильная разработка, Flutter, SnowTEch команда',
+    },
+    en: {
+      title: 'Nurtore Kelesov | SnowTEch — Backend Developer',
+      description: 'Nurtore Kelesov — Backend Developer at SnowTEch team. Experience in mobile app development, backend systems and AI solutions.',
+      keywords: 'Nurtore Kelesov, Backend Developer, mobile development, Flutter, SnowTEch team',
+    },
+    kz: {
+      title: 'Нурторе Келесов | SnowTEch — Backend Developer',
+      description: 'Нурторе Келесов — SnowTEch командасындағы Backend Developer. Мобильді қосымшалар, backend жүйелері және AI-шешімдерді әзірлеу тәжірибесі.',
+      keywords: 'Нурторе Келесов, Backend Developer, мобильді әзірлеу, Flutter, SnowTEch командасы',
+    },
+  };
+
+  const currentSeo = seoData[language] || seoData.ru;
+
+  const structuredData = generateBreadcrumbSchema([
+    { name: 'Главная', url: '/' },
+    { name: 'О нас', url: '/about' },
+    { name: 'Нурторе Келесов', url: '/about/nurtore' },
+  ]);
+
   return (
     <>
-      <Helmet>
-        <title>
-          {language === 'en'
-            ? 'About Us | SnowTEch — IT Solutions Company'
-            : language === 'kz'
-            ? 'Біз туралы | SnowTEch — IT-шешімдер компаниясы'
-            : 'О нас | SnowTEch — IT-компания'}
-        </title>
-        <meta
-          name="description"
-          content={
-            language === 'en'
-              ? 'Learn about SnowTEch — a team of IT professionals creating digital products, websites, AI solutions, and marketing campaigns in Kazakhstan.'
-              : language === 'kz'
-              ? 'SnowTEch туралы біліңіз — Қазақстанда цифрлық өнімдер, сайттар, AI-шешімдер және маркетинг науқандарын жасайтын IT мамандары командасы.'
-              : 'Узнайте о SnowTEch — команде IT-профессионалов, создающих цифровые продукты, сайты, AI-решения и маркетинговые кампании в Казахстане.'
-          }
-        />
-        <link rel="canonical" href="https://snowtech.kz/about/nurtore" />
-      </Helmet>
+      <SEO
+        title={currentSeo.title}
+        description={currentSeo.description}
+        keywords={currentSeo.keywords}
+        canonical="/about/nurtore"
+        alternateLanguages={[
+          { lang: 'ru', url: '/about/nurtore' },
+          { lang: 'en', url: '/about/nurtore' },
+          { lang: 'kk', url: '/about/nurtore' },
+        ]}
+        structuredData={structuredData}
+      />
 
       <div 
         className="fixed inset-0 w-screen h-screen overflow-hidden"
@@ -58,7 +77,7 @@ const AboutNurtore = () => {
         </div>
 
         {/* Main Content - Nurtore Component */}
-        <main className="relative z-10 h-screen flex items-center justify-center pt-20">
+        <main className="relative z-10 h-[calc(100vh-2.5rem)] md:h-screen flex md:items-center justify-center pt-20 md:pb-0">
           <Nurtore />
         </main>
       </div>
