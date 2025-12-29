@@ -1,7 +1,7 @@
 import SEO from '@/components/SEO';
 import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
-import { useRef, useState } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import { Calendar, Clock, ArrowRight, Tag } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Header from '@/components/layout/Header';
@@ -669,13 +669,20 @@ const categories = [
 
 const ArticleCard = ({ article, index }: { article: (typeof articles)[0]; index: number }) => {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: '-50px' });
+  const [hasAnimated, setHasAnimated] = useState(false);
+  const isInView = useInView(ref, { once: false, margin: '0px' });
+
+  useEffect(() => {
+    if (isInView && !hasAnimated) {
+      setHasAnimated(true);
+    }
+  }, [isInView, hasAnimated]);
 
   return (
     <motion.article
       ref={ref}
       initial={{ opacity: 0, y: 30 }}
-      animate={isInView ? { opacity: 1, y: 0 } : {}}
+      animate={hasAnimated ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
       className="group glass-card overflow-hidden p-0"
     >

@@ -92,3 +92,4 @@ export const generateBreadcrumbSchema = (items: { name: string; url: string }[])
   })),
 });
 
+

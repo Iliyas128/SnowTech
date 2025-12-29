@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
-import { useRef } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import { Globe, Bot, Database, Brain, Eye, ArrowUpRight, Smartphone, Target } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useNavigate } from 'react-router-dom';
@@ -114,6 +114,14 @@ const ServiceCard = ({
 }) => {
   const ref = useRef(null);
   const navigate = useNavigate();
+  const [hasAnimated, setHasAnimated] = useState(false);
+  const isInView = useInView(ref, { once: false, margin: '0px' });
+
+  useEffect(() => {
+    if (isInView && !hasAnimated) {
+      setHasAnimated(true);
+    }
+  }, [isInView, hasAnimated]);
 
   const handleClick = () => {
     navigate('/pricing');
@@ -123,8 +131,7 @@ const ServiceCard = ({
     <motion.div
       ref={ref}
       initial={{ opacity: 0, y: 50 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '-50px' }}
+      animate={hasAnimated ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
       className="group glass-card hover:border-primary/30 transition-all duration-500 relative overflow-hidden cursor-pointer"
       onClick={handleClick}

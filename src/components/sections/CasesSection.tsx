@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
-import { useRef } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import { ExternalLink, TrendingUp, Clock, Users } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useLanguage } from '@/contexts/LanguageContext';
@@ -115,6 +115,14 @@ const CaseCard = ({
 }) => {
   const ref = useRef(null);
   const navigate = useNavigate();
+  const [hasAnimated, setHasAnimated] = useState(false);
+  const isInView = useInView(ref, { once: false, margin: '0px' });
+
+  useEffect(() => {
+    if (isInView && !hasAnimated) {
+      setHasAnimated(true);
+    }
+  }, [isInView, hasAnimated]);
 
   const handleClick = () => {
     navigate('/pricing');
@@ -124,8 +132,7 @@ const CaseCard = ({
     <motion.div
       ref={ref}
       initial={{ opacity: 0, y: 50 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '-50px' }}
+      animate={hasAnimated ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
       transition={{ duration: 0.6, delay: index * 0.2 }}
       className="group cursor-pointer"
       onClick={handleClick}

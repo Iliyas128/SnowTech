@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, Zap } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Link, useLocation } from 'react-router-dom';
 import { useLanguage } from '@/contexts/LanguageContext';
@@ -83,8 +83,12 @@ const Header = () => {
     >
       <div className="container mx-auto px-4 flex items-center justify-between">
         <Link to="/" className="flex items-center gap-2 group">
-          <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-accent flex items-center justify-center group-hover:shadow-[0_0_30px_hsl(var(--primary)/0.5)] transition-shadow duration-300">
-            <Zap className="w-5 h-5 text-primary-foreground" />
+          <div className="w-10 h-10 rounded-xl flex items-center justify-center group-hover:shadow-[0_0_30px_hsl(var(--primary)/0.5)] transition-shadow duration-300 overflow-hidden">
+            <img 
+              src="/snowTech.ico" 
+              alt="SnowTEch Logo" 
+              className="w-full h-full object-contain"
+            />
           </div>
           <span className="text-xl font-bold text-foreground">SnowTEch</span>
         </Link>
