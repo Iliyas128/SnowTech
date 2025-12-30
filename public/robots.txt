@@ -1,5 +1,5 @@
 # Robots.txt for SnowTEch
-# https://snowtech.kz
+# https://snowtech.asia
 
 # Allow all search engines
 User-agent: *
@@ -30,7 +30,7 @@ Allow: /*.svg$
 Allow: /*.webp$
 
 # Sitemap location
-Sitemap: https://snowtech.kz/sitemap.xml
+Sitemap: https://snowtech.asia/sitemap.xml
 
 # Crawl-delay (optional, adjust if needed)
 Crawl-delay: 1

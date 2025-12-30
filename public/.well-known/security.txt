@@ -1,5 +1,6 @@
 Contact: mailto:weking128@icloud.com
 Expires: 2025-12-31T23:59:59.000Z
 Preferred-Languages: ru, en, kz
-Canonical: https://snowtech.kz/.well-known/security.txt
+Canonical: https://snowtech.asia/.well-known/security.txt
+
 
