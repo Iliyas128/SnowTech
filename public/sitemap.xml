@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+        xmlns:xhtml="http://www.w3.org/1999/xhtml"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  <!-- Главная страница -->
   <url>
     <loc>https://snowtech.kz/</loc>
     <lastmod>2024-12-27</lastmod>
@@ -10,6 +12,8 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://snowtech.kz/" />
     <xhtml:link rel="alternate" hreflang="kk" href="https://snowtech.kz/" />
   </url>
+  
+  <!-- Страница цен -->
   <url>
     <loc>https://snowtech.kz/pricing</loc>
     <lastmod>2024-12-27</lastmod>
@@ -19,6 +23,8 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://snowtech.kz/pricing" />
     <xhtml:link rel="alternate" hreflang="kk" href="https://snowtech.kz/pricing" />
   </url>
+  
+  <!-- Страница блога -->
   <url>
     <loc>https://snowtech.kz/blog</loc>
     <lastmod>2024-12-27</lastmod>
@@ -28,6 +34,163 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://snowtech.kz/blog" />
     <xhtml:link rel="alternate" hreflang="kk" href="https://snowtech.kz/blog" />
   </url>
+  
+  <!-- Статьи блога -->
+  <url>
+    <loc>https://snowtech.kz/blog/instagram-targeting-2024</loc>
+    <lastmod>2024-12-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://snowtech.kz/blog/instagram-targeting-2024" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://snowtech.kz/blog/instagram-targeting-2024" />
+    <xhtml:link rel="alternate" hreflang="kk" href="https://snowtech.kz/blog/instagram-targeting-2024" />
+    <image:image>
+      <image:loc>https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?w=800&amp;auto=format&amp;fit=crop&amp;q=60</image:loc>
+      <image:title>Таргетированная реклама в Instagram: полный гайд 2024</image:title>
+    </image:image>
+  </url>
+  
+  <url>
+    <loc>https://snowtech.kz/blog/tiktok-ads-biznes</loc>
+    <lastmod>2024-12-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://snowtech.kz/blog/tiktok-ads-biznes" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://snowtech.kz/blog/tiktok-ads-biznes" />
+    <xhtml:link rel="alternate" hreflang="kk" href="https://snowtech.kz/blog/tiktok-ads-biznes" />
+    <image:image>
+      <image:loc>https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=800&amp;auto=format&amp;fit=crop&amp;q=60</image:loc>
+      <image:title>TikTok Ads для бизнеса: как привлечь молодую аудиторию</image:title>
+    </image:image>
+  </url>
+  
+  <url>
+    <loc>https://snowtech.kz/blog/seo-prodvizhenie-2024</loc>
+    <lastmod>2024-12-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://snowtech.kz/blog/seo-prodvizhenie-2024" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://snowtech.kz/blog/seo-prodvizhenie-2024" />
+    <xhtml:link rel="alternate" hreflang="kk" href="https://snowtech.kz/blog/seo-prodvizhenie-2024" />
+    <image:image>
+      <image:loc>https://images.unsplash.com/photo-1432888622747-4eb9a8efeb07?w=800&amp;auto=format&amp;fit=crop&amp;q=60</image:loc>
+      <image:title>SEO-продвижение сайтов в Казахстане: актуальные стратегии</image:title>
+    </image:image>
+  </url>
+  
+  <url>
+    <loc>https://snowtech.kz/blog/smm-strategiya-maliy-biznes</loc>
+    <lastmod>2024-12-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://snowtech.kz/blog/smm-strategiya-maliy-biznes" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://snowtech.kz/blog/smm-strategiya-maliy-biznes" />
+    <xhtml:link rel="alternate" hreflang="kk" href="https://snowtech.kz/blog/smm-strategiya-maliy-biznes" />
+    <image:image>
+      <image:loc>https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=800&amp;auto=format&amp;fit=crop&amp;q=60</image:loc>
+      <image:title>SMM для малого бизнеса: с чего начать и как не слить бюджет</image:title>
+    </image:image>
+  </url>
+  
+  <url>
+    <loc>https://snowtech.kz/blog/chat-boty-uvelichenie-prodazh</loc>
+    <lastmod>2024-12-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://snowtech.kz/blog/chat-boty-uvelichenie-prodazh" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://snowtech.kz/blog/chat-boty-uvelichenie-prodazh" />
+    <xhtml:link rel="alternate" hreflang="kk" href="https://snowtech.kz/blog/chat-boty-uvelichenie-prodazh" />
+    <image:image>
+      <image:loc>https://images.unsplash.com/photo-1531746790731-6c087fecd65a?w=800&amp;auto=format&amp;fit=crop&amp;q=60</image:loc>
+      <image:title>Как чат-боты увеличивают продажи: реальные кейсы</image:title>
+    </image:image>
+  </url>
+  
+  <url>
+    <loc>https://snowtech.kz/blog/kontekstnaya-reklama-google-yandex</loc>
+    <lastmod>2024-12-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://snowtech.kz/blog/kontekstnaya-reklama-google-yandex" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://snowtech.kz/blog/kontekstnaya-reklama-google-yandex" />
+    <xhtml:link rel="alternate" hreflang="kk" href="https://snowtech.kz/blog/kontekstnaya-reklama-google-yandex" />
+    <image:image>
+      <image:loc>https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&amp;auto=format&amp;fit=crop&amp;q=60</image:loc>
+      <image:title>Контекстная реклама: Google Ads vs Яндекс.Директ</image:title>
+    </image:image>
+  </url>
+  
+  <url>
+    <loc>https://snowtech.kz/blog/kak-sdelat-sait-dlya-biznesa-kazakhstan</loc>
+    <lastmod>2024-12-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://snowtech.kz/blog/kak-sdelat-sait-dlya-biznesa-kazakhstan" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://snowtech.kz/blog/kak-sdelat-sait-dlya-biznesa-kazakhstan" />
+    <xhtml:link rel="alternate" hreflang="kk" href="https://snowtech.kz/blog/kak-sdelat-sait-dlya-biznesa-kazakhstan" />
+    <image:image>
+      <image:loc>https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=800&amp;auto=format&amp;fit=crop&amp;q=60</image:loc>
+      <image:title>Как сделать сайт для бизнеса в Казахстане: пошаговый гайд</image:title>
+    </image:image>
+  </url>
+  
+  <url>
+    <loc>https://snowtech.kz/blog/skolko-stoit-sdelat-sait-kazakhstan</loc>
+    <lastmod>2024-12-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://snowtech.kz/blog/skolko-stoit-sdelat-sait-kazakhstan" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://snowtech.kz/blog/skolko-stoit-sdelat-sait-kazakhstan" />
+    <xhtml:link rel="alternate" hreflang="kk" href="https://snowtech.kz/blog/skolko-stoit-sdelat-sait-kazakhstan" />
+    <image:image>
+      <image:loc>https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&amp;auto=format&amp;fit=crop&amp;q=60</image:loc>
+      <image:title>Сколько стоит сделать сайт в Казахстане: цифры и примеры</image:title>
+    </image:image>
+  </url>
+  
+  <url>
+    <loc>https://snowtech.kz/blog/kak-podat-na-target-instagram-tiktok</loc>
+    <lastmod>2024-12-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://snowtech.kz/blog/kak-podat-na-target-instagram-tiktok" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://snowtech.kz/blog/kak-podat-na-target-instagram-tiktok" />
+    <xhtml:link rel="alternate" hreflang="kk" href="https://snowtech.kz/blog/kak-podat-na-target-instagram-tiktok" />
+    <image:image>
+      <image:loc>https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?w=800&amp;auto=format&amp;fit=crop&amp;q=60</image:loc>
+      <image:title>Как подать на таргет в Instagram и TikTok: инструкция для бизнеса</image:title>
+    </image:image>
+  </url>
+  
+  <url>
+    <loc>https://snowtech.kz/blog/rag-chat-bot-na-baze-dokumentov</loc>
+    <lastmod>2024-12-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://snowtech.kz/blog/rag-chat-bot-na-baze-dokumentov" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://snowtech.kz/blog/rag-chat-bot-na-baze-dokumentov" />
+    <xhtml:link rel="alternate" hreflang="kk" href="https://snowtech.kz/blog/rag-chat-bot-na-baze-dokumentov" />
+    <image:image>
+      <image:loc>https://images.unsplash.com/photo-1553877522-43269d4ea984?w=800&amp;auto=format&amp;fit=crop&amp;q=60</image:loc>
+      <image:title>RAG чат-бот на базе документов: как он работает и когда нужен бизнесу</image:title>
+    </image:image>
+  </url>
+  
+  <url>
+    <loc>https://snowtech.kz/blog/ml-resheniya-dlya-biznesa-kazakhstan</loc>
+    <lastmod>2024-12-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://snowtech.kz/blog/ml-resheniya-dlya-biznesa-kazakhstan" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://snowtech.kz/blog/ml-resheniya-dlya-biznesa-kazakhstan" />
+    <xhtml:link rel="alternate" hreflang="kk" href="https://snowtech.kz/blog/ml-resheniya-dlya-biznesa-kazakhstan" />
+    <image:image>
+      <image:loc>https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&amp;auto=format&amp;fit=crop&amp;q=60</image:loc>
+      <image:title>ML-решения для бизнеса в Казахстане: какие задачи реально автоматизировать</image:title>
+    </image:image>
+  </url>
+  
+  <!-- Страница кейсов -->
   <url>
     <loc>https://snowtech.kz/cases</loc>
     <lastmod>2024-12-27</lastmod>
@@ -37,6 +200,8 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://snowtech.kz/cases" />
     <xhtml:link rel="alternate" hreflang="kk" href="https://snowtech.kz/cases" />
   </url>
+  
+  <!-- Страница о нас -->
   <url>
     <loc>https://snowtech.kz/about</loc>
     <lastmod>2024-12-27</lastmod>
@@ -46,6 +211,8 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://snowtech.kz/about" />
     <xhtml:link rel="alternate" hreflang="kk" href="https://snowtech.kz/about" />
   </url>
+  
+  <!-- Страница сотрудника -->
   <url>
     <loc>https://snowtech.kz/about/nurtore</loc>
     <lastmod>2024-12-27</lastmod>
@@ -56,5 +223,3 @@
     <xhtml:link rel="alternate" hreflang="kk" href="https://snowtech.kz/about/nurtore" />
   </url>
 </urlset>
-
-

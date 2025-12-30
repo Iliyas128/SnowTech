@@ -3,7 +3,7 @@ export const generateOrganizationSchema = () => ({
   '@type': 'Organization',
   name: 'SnowTEch',
   url: 'https://snowtech.kz',
-  logo: 'https://snowtech.kz/logo.png',
+  logo: 'https://snowtech.kz/snowTech.ico',
   description: 'IT-компания в Казахстане. Разработка сайтов, мобильных приложений, AI-решений и таргетированной рекламы.',
   address: {
     '@type': 'PostalAddress',
@@ -76,7 +76,7 @@ export const generateArticleSchema = (
     name: 'SnowTEch',
     logo: {
       '@type': 'ImageObject',
-      url: 'https://snowtech.kz/logo.png',
+      url: 'https://snowtech.kz/snowTech.ico',
     },
   },
 });
