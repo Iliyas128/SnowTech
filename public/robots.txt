@@ -1,36 +1,18 @@
-# Robots.txt for SnowTEch
-# https://snowtech.asia
-
-# Allow all search engines
 User-agent: *
 Allow: /
 
-# Disallow admin and private areas
+# Sitemap
+Sitemap: https://snowtech.kz/sitemap.xml
+
+# Disallow admin and private areas (if any)
 Disallow: /admin/
 Disallow: /api/
 Disallow: /_next/
 Disallow: /private/
-Disallow: /*.json$
-Disallow: /src/
 
-# Allow important pages and resources
+# Allow important pages
+Allow: /
 Allow: /pricing
 Allow: /blog
-Allow: /blog/*
 Allow: /cases
 Allow: /about
-Allow: /about/*
-Allow: /*.css$
-Allow: /*.js$
-Allow: /*.ico$
-Allow: /*.png$
-Allow: /*.jpg$
-Allow: /*.jpeg$
-Allow: /*.svg$
-Allow: /*.webp$
-
-# Sitemap location
-Sitemap: https://snowtech.asia/sitemap.xml
-
-# Crawl-delay (optional, adjust if needed)
-Crawl-delay: 1

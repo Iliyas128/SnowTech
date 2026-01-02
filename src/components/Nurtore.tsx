@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import UnicornScene from 'unicornstudio-react';
 import { ArrowRight } from 'lucide-react';
@@ -14,10 +14,16 @@ const Loader = () => {
   );
 };
 
+// Кэш для загруженных сцен (используем тот же кэш)
+const sceneCache = new Map<string, boolean>();
+
 const Nurtore = () => {
   const { t } = useLanguage();
   const [dimensions, setDimensions] = useState({ width: 1440, height: 900 });
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+  const mobileSceneRef = useRef<HTMLDivElement>(null);
+  const desktopSceneRef = useRef<HTMLDivElement>(null);
+  const projectId = 'twNYXJjUCRSGK7W5hiNk';
 
   useEffect(() => {
     const updateDimensions = () => {
@@ -49,6 +55,118 @@ const Nurtore = () => {
     };
   }, []);
 
+  // Проверка загрузки сцены с кэшированием
+  useEffect(() => {
+    // Если сцена уже загружена, не показываем лоадер
+    if (sceneCache.has(projectId)) {
+      setIsLoading(false);
+      return;
+    }
+
+    let checkInterval: NodeJS.Timeout;
+    let maxAttempts = 30;
+    let attempts = 0;
+    let isLoaded = false;
+
+    const checkScene = () => {
+      if (isLoaded) return;
+      attempts++;
+
+      const sceneElement = mobileSceneRef.current || desktopSceneRef.current;
+      if (!sceneElement) {
+        if (attempts >= 10) {
+          // Если элемент не найден после 10 попыток, скрываем лоадер
+          isLoaded = true;
+          sceneCache.set(projectId, true);
+          clearInterval(checkInterval);
+          setIsLoading(false);
+        }
+        return;
+      }
+
+      const iframe = sceneElement.querySelector('iframe');
+      const canvas = sceneElement.querySelector('canvas');
+      const img = sceneElement.querySelector('img');
+      const video = sceneElement.querySelector('video');
+
+      // Проверяем наличие любого контента
+      if (iframe) {
+        // Для iframe проверяем размеры и наличие src
+        if (iframe.offsetWidth > 0 && iframe.offsetHeight > 0 && iframe.src) {
+          // Устанавливаем обработчик onload
+          if (!iframe.hasAttribute('data-loading-checked')) {
+            iframe.setAttribute('data-loading-checked', 'true');
+            iframe.onload = () => {
+              if (!isLoaded) {
+                isLoaded = true;
+                sceneCache.set(projectId, true);
+                if (checkInterval) clearInterval(checkInterval);
+                setIsLoading(false);
+              }
+            };
+            // Также проверяем через небольшую задержку
+            setTimeout(() => {
+              if (!isLoaded && iframe.offsetWidth > 0 && iframe.offsetHeight > 0) {
+                isLoaded = true;
+                sceneCache.set(projectId, true);
+                if (checkInterval) clearInterval(checkInterval);
+                setIsLoading(false);
+              }
+            }, 1000);
+          } else if (attempts > 5) {
+            // Если iframe уже проверялся и прошло несколько попыток, считаем загруженным
+            if (!isLoaded) {
+              isLoaded = true;
+              sceneCache.set(projectId, true);
+              if (checkInterval) clearInterval(checkInterval);
+              setIsLoading(false);
+            }
+          }
+        }
+      } else if (canvas && canvas.width > 0 && canvas.height > 0) {
+        if (!isLoaded) {
+          isLoaded = true;
+          sceneCache.set(projectId, true);
+          if (checkInterval) clearInterval(checkInterval);
+          setIsLoading(false);
+        }
+      } else if (img && img.complete && img.naturalWidth > 0) {
+        if (!isLoaded) {
+          isLoaded = true;
+          sceneCache.set(projectId, true);
+          if (checkInterval) clearInterval(checkInterval);
+          setIsLoading(false);
+        }
+      } else if (video && video.readyState >= 2) {
+        if (!isLoaded) {
+          isLoaded = true;
+          sceneCache.set(projectId, true);
+          if (checkInterval) clearInterval(checkInterval);
+          setIsLoading(false);
+        }
+      } else if (attempts >= maxAttempts) {
+        // Максимальное время ожидания - скрываем лоадер
+        isLoaded = true;
+        sceneCache.set(projectId, true);
+        clearInterval(checkInterval);
+        setIsLoading(false);
+      }
+    };
+
+    // Начинаем проверку через небольшую задержку
+    const timer = setTimeout(() => {
+      checkScene();
+      checkInterval = setInterval(checkScene, 300);
+    }, 500);
+
+    return () => {
+      clearTimeout(timer);
+      if (checkInterval) {
+        clearInterval(checkInterval);
+      }
+    };
+  }, [projectId]);
+
   const techStack = [
     'Flutter',
     'Dart',
@@ -64,8 +182,6 @@ const Nurtore = () => {
 
   return (
     <div className="relative w-full h-full flex flex-col md:block md:overflow-hidden">
-      {isLoading && <Loader />}
-      
       {/* Mobile Layout: Content on top, Photo on bottom */}
       <div className="flex flex-col md:hidden w-full h-full">
         {/* Top Section - Content */}
@@ -129,15 +245,14 @@ const Nurtore = () => {
         </div>
 
         {/* Bottom Section - Photo */}
-        <div className="relative z-10 flex-shrink-0 flex items-center justify-center relative">
-          <div className="relative w-full flex items-center justify-center">
-            {!isLoading && (
-              <UnicornScene 
-                projectId="twNYXJjUCRSGK7W5hiNk" 
-                width={dimensions.width} 
-                height={dimensions.height} 
-              />
-            )}
+        <div className="relative z-10 flex-shrink-0 flex items-center justify-center">
+          <div ref={mobileSceneRef} className="relative w-full flex items-center justify-center">
+            {isLoading && <Loader />}
+            <UnicornScene 
+              projectId={projectId} 
+              width={dimensions.width} 
+              height={dimensions.height} 
+            />
           </div>
         </div>
       </div>
@@ -145,14 +260,13 @@ const Nurtore = () => {
       {/* Desktop Layout: Absolute positioning */}
       <div className="hidden md:block relative w-full h-full">
         {/* Unicorn Studio Scene - Center */}
-        <div className="relative z-0 flex items-center justify-center w-full h-full">
-          {!isLoading && (
-            <UnicornScene 
-              projectId="twNYXJjUCRSGK7W5hiNk" 
-              width={dimensions.width} 
-              height={dimensions.height} 
-            />
-          )}
+        <div ref={desktopSceneRef} className="relative z-0 flex items-center justify-center w-full h-full">
+          {isLoading && <Loader />}
+          <UnicornScene 
+            projectId={projectId} 
+            width={dimensions.width} 
+            height={dimensions.height} 
+          />
         </div>
 
         {/* Text Overlay */}

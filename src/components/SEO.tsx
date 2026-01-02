@@ -28,7 +28,7 @@ const SEO = ({
   description,
   keywords,
   canonical,
-  ogImage = 'https://snowtech.asia/og-image.png',
+  ogImage = 'https://snowtech.kz/og-image.png',
   ogType = 'website',
   article,
   noindex = false,
@@ -36,7 +36,7 @@ const SEO = ({
   alternateLanguages,
   structuredData,
 }: SEOProps) => {
-  const baseUrl = 'https://snowtech.asia';
+  const baseUrl = 'https://snowtech.kz';
   const fullCanonical = canonical ? `${baseUrl}${canonical}` : baseUrl;
   const fullOgImage = ogImage.startsWith('http') ? ogImage : `${baseUrl}${ogImage}`;
 

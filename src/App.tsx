@@ -32,10 +32,12 @@ const App = () => (
             wind={[-0.3, 0.3]}
             style={{
               position: "fixed",
-              width: "100vw",
+              width: "100%",
               height: "100vh",
               zIndex: 50,
               pointerEvents: "none",
+              left: 0,
+              top: 0,
             }}
           />
           

@@ -59,7 +59,7 @@ const About = () => {
       />
 
       <div 
-        className="fixed inset-0 w-screen h-screen overflow-hidden"
+        className="fixed inset-0 w-full h-screen overflow-hidden"
         style={{
           backgroundImage: `url(${backgroundCity})`,
           backgroundSize: 'cover',

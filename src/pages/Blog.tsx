@@ -668,21 +668,45 @@ const categories = [
 ] as const;
 
 const ArticleCard = ({ article, index }: { article: (typeof articles)[0]; index: number }) => {
-  const ref = useRef(null);
-  const [hasAnimated, setHasAnimated] = useState(false);
-  const isInView = useInView(ref, { once: false, margin: '0px' });
+  const ref = useRef<HTMLElement>(null);
+  const hasAnimatedRef = useRef(false);
+  const [shouldAnimate, setShouldAnimate] = useState(false);
 
   useEffect(() => {
-    if (isInView && !hasAnimated) {
-      setHasAnimated(true);
-    }
-  }, [isInView, hasAnimated]);
+    if (!ref.current || hasAnimatedRef.current) return;
+
+    let timeoutId: NodeJS.Timeout;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && !hasAnimatedRef.current && entry.intersectionRatio > 0.1) {
+            clearTimeout(timeoutId);
+            timeoutId = setTimeout(() => {
+              if (!hasAnimatedRef.current) {
+                hasAnimatedRef.current = true;
+                setShouldAnimate(true);
+                observer.disconnect();
+              }
+            }, 100);
+          }
+        });
+      },
+      { threshold: [0.1, 0.5], rootMargin: '0px' }
+    );
+
+    observer.observe(ref.current);
+
+    return () => {
+      clearTimeout(timeoutId);
+      observer.disconnect();
+    };
+  }, []);
 
   return (
     <motion.article
       ref={ref}
       initial={{ opacity: 0, y: 30 }}
-      animate={hasAnimated ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+      animate={shouldAnimate ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
       className="group glass-card overflow-hidden p-0"
     >

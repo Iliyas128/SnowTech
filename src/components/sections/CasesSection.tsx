@@ -113,16 +113,40 @@ const CaseCard = ({
   index: number;
   t: (key: string) => string;
 }) => {
-  const ref = useRef(null);
+  const ref = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
-  const [hasAnimated, setHasAnimated] = useState(false);
-  const isInView = useInView(ref, { once: false, margin: '0px' });
+  const hasAnimatedRef = useRef(false);
+  const [shouldAnimate, setShouldAnimate] = useState(false);
 
   useEffect(() => {
-    if (isInView && !hasAnimated) {
-      setHasAnimated(true);
-    }
-  }, [isInView, hasAnimated]);
+    if (!ref.current || hasAnimatedRef.current) return;
+
+    let timeoutId: NodeJS.Timeout;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && !hasAnimatedRef.current && entry.intersectionRatio > 0.1) {
+            clearTimeout(timeoutId);
+            timeoutId = setTimeout(() => {
+              if (!hasAnimatedRef.current) {
+                hasAnimatedRef.current = true;
+                setShouldAnimate(true);
+                observer.disconnect();
+              }
+            }, 100);
+          }
+        });
+      },
+      { threshold: [0.1, 0.5], rootMargin: '0px' }
+    );
+
+    observer.observe(ref.current);
+
+    return () => {
+      clearTimeout(timeoutId);
+      observer.disconnect();
+    };
+  }, []);
 
   const handleClick = () => {
     navigate('/pricing');
@@ -132,7 +156,7 @@ const CaseCard = ({
     <motion.div
       ref={ref}
       initial={{ opacity: 0, y: 50 }}
-      animate={hasAnimated ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
+      animate={shouldAnimate ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
       transition={{ duration: 0.6, delay: index * 0.2 }}
       className="group cursor-pointer"
       onClick={handleClick}

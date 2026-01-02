@@ -2,8 +2,8 @@ export const generateOrganizationSchema = () => ({
   '@context': 'https://schema.org',
   '@type': 'Organization',
   name: 'SnowTEch',
-  url: 'https://snowtech.asia',
-  logo: 'https://snowtech.asia/snowTech.ico',
+  url: 'https://snowtech.kz',
+  logo: 'https://snowtech.kz/logo.png',
   description: 'IT-компания в Казахстане. Разработка сайтов, мобильных приложений, AI-решений и таргетированной рекламы.',
   address: {
     '@type': 'PostalAddress',
@@ -25,13 +25,13 @@ export const generateWebSiteSchema = () => ({
   '@context': 'https://schema.org',
   '@type': 'WebSite',
   name: 'SnowTEch',
-  url: 'https://snowtech.asia',
+  url: 'https://snowtech.kz',
   description: 'IT-решения для бизнеса в Казахстане',
   potentialAction: {
     '@type': 'SearchAction',
     target: {
       '@type': 'EntryPoint',
-      urlTemplate: 'https://snowtech.asia/search?q={search_term_string}',
+      urlTemplate: 'https://snowtech.kz/search?q={search_term_string}',
     },
     'query-input': 'required name=search_term_string',
   },
@@ -64,7 +64,7 @@ export const generateArticleSchema = (
   '@type': 'Article',
   headline: title,
   description,
-  image: image.startsWith('http') ? image : `https://snowtech.asia${image}`,
+  image: image.startsWith('http') ? image : `https://snowtech.kz${image}`,
   datePublished: publishedTime,
   dateModified: modifiedTime || publishedTime,
   author: {
@@ -76,7 +76,7 @@ export const generateArticleSchema = (
     name: 'SnowTEch',
     logo: {
       '@type': 'ImageObject',
-      url: 'https://snowtech.asia/snowTech.ico',
+      url: 'https://snowtech.kz/logo.png',
     },
   },
 });
@@ -88,7 +88,7 @@ export const generateBreadcrumbSchema = (items: { name: string; url: string }[])
     '@type': 'ListItem',
     position: index + 1,
     name: item.name,
-    item: `https://snowtech.asia${item.url}`,
+    item: `https://snowtech.kz${item.url}`,
   })),
 });
 
