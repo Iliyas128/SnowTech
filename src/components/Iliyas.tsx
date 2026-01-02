@@ -5,14 +5,7 @@ import { ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { TypeText } from './TypeText';
 import { useLanguage } from '@/contexts/LanguageContext';
-
-const Loader = () => {
-  return (
-    <div className="absolute inset-0 flex items-center justify-center bg-black/50 backdrop-blur-sm z-50">
-      <div className="w-12 h-12 border-4 border-primary border-t-transparent rounded-full animate-spin"></div>
-    </div>
-  );
-};
+import Preloader from './Preloader';
 
 // Кэш для загруженных сцен
 const sceneCache = new Map<string, boolean>();
@@ -246,7 +239,7 @@ const Iliyas = () => {
         {/* Bottom Section - Photo */}
         <div className="relative z-10 flex-shrink-0 flex items-center justify-center">
           <div ref={mobileSceneRef} className="relative w-full flex items-center justify-center">
-            {isLoading && <Loader />}
+            {isLoading && <Preloader onComplete={() => {}} />}
             <UnicornScene 
               projectId={projectId} 
               width={dimensions.width} 
@@ -260,7 +253,7 @@ const Iliyas = () => {
       <div className="hidden md:block relative w-full h-full">
         {/* Unicorn Studio Scene - Center */}
         <div ref={desktopSceneRef} className="relative z-0 flex items-center justify-center w-full h-full">
-          {isLoading && <Loader />}
+          {isLoading && <Preloader onComplete={() => {}} />}
           <UnicornScene 
             projectId={projectId} 
             width={dimensions.width} 

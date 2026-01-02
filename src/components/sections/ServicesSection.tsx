@@ -121,22 +121,39 @@ const ServiceCard = ({
     if (!ref.current || hasAnimatedRef.current) return;
 
     let timeoutId: NodeJS.Timeout;
+    let isAnimating = false;
+    
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting && !hasAnimatedRef.current && entry.intersectionRatio > 0.1) {
+          // Более строгая проверка для мобильных устройств
+          if (
+            entry.isIntersecting && 
+            !hasAnimatedRef.current && 
+            !isAnimating &&
+            entry.intersectionRatio >= 0.2
+          ) {
+            // Очищаем предыдущий таймаут
             clearTimeout(timeoutId);
+            
+            // Увеличиваем debounce для мобильных
+            isAnimating = true;
             timeoutId = setTimeout(() => {
-              if (!hasAnimatedRef.current) {
+              if (!hasAnimatedRef.current && ref.current) {
                 hasAnimatedRef.current = true;
                 setShouldAnimate(true);
                 observer.disconnect();
               }
-            }, 100);
+              isAnimating = false;
+            }, 300);
+          } else if (!entry.isIntersecting && isAnimating) {
+            // Если элемент вышел из viewport во время debounce, отменяем
+            clearTimeout(timeoutId);
+            isAnimating = false;
           }
         });
       },
-      { threshold: [0.1, 0.5], rootMargin: '0px' }
+      { threshold: 0.2, rootMargin: '0px' }
     );
 
     observer.observe(ref.current);
@@ -162,7 +179,7 @@ const ServiceCard = ({
     >
       <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-accent/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
       
-      <div className="relative z-10 p-4 md:p-6">
+      <div className="relative z-10 md:p-6">
         <div className="w-10 h-10 md:w-14 md:h-14 rounded-2xl bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center mb-3 md:mb-5 group-hover:scale-110 transition-transform duration-300">
           <Icon className="w-5 h-5 md:w-7 md:h-7 text-primary" />
         </div>
@@ -172,7 +189,7 @@ const ServiceCard = ({
           <ArrowUpRight className="w-4 h-4 md:w-5 md:h-5 text-muted-foreground group-hover:text-primary group-hover:translate-x-1 group-hover:-translate-y-1 transition-all duration-300 flex-shrink-0 ml-1" />
         </div>
 
-        <p className="text-muted-foreground mb-3 md:mb-5 text-xs md:text-sm leading-relaxed line-clamp-2 md:line-clamp-none">
+        <p className="hidden md:block text-muted-foreground mb-3 md:mb-5 text-xs md:text-sm leading-relaxed line-clamp-2 md:line-clamp-none">
           {description}
         </p>
 

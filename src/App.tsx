@@ -10,6 +10,7 @@ import Pricing from "./pages/Pricing";
 import Blog from "./pages/Blog";
 import BlogArticle from "./pages/BlogArticle";
 import Cases from "./pages/Cases";
+import CasesSlider from "./pages/CasesSlider";
 import About from "./pages/About";
 import AboutNurtore from "./pages/AboutNurtore";
 import NotFound from "./pages/NotFound";
@@ -48,6 +49,7 @@ const App = () => (
               <Route path="/blog" element={<Blog />} />
               <Route path="/blog/:slug" element={<BlogArticle />} />
               <Route path="/cases" element={<Cases />} />
+              <Route path="/cases-slider" element={<CasesSlider />} />
               <Route path="/about" element={<About />} />
               <Route path="/about/nurtore" element={<AboutNurtore />} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}

@@ -676,22 +676,39 @@ const ArticleCard = ({ article, index }: { article: (typeof articles)[0]; index:
     if (!ref.current || hasAnimatedRef.current) return;
 
     let timeoutId: NodeJS.Timeout;
+    let isAnimating = false;
+    
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting && !hasAnimatedRef.current && entry.intersectionRatio > 0.1) {
+          // Более строгая проверка для мобильных устройств
+          if (
+            entry.isIntersecting && 
+            !hasAnimatedRef.current && 
+            !isAnimating &&
+            entry.intersectionRatio >= 0.2
+          ) {
+            // Очищаем предыдущий таймаут
             clearTimeout(timeoutId);
+            
+            // Увеличиваем debounce для мобильных
+            isAnimating = true;
             timeoutId = setTimeout(() => {
-              if (!hasAnimatedRef.current) {
+              if (!hasAnimatedRef.current && ref.current) {
                 hasAnimatedRef.current = true;
                 setShouldAnimate(true);
                 observer.disconnect();
               }
-            }, 100);
+              isAnimating = false;
+            }, 300);
+          } else if (!entry.isIntersecting && isAnimating) {
+            // Если элемент вышел из viewport во время debounce, отменяем
+            clearTimeout(timeoutId);
+            isAnimating = false;
           }
         });
       },
-      { threshold: [0.1, 0.5], rootMargin: '0px' }
+      { threshold: 0.2, rootMargin: '0px' }
     );
 
     observer.observe(ref.current);
