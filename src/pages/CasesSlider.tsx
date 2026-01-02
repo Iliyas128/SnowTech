@@ -106,8 +106,8 @@ const CasesSlider = () => {
       description: t('cases.calculator.client'),
       number: '∅6',
       paragraphLines: [
-        t('cases.calculator.description'),
-        `${t('cases.calculator.result1')} • ${t('cases.calculator.result2')} • ${t('cases.calculator.result3')}`,
+        t('cases.tron.description'),
+        `${t('cases.tron.result1')} • ${t('cases.tron.result2')} • ${t('cases.tron.result3')}`,
       ],
       image: trongone,
       featuredImage: trongonephoto,

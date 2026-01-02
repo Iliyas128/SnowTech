@@ -113,11 +113,11 @@ const Cases = () => {
       descriptionKey: 'cases.calculator.description',
       image: trongone,
       results: [
-        { icon: TrendingUp, labelKey: 'cases.calculator.result1' },
-        { icon: Clock, labelKey: 'cases.calculator.result2' },
-        { icon: Users, labelKey: 'cases.calculator.result3' },
+        { icon: TrendingUp, labelKey: 'cases.tron.result1' },
+        { icon: Clock, labelKey: 'cases.tron.result2' },
+        { icon: Users, labelKey: 'cases.tron.result3' },
       ],
-      tags: ['React', 'TypeScript', 'WebGL', 'Three.js'],
+      tags: ['React', 'TypeScript', 'Telegram Mini App', 'Game'],
     },
   ];
 

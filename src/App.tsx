@@ -15,6 +15,7 @@ import About from "./pages/About";
 import AboutNurtore from "./pages/AboutNurtore";
 import NotFound from "./pages/NotFound";
 import Snowfall from "react-snowfall";
+import ScrollToTop from "./components/ScrollToTop";
 
 // Create a stable query client instance
 const queryClient = new QueryClient();
@@ -43,6 +44,7 @@ const App = () => (
           />
           
           <BrowserRouter>
+            <ScrollToTop />
             <Routes>
               <Route path="/" element={<Index />} />
               <Route path="/pricing" element={<Pricing />} />

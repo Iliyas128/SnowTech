@@ -5,7 +5,9 @@ import { ExternalLink, TrendingUp, Clock, Users } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Link, useNavigate } from 'react-router-dom';
-import eCommerceImage from '@/assets/e-commerce.jpg';
+import eCommerceImage from '@/assets/supratrade.jpg';
+import cars from '@/assets/cars.jpg';
+import hongkong from '@/assets/hongGong.jpg';
 
 const CasesSection = () => {
   const { t } = useLanguage();
@@ -26,28 +28,28 @@ const CasesSection = () => {
       tags: ['React', 'Node.js', 'ML', 'PostgreSQL'],
     },
     {
-      titleKey: 'cases.rag.title',
-      clientKey: 'cases.rag.client',
-      descriptionKey: 'cases.rag.description',
-      image: 'https://images.unsplash.com/photo-1531746790731-6c087fecd65a?w=800&auto=format&fit=crop&q=60',
+      titleKey: 'cases.carRental.title',
+      clientKey: 'cases.carRental.client',
+      descriptionKey: 'cases.carRental.description',
+      image: cars,
       results: [
-        { icon: TrendingUp, labelKey: 'cases.rag.result1' },
-        { icon: Clock, labelKey: 'cases.rag.result2' },
-        { icon: Users, labelKey: 'cases.rag.result3' },
+        { icon: TrendingUp, labelKey: 'cases.carRental.result1' },
+        { icon: Clock, labelKey: 'cases.carRental.result2' },
+        { icon: Users, labelKey: 'cases.carRental.result3' },
       ],
-      tags: ['Python', 'LangChain', 'OpenAI', 'Telegram'],
+      tags: ['React', 'Node.js', 'MongoDB', 'Stripe'],
     },
     {
-      titleKey: 'cases.cv.title',
-      clientKey: 'cases.cv.client',
-      descriptionKey: 'cases.cv.description',
-      image: 'https://images.unsplash.com/photo-1565514020179-026b92b2d2b0?w=800&auto=format&fit=crop&q=60',
+      titleKey: 'cases.realEstate.title',
+      clientKey: 'cases.realEstate.client',
+      descriptionKey: 'cases.realEstate.description',
+      image: hongkong,
       results: [
-        { icon: TrendingUp, labelKey: 'cases.cv.result1' },
-        { icon: Clock, labelKey: 'cases.cv.result2' },
-        { icon: Users, labelKey: 'cases.cv.result3' },
+        { icon: TrendingUp, labelKey: 'cases.realEstate.result1' },
+        { icon: Clock, labelKey: 'cases.realEstate.result2' },
+        { icon: Users, labelKey: 'cases.realEstate.result3' },
       ],
-      tags: ['Python', 'PyTorch', 'OpenCV', 'YOLO'],
+      tags: ['React', 'Next.js', 'PostgreSQL', 'Map API'],
     },
   ];
 
