@@ -114,6 +114,9 @@ export const translations = {
     'cases.tron.result1': '+300% engagement',
     'cases.tron.result2': '1.5 months',
     'cases.tron.result3': '50K+ players',
+    'cases.calculator.title': 'Telegram Mini App',
+    'cases.calculator.client': 'Gaming Platform',
+    'cases.calculator.description': 'Interactive game mini app for Telegram with engaging gameplay.',
 
     // Contact Section
     'contact.badge': 'Contacts',
@@ -336,6 +339,9 @@ export const translations = {
     'cases.tron.result1': '+300% вовлеченность',
     'cases.tron.result2': '1.5 месяца',
     'cases.tron.result3': '50K+ игроков',
+    'cases.calculator.title': 'Telegram Mini App',
+    'cases.calculator.client': 'Игровая платформа',
+    'cases.calculator.description': 'Интерактивная игровая мини-апп для Telegram с увлекательным геймплеем.',
 
     // Contact Section
     'contact.badge': 'Контакты',
@@ -558,6 +564,9 @@ export const translations = {
     'cases.tron.result1': '+300% қатысу',
     'cases.tron.result2': '1.5 ай',
     'cases.tron.result3': '50K+ ойыншы',
+    'cases.calculator.title': 'Telegram Mini App',
+    'cases.calculator.client': 'Ойын платформасы',
+    'cases.calculator.description': 'Қызықты ойын процесімен Telegram үшін интерактивті ойын мини-апп.',
 
     // Contact Section
     'contact.badge': 'Байланыс',
