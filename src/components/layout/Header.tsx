@@ -90,7 +90,7 @@ const Header = () => {
               className="w-full h-full object-contain"
             />
           </div>
-          <span className="text-xl font-bold text-foreground">SnowTEch</span>
+          <span className="text-xl font-bold text-foreground">SnowTech</span>
         </Link>
 
         <nav className="hidden md:flex items-center gap-8">
