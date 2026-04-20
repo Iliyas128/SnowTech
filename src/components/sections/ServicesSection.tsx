@@ -16,42 +16,49 @@ const ServicesSection = () => {
       titleKey: 'services.web.title',
       descriptionKey: 'services.web.description',
       features: ['Landing', 'Corporate', 'E-commerce', 'Web Apps'],
+      price: 'от 30 000 ₸',
     },
     {
       icon: Smartphone,
       titleKey: 'services.mobile.title',
       descriptionKey: 'services.mobile.description',
       features: ['iOS', 'Android', 'React Native', 'Flutter'],
+      price: 'от 1 000 000 ₸',
     },
     {
       icon: Target,
       titleKey: 'services.ads.title',
       descriptionKey: 'services.ads.description',
       features: ['Instagram Ads', 'TikTok Ads', 'Retargeting', 'Analytics'],
+      price: 'от 100 000 ₸/мес',
     },
     {
       icon: Bot,
       titleKey: 'services.chatbot.title',
       descriptionKey: 'services.chatbot.description',
       features: ['WhatsApp', 'Telegram', 'Web-widgets', 'CRM'],
+      price: 'от 60 000 ₸',
     },
     {
       icon: Database,
       titleKey: 'services.rag.title',
       descriptionKey: 'services.rag.description',
       features: ['GPT/Claude', 'Knowledge Base', 'Documents', 'Smart Search'],
+      price: 'от 70 000 ₸',
     },
     {
       icon: Brain,
       titleKey: 'services.ml.title',
       descriptionKey: 'services.ml.description',
       features: ['Prediction', 'Recommendations', 'Analytics', 'Automation'],
+      price: 'от 900 000 ₸',
     },
     {
       icon: Eye,
       titleKey: 'services.cv.title',
       descriptionKey: 'services.cv.description',
       features: ['Detection', 'Face Recognition', 'OCR', 'Quality Control'],
+      price: 'от 1 050 000 ₸',
     },
   ];
 
@@ -88,6 +95,7 @@ const ServicesSection = () => {
                 features={service.features}
                 index={index}
                 titleKey={service.titleKey}
+                price={service.price}
               />
             );
           })}
@@ -104,6 +112,7 @@ const ServiceCard = ({
   features,
   index,
   titleKey,
+  price,
 }: {
   icon: typeof Globe;
   title: string;
@@ -111,6 +120,7 @@ const ServiceCard = ({
   features: string[];
   index: number;
   titleKey: string;
+  price: string;
 }) => {
   const ref = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
@@ -193,7 +203,7 @@ const ServiceCard = ({
           {description}
         </p>
 
-        <div className="flex flex-wrap gap-1 md:gap-2">
+        <div className="flex flex-wrap gap-1 md:gap-2 mb-[clamp(0.5rem,1.2vw,0.85rem)]">
           {features.slice(0, 2).map((feature, i) => (
             <span
               key={i}
@@ -202,6 +212,15 @@ const ServiceCard = ({
               {feature}
             </span>
           ))}
+        </div>
+
+        <div className="pt-[clamp(0.5rem,1.2vw,0.85rem)] border-t border-[rgba(228,236,244,0.1)] flex items-center justify-between gap-2">
+          <span className="gradient-text font-bold text-[clamp(0.85rem,1.6vw,1.15rem)] whitespace-nowrap">
+            {price}
+          </span>
+          <span className="text-muted-foreground text-[clamp(0.6rem,0.8vw,0.7rem)] uppercase tracking-wider hidden md:inline">
+            Цена
+          </span>
         </div>
       </div>
     </motion.div>

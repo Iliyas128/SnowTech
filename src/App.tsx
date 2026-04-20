@@ -14,7 +14,6 @@ import CasesSlider from "./pages/CasesSlider";
 import About from "./pages/About";
 import AboutNurtore from "./pages/AboutNurtore";
 import NotFound from "./pages/NotFound";
-import Snowfall from "react-snowfall";
 import ScrollToTop from "./components/ScrollToTop";
 
 // Create a stable query client instance
@@ -27,21 +26,6 @@ const App = () => (
         <TooltipProvider>
           <Toaster />
           <Sonner />
-          <Snowfall
-            snowflakeCount={120}
-            radius={[0.6, 2.2]}
-            speed={[0.5, 1.8]}
-            wind={[-0.3, 0.3]}
-            style={{
-              position: "fixed",
-              width: "100%",
-              height: "100vh",
-              zIndex: 50,
-              pointerEvents: "none",
-              left: 0,
-              top: 0,
-            }}
-          />
           
           <BrowserRouter>
             <ScrollToTop />

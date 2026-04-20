@@ -47,7 +47,7 @@ const SEO = ({
         <title>{title}</title>
         <meta name="description" content={description} />
         {keywords && <meta name="keywords" content={keywords} />}
-        <meta name="author" content="SnowTEch" />
+        <meta name="author" content="SnowTech" />
         <meta name="robots" content={`${noindex ? 'noindex' : 'index'}, ${nofollow ? 'nofollow' : 'follow'}`} />
         <link rel="canonical" href={fullCanonical} />
 
@@ -59,7 +59,7 @@ const SEO = ({
         <meta property="og:image" content={fullOgImage} />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
-        <meta property="og:site_name" content="SnowTEch" />
+        <meta property="og:site_name" content="SnowTech" />
         <meta property="og:locale" content="ru_RU" />
         <meta property="og:locale:alternate" content="en_US" />
         <meta property="og:locale:alternate" content="kk_KZ" />
@@ -87,8 +87,8 @@ const SEO = ({
         <meta name="twitter:title" content={title} />
         <meta name="twitter:description" content={description} />
         <meta name="twitter:image" content={fullOgImage} />
-        <meta name="twitter:site" content="@SnowTEch" />
-        <meta name="twitter:creator" content="@SnowTEch" />
+        <meta name="twitter:site" content="@SnowTech" />
+        <meta name="twitter:creator" content="@SnowTech" />
 
         {/* Alternate Languages */}
         {alternateLanguages?.map((alt) => (

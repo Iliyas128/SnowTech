@@ -74,19 +74,19 @@ const About = () => {
 
   const seoData = {
     ru: {
-      title: 'О нас | SnowTEch — IT-компания в Казахстане',
-      description: 'Узнайте о SnowTEch — команде IT-профессионалов, создающих цифровые продукты, сайты, AI-решения и маркетинговые кампании в Казахстане.',
-      keywords: 'SnowTEch команда, IT-компания Казахстан, разработчики сайтов, AI-разработка, команда программистов',
+      title: 'О нас | SnowTech — IT-компания в Казахстане',
+      description: 'Узнайте о SnowTech — команде IT-профессионалов, создающих цифровые продукты, сайты, AI-решения и маркетинговые кампании в Казахстане.',
+      keywords: 'SnowTech команда, IT-компания Казахстан, разработчики сайтов, AI-разработка, команда программистов',
     },
     en: {
-      title: 'About Us | SnowTEch — IT Solutions Company',
-      description: 'Learn about SnowTEch — a team of IT professionals creating digital products, websites, AI solutions, and marketing campaigns in Kazakhstan.',
-      keywords: 'SnowTEch team, IT company Kazakhstan, website developers, AI development, programming team',
+      title: 'About Us | SnowTech — IT Solutions Company',
+      description: 'Learn about SnowTech — a team of IT professionals creating digital products, websites, AI solutions, and marketing campaigns in Kazakhstan.',
+      keywords: 'SnowTech team, IT company Kazakhstan, website developers, AI development, programming team',
     },
     kz: {
-      title: 'Біз туралы | SnowTEch — IT-шешімдер компаниясы',
-      description: 'SnowTEch туралы біліңіз — Қазақстанда цифрлық өнімдер, сайттар, AI-шешімдер және маркетинг науқандарын жасайтын IT мамандары командасы.',
-      keywords: 'SnowTEch командасы, IT компания Қазақстан, сайт әзірлеушілер, AI әзірлеу, бағдарламалау командасы',
+      title: 'Біз туралы | SnowTech — IT-шешімдер компаниясы',
+      description: 'SnowTech туралы біліңіз — Қазақстанда цифрлық өнімдер, сайттар, AI-шешімдер және маркетинг науқандарын жасайтын IT мамандары командасы.',
+      keywords: 'SnowTech командасы, IT компания Қазақстан, сайт әзірлеушілер, AI әзірлеу, бағдарламалау командасы',
     },
   };
 

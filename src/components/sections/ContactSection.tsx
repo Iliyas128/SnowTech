@@ -118,29 +118,29 @@ ${message}`;
   };
 
   return (
-    <section id="contacts" className="py-24 relative">
+    <section id="contacts" className="relative py-[clamp(3rem,8vw,6rem)]">
       <div className="absolute inset-0 bg-gradient-to-t from-secondary/50 via-background to-background" />
       
-      <div className="container mx-auto px-4 relative z-10">
+      <div className="w-full px-[clamp(1rem,4vw,2.5rem)] relative z-10">
         <motion.div
           ref={headerRef}
           initial={{ opacity: 0, y: 30 }}
           animate={isHeaderInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="text-center mb-[clamp(2rem,5vw,4rem)]"
         >
-          <span className="inline-block px-4 py-2 rounded-full glass text-sm text-primary font-medium mb-4">
+          <span className="inline-block rounded-full glass font-medium text-primary px-[clamp(0.75rem,1.5vw,1rem)] py-[clamp(0.35rem,0.7vw,0.5rem)] text-[clamp(0.75rem,1vw,0.9rem)] mb-[clamp(0.75rem,1.5vw,1rem)]">
             {t('contact.badge')}
           </span>
-          <h2 className="text-3xl md:text-5xl font-bold text-foreground mb-4">
+          <h2 className="font-bold text-foreground mb-[clamp(0.75rem,1.5vw,1rem)] text-[clamp(1.75rem,4.5vw,3.25rem)] leading-tight">
             {t('contact.title')} <span className="gradient-text">{t('contact.titleHighlight')}</span>
           </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-muted-foreground mx-auto text-[clamp(0.9rem,1.3vw,1.05rem)] max-w-[clamp(18rem,60vw,42rem)] leading-relaxed">
             {t('contact.description')}
           </p>
         </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-12 max-w-5xl mx-auto">
+        <div className="grid lg:grid-cols-2 gap-[clamp(1.5rem,4vw,3rem)] w-full max-w-[clamp(20rem,95vw,72rem)] mx-auto">
           {/* Contact Form */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
@@ -148,8 +148,8 @@ ${message}`;
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <form onSubmit={handleSubmit} className="glass-card space-y-5">
-              <h3 className="text-xl font-semibold text-foreground mb-2">{t('contact.form.submit')}</h3>
+            <form onSubmit={handleSubmit} className="glass-card space-y-[clamp(0.75rem,1.5vw,1.25rem)] p-[clamp(1.25rem,3vw,2rem)]">
+              <h3 className="font-semibold text-foreground mb-2 text-[clamp(1.05rem,1.6vw,1.35rem)]">{t('contact.form.submit')}</h3>
               
               <div>
                 <Input
@@ -217,12 +217,12 @@ ${message}`;
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="space-y-6"
+            className="space-y-[clamp(1rem,2vw,1.5rem)]"
           >
-            <div className="glass-card">
-              <h3 className="text-xl font-semibold text-foreground mb-5">{t('contact.messenger')}</h3>
+            <div className="glass-card p-[clamp(1.25rem,3vw,2rem)]">
+              <h3 className="font-semibold text-foreground mb-[clamp(0.75rem,1.5vw,1.25rem)] text-[clamp(1.05rem,1.6vw,1.35rem)]">{t('contact.messenger')}</h3>
               
-              <div className="flex gap-4">
+              <div className="flex gap-[clamp(0.5rem,1.5vw,1rem)]">
                 {messengerButtons.map((btn) => {
                   const Icon = btn.icon;
                   return (
@@ -231,30 +231,30 @@ ${message}`;
                       href={btn.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className={`flex-1 glass-card text-center py-6 transition-all duration-300 ${btn.color}`}
+                      className={`flex-1 glass-card text-center transition-all duration-300 py-[clamp(1rem,2.5vw,1.5rem)] ${btn.color}`}
                     >
-                      <Icon className="w-8 h-8 mx-auto mb-2" />
-                      <span className="text-sm font-medium">{btn.label}</span>
+                      <Icon className="w-[clamp(1.5rem,2.5vw,2rem)] h-[clamp(1.5rem,2.5vw,2rem)] mx-auto mb-2" />
+                      <span className="font-medium text-[clamp(0.8rem,1.1vw,0.95rem)]">{btn.label}</span>
                     </a>
                   );
                 })}
               </div>
             </div>
 
-            <div className="glass-card">
-              <h3 className="text-xl font-semibold text-foreground mb-5">{t('nav.contacts')}</h3>
+            <div className="glass-card p-[clamp(1.25rem,3vw,2rem)]">
+              <h3 className="font-semibold text-foreground mb-[clamp(0.75rem,1.5vw,1.25rem)] text-[clamp(1.05rem,1.6vw,1.35rem)]">{t('nav.contacts')}</h3>
               
-              <div className="space-y-4">
+              <div className="space-y-[clamp(0.75rem,1.5vw,1rem)]">
                 {contactInfo.map((item) => {
                   const Icon = item.icon;
                   return (
                     <a
                       key={item.label}
                       href={item.href}
-                      className="flex items-center gap-4 text-muted-foreground hover:text-primary transition-colors duration-300"
+                      className="flex items-center gap-[clamp(0.75rem,1.5vw,1rem)] text-muted-foreground hover:text-primary transition-colors duration-300 text-[clamp(0.9rem,1.2vw,1rem)]"
                     >
-                      <div className="w-10 h-10 rounded-xl bg-secondary flex items-center justify-center">
-                        <Icon className="w-5 h-5" />
+                      <div className="rounded-xl bg-secondary flex items-center justify-center w-[clamp(2.25rem,2.8vw,2.75rem)] h-[clamp(2.25rem,2.8vw,2.75rem)] shrink-0">
+                        <Icon className="w-[clamp(1.1rem,1.4vw,1.3rem)] h-[clamp(1.1rem,1.4vw,1.3rem)]" />
                       </div>
                       <span>{item.label}</span>
                     </a>

@@ -339,17 +339,17 @@ const Pricing = () => {
 
   const seoData = {
     ru: {
-      title: 'Цены на IT-услуги | SnowTEch — Разработка сайтов, приложений, AI-решений',
+      title: 'Цены на IT-услуги | SnowTech — Разработка сайтов, приложений, AI-решений',
       description: 'Прозрачные цены на разработку сайтов, мобильных приложений, AI-ботов и таргетированную рекламу в Казахстане. От лендингов до сложных платформ.',
       keywords: 'цены на разработку сайта, стоимость сайта, цена мобильного приложения, стоимость AI-бота, таргетированная реклама цена, разработка сайта Казахстан',
     },
     en: {
-      title: 'Pricing for IT services | SnowTEch — Websites, apps, AI solutions',
+      title: 'Pricing for IT services | SnowTech — Websites, apps, AI solutions',
       description: 'Transparent pricing for website development, mobile apps, AI bots and targeted advertising in Kazakhstan. From landing pages to complex platforms.',
       keywords: 'website development price, website cost, mobile app price, AI bot cost, targeted advertising price, Kazakhstan website development',
     },
     kz: {
-      title: 'IT-қызметтер бағалары | SnowTEch — Сайттар, қосымшалар, AI-шешімдер',
+      title: 'IT-қызметтер бағалары | SnowTech — Сайттар, қосымшалар, AI-шешімдер',
       description: 'Қазақстанда сайт әзірлеу, мобильді қосымшалар, AI-боттар және таргеттелген жарнама үшін мөлдір бағалар. Лендингтерден күрделі платформаларға дейін.',
       keywords: 'сайт әзірлеу бағасы, сайт құны, мобильді қосымша бағасы, AI-бот құны, таргеттелген жарнама бағасы, Қазақстанда сайт әзірлеу',
     },

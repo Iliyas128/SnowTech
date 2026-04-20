@@ -9,14 +9,14 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        default: "bg-primary text-primary-foreground hover:bg-primary/90 hover:shadow-[0_0_30px_hsl(var(--primary)/0.4)]",
+        default: "bg-primary text-primary-foreground hover:bg-primary/90 hover:shadow-[0_0_30px_rgba(210,222,236,0.35)]",
         destructive: "bg-destructive text-destructive-foreground hover:bg-destructive/90",
-        outline: "border border-border bg-transparent hover:bg-secondary hover:border-primary/50 text-foreground",
+        outline: "border border-border bg-transparent hover:bg-secondary hover:border-[rgba(228,236,244,0.35)] text-foreground",
         secondary: "bg-secondary text-secondary-foreground hover:bg-secondary/80",
         ghost: "hover:bg-secondary hover:text-foreground",
         link: "text-primary underline-offset-4 hover:underline",
-        hero: "bg-gradient-to-r from-primary to-accent text-primary-foreground hover:shadow-[0_0_40px_hsl(var(--primary)/0.5)] hover:scale-105",
-        glass: "backdrop-blur-xl bg-foreground/5 border border-foreground/10 text-foreground hover:bg-foreground/10 hover:border-primary/30",
+        hero: "bg-gradient-to-b from-[#f8fbff] via-[#dfe8f2] to-[#b7c5d4] text-[#122031] border border-white/60 shadow-[inset_0_1px_0_rgba(255,255,255,0.85),0_10px_28px_rgba(150,169,190,0.28)] hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.92),0_16px_36px_rgba(166,182,201,0.36)] hover:-translate-y-0.5",
+        glass: "backdrop-blur-xl bg-[linear-gradient(180deg,rgba(63,74,92,0.54)_0%,rgba(19,27,39,0.68)_100%)] border border-[rgba(228,236,244,0.24)] text-[#edf3f9] hover:bg-[linear-gradient(180deg,rgba(79,90,109,0.62)_0%,rgba(24,34,48,0.78)_100%)] hover:border-[rgba(244,248,252,0.34)] hover:-translate-y-0.5",
       },
       size: {
         default: "h-10 px-4 py-2",

@@ -23,19 +23,19 @@ const Cases = () => {
 
   const seoData = {
     ru: {
-      title: 'Наши проекты | SnowTEch — Кейсы и портфолио',
+      title: 'Наши проекты | SnowTech — Кейсы и портфолио',
       description: 'Реальные кейсы с измеримыми результатами. Смотрите, как мы помогаем бизнесу расти с помощью IT-решений.',
-      keywords: 'кейсы SnowTEch, портфолио IT-компании, примеры работ, проекты разработки сайтов, успешные кейсы',
+      keywords: 'кейсы SnowTech, портфолио IT-компании, примеры работ, проекты разработки сайтов, успешные кейсы',
     },
     en: {
-      title: 'Our Projects | SnowTEch — Cases and Portfolio',
+      title: 'Our Projects | SnowTech — Cases and Portfolio',
       description: 'Real cases with measurable results. See how we help businesses grow with IT solutions.',
-      keywords: 'SnowTEch cases, IT company portfolio, work examples, website development projects, success cases',
+      keywords: 'SnowTech cases, IT company portfolio, work examples, website development projects, success cases',
     },
     kz: {
-      title: 'Біздің жобалар | SnowTEch — Кейстер және портфолио',
+      title: 'Біздің жобалар | SnowTech — Кейстер және портфолио',
       description: 'Өлшенетін нәтижелері бар нақты кейстер. Бизнестің өсуіне қалай көмектесетінімізді қараңыз.',
-      keywords: 'SnowTEch кейстері, IT компания портфолиосы, жұмыс мысалдары, сайт әзірлеу жобалары, табысты кейстер',
+      keywords: 'SnowTech кейстері, IT компания портфолиосы, жұмыс мысалдары, сайт әзірлеу жобалары, табысты кейстер',
     },
   };
 

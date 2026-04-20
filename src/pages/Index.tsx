@@ -14,18 +14,18 @@ const Index = () => {
 
   const seoData = {
     ru: {
-      title: 'SnowTEch — разработка сайтов и таргетированная реклама в Казахстане',
-      description: 'IT-компания SnowTEch в Казахстане. Разработка сайтов под ключ, настройка таргетированной рекламы в Instagram и TikTok, создание AI-ботов и ML-решений для бизнеса.',
+      title: 'SnowTech — разработка сайтов и таргетированная реклама в Казахстане',
+      description: 'IT-компания SnowTech в Казахстане. Разработка сайтов под ключ, настройка таргетированной рекламы в Instagram и TikTok, создание AI-ботов и ML-решений для бизнеса.',
       keywords: 'разработка сайтов Казахстан, создать сайт, таргетированная реклама Instagram, реклама TikTok, AI-боты, чат-боты, разработка мобильных приложений, ML-решения, Computer Vision, RAG-боты',
     },
     en: {
-      title: 'SnowTEch — Website Development & Targeted Advertising in Kazakhstan',
-      description: 'SnowTEch IT company in Kazakhstan. Full-cycle website development, Instagram and TikTok targeted advertising setup, AI bots and ML solutions for business.',
+      title: 'SnowTech — Website Development & Targeted Advertising in Kazakhstan',
+      description: 'SnowTech IT company in Kazakhstan. Full-cycle website development, Instagram and TikTok targeted advertising setup, AI bots and ML solutions for business.',
       keywords: 'website development Kazakhstan, create website, Instagram advertising, TikTok ads, AI bots, chatbots, mobile app development, ML solutions, Computer Vision, RAG bots',
     },
     kz: {
-      title: 'SnowTEch — Қазақстанда сайт әзірлеу және таргеттелген жарнама',
-      description: 'Қазақстандағы SnowTEch IT компаниясы. Сайттарды толық циклде әзірлеу, Instagram және TikTok таргеттелген жарнамасын баптау, AI-боттар және бизнес үшін ML-шешімдер.',
+      title: 'SnowTech — Қазақстанда сайт әзірлеу және таргеттелген жарнама',
+      description: 'Қазақстандағы SnowTech IT компаниясы. Сайттарды толық циклде әзірлеу, Instagram және TikTok таргеттелген жарнамасын баптау, AI-боттар және бизнес үшін ML-шешімдер.',
       keywords: 'Қазақстанда сайт әзірлеу, сайт жасау, Instagram жарнамасы, TikTok жарнамасы, AI-боттар, чат-боттар, мобильді қосымша әзірлеу, ML-шешімдер, Computer Vision, RAG-боттар',
     },
   };

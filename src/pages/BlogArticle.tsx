@@ -40,7 +40,7 @@ const BlogArticle = () => {
       article.image,
       article.date,
       article.date,
-      'SnowTEch'
+      'SnowTech'
     ),
     generateBreadcrumbSchema([
       { name: 'Главная', url: '/' },
@@ -52,7 +52,7 @@ const BlogArticle = () => {
   return (
     <>
       <SEO
-        title={`${article.title} | SnowTEch Blog`}
+        title={`${article.title} | SnowTech Blog`}
         description={article.excerpt}
         keywords={`${article.category}, маркетинг, реклама Казахстан`}
         canonical={`/blog/${article.id}`}
@@ -61,7 +61,7 @@ const BlogArticle = () => {
         article={{
           publishedTime: article.date,
           modifiedTime: article.date,
-          author: 'SnowTEch',
+          author: 'SnowTech',
           section: article.category,
           tags: [article.category, 'маркетинг', 'реклама'],
         }}

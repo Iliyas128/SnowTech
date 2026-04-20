@@ -57,7 +57,7 @@ const Header = () => {
               handleNavClick(item.href);
             }
           }}
-          className="text-muted-foreground hover:text-primary transition-colors duration-300 text-sm font-medium"
+          className="text-muted-foreground hover:text-primary transition-colors duration-300 font-medium text-[clamp(0.85rem,1vw,1rem)] whitespace-nowrap"
         >
           {item.label}
         </a>
@@ -68,7 +68,7 @@ const Header = () => {
       <Link
         key={item.href}
         to={item.href}
-        className="text-muted-foreground hover:text-primary transition-colors duration-300 text-sm font-medium"
+        className="text-muted-foreground hover:text-primary transition-colors duration-300 font-medium text-[clamp(0.85rem,1vw,1rem)] whitespace-nowrap"
       >
         {item.label}
       </Link>
@@ -81,26 +81,26 @@ const Header = () => {
         isScrolled ? 'glass py-3' : 'bg-transparent py-5'
       }`}
     >
-      <div className="container mx-auto px-4 flex items-center justify-between">
-        <Link to="/" className="flex items-center gap-2 group">
-          <div className="w-10 h-10 rounded-xl flex items-center justify-center group-hover:shadow-[0_0_30px_hsl(var(--primary)/0.5)] transition-shadow duration-300 overflow-hidden">
+      <div className="w-full flex items-center justify-between px-[clamp(1rem,4vw,2.5rem)]">
+        <Link to="/" className="flex items-center gap-[clamp(0.4rem,0.8vw,0.6rem)] group">
+          <div className="w-[clamp(2rem,2.6vw,2.5rem)] h-[clamp(2rem,2.6vw,2.5rem)] rounded-xl flex items-center justify-center group-hover:shadow-[0_0_30px_hsl(var(--primary)/0.5)] transition-shadow duration-300 overflow-hidden">
             <img 
               src="/snowTech.ico" 
               alt="SnowTEch Logo" 
               className="w-full h-full object-contain"
             />
           </div>
-          <span className="text-xl font-bold text-foreground">SnowTech</span>
+          <span className="font-bold text-foreground text-[clamp(1rem,1.4vw,1.35rem)]">SnowTech</span>
         </Link>
 
-        <nav className="hidden md:flex items-center gap-8">
+        <nav className="hidden md:flex items-center gap-[clamp(1rem,2.2vw,2rem)]">
           {navItems.map(renderNavLink)}
         </nav>
 
-        <div className="hidden md:flex items-center gap-4">
+        <div className="hidden md:flex items-center gap-[clamp(0.5rem,1vw,1rem)]">
           <LanguageSwitcher />
           <a href="/#contacts">
-            <Button variant="hero" size="lg">
+            <Button size="lg" className="header-cta">
               {t('nav.discuss')}
             </Button>
           </a>
@@ -160,7 +160,7 @@ const Header = () => {
                 );
               })}
               <a href="/#contacts">
-                <Button variant="hero" size="lg" className="mt-2 w-full">
+                <Button size="lg" className="header-cta mt-2 w-full">
                   {t('nav.discuss')}
                 </Button>
               </a>
