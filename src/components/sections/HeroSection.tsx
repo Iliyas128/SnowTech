@@ -11,7 +11,7 @@ const HeroSection = () => {
     { value: '20+', label: t('hero.stats.projects') },
     { value: '3+', label: t('hero.stats.years') },
     { value: '20+', label: t('hero.stats.clients') },
-    { value: '99.9%', label: t('hero.stats.clients') },
+    { value: '99%', label: t('hero.stats.clients') },
   ];
 
   return (

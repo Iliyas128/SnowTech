@@ -43,7 +43,7 @@ const Footer = () => {
                   className="w-full h-full object-contain"
                 />
               </div>
-              <span className="text-xl font-bold text-foreground">SnowTEch</span>
+              <span className="text-xl font-bold text-foreground">SnowTech</span>
             </Link>
             <p className="text-sm text-muted-foreground mb-4">
               {t('footer.description')}
@@ -132,7 +132,7 @@ const Footer = () => {
 
         <div className="pt-8 border-t border-border flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-sm text-muted-foreground">
-            © {currentYear} SnowTEch. {t('footer.rights')}
+            © 2024 SnowTech. {t('footer.rights')}
           </p>
         </div>
       </div>

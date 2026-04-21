@@ -1,8 +1,40 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, ExternalLink } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import type { CaseItem } from '@/data/casesData';
+
+type GalleryImageProps = {
+  src: string;
+  alt: string;
+};
+
+const GalleryImage = ({ src, alt }: GalleryImageProps) => {
+  const [loaded, setLoaded] = useState(false);
+
+  useEffect(() => {
+    setLoaded(false);
+  }, [src]);
+
+  return (
+    <figure className="case-modal-image-wrapper">
+      <span
+        className="case-modal-image-spinner"
+        data-hidden={loaded ? 'true' : 'false'}
+        aria-hidden="true"
+      />
+      <img
+        src={src}
+        alt={alt}
+        loading="lazy"
+        decoding="async"
+        className={loaded ? 'is-loaded' : ''}
+        onLoad={() => setLoaded(true)}
+        onError={() => setLoaded(true)}
+      />
+    </figure>
+  );
+};
 
 type CaseModalProps = {
   caseItem: CaseItem | null;
@@ -129,14 +161,11 @@ const CaseModal = ({ caseItem, open, onClose }: CaseModalProps) => {
 
               <div className="case-modal-gallery">
                 {caseItem.gallery.map((src, i) => (
-                  <figure key={src} className="case-modal-image-wrapper">
-                    <img
-                      src={src}
-                      alt={`${t(caseItem.titleKey)} — ${i + 1}`}
-                      loading="lazy"
-                      decoding="async"
-                    />
-                  </figure>
+                  <GalleryImage
+                    key={src}
+                    src={src}
+                    alt={`${t(caseItem.titleKey)} — ${i + 1}`}
+                  />
                 ))}
               </div>
             </div>

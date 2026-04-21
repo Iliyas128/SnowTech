@@ -140,15 +140,16 @@ ${message}`;
           </p>
         </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-[clamp(1.5rem,4vw,3rem)] w-full max-w-[clamp(20rem,95vw,72rem)] mx-auto">
+        <div className="grid lg:grid-cols-2 gap-[clamp(1.5rem,4vw,3rem)] w-full max-w-[clamp(20rem,95vw,72rem)] mx-auto items-stretch">
           {/* Contact Form */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
+            className="h-full"
           >
-            <form onSubmit={handleSubmit} className="glass-card space-y-[clamp(0.75rem,1.5vw,1.25rem)] p-[clamp(1.25rem,3vw,2rem)]">
+            <form onSubmit={handleSubmit} className="glass-card space-y-[clamp(0.75rem,1.5vw,1.25rem)] p-[clamp(1.25rem,3vw,2rem)] h-full flex flex-col">
               <h3 className="font-semibold text-foreground mb-2 text-[clamp(1.05rem,1.6vw,1.35rem)]">{t('contact.form.submit')}</h3>
               
               <div>
@@ -198,11 +199,11 @@ ${message}`;
                 {errors.message && <p className="text-sm text-destructive mt-1">{errors.message}</p>}
               </div>
 
-              <Button 
-                type="submit" 
-                variant="hero" 
-                size="lg" 
-                className="w-full"
+              <Button
+                type="submit"
+                variant="hero"
+                size="lg"
+                className="w-full mt-auto"
                 disabled={isSubmitting}
               >
                 {isSubmitting ? '...' : t('contact.form.submit')}
@@ -217,7 +218,7 @@ ${message}`;
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="space-y-[clamp(1rem,2vw,1.5rem)]"
+            className="h-full flex flex-col space-y-[clamp(1rem,2vw,1.5rem)]"
           >
             <div className="glass-card p-[clamp(1.25rem,3vw,2rem)]">
               <h3 className="font-semibold text-foreground mb-[clamp(0.75rem,1.5vw,1.25rem)] text-[clamp(1.05rem,1.6vw,1.35rem)]">{t('contact.messenger')}</h3>
@@ -241,10 +242,10 @@ ${message}`;
               </div>
             </div>
 
-            <div className="glass-card p-[clamp(1.25rem,3vw,2rem)]">
+            <div className="glass-card p-[clamp(1.25rem,3vw,2rem)] flex-1 flex flex-col">
               <h3 className="font-semibold text-foreground mb-[clamp(0.75rem,1.5vw,1.25rem)] text-[clamp(1.05rem,1.6vw,1.35rem)]">{t('nav.contacts')}</h3>
-              
-              <div className="space-y-[clamp(0.75rem,1.5vw,1rem)]">
+
+              <div className="space-y-[clamp(0.75rem,1.5vw,1rem)] flex-1 flex flex-col justify-center">
                 {contactInfo.map((item) => {
                   const Icon = item.icon;
                   return (
