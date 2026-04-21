@@ -23,16 +23,22 @@ const HeroSection = () => {
       <div className="relative z-10 w-full px-[clamp(1rem,4vw,2rem)]">
         <div className="mx-auto text-center w-full max-w-[clamp(20rem,90vw,76rem)]">
           <div className="relative mx-auto w-full">
-            <motion.img
-              initial={{ opacity: 0, scale: 0.85 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 1 }}
-              style={{ opacity: 0, willChange: 'transform, opacity' }}
-              src="/images/sneg.png"
-              alt=""
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9, x: '-50%', y: '-34%' }}
+              animate={{ opacity: 1, scale: 1, x: '-50%', y: '-34%' }}
+              transition={{ duration: 0.9, ease: 'easeOut' }}
+              className="hero-snowflake-wrap"
               aria-hidden="true"
-              className="hero-snowflake"
-            />
+            >
+              <img
+                src="/images/sneg.png"
+                alt=""
+                aria-hidden="true"
+                loading="eager"
+                decoding="async"
+                className="hero-snowflake"
+              />
+            </motion.div>
 
             <motion.h1
               initial={{ opacity: 0, y: 24 }}
