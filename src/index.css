@@ -418,7 +418,7 @@
     }
 
     .hero-snowflake-wrap {
-      width: clamp(14rem, 62vw, 22rem);
+      width: clamp(18rem, 62vw, 32rem);
     }
 
     .hero-snowflake {
