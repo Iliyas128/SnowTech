@@ -59,8 +59,8 @@ const WhyUsSection = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={isHeaderInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          style={{ opacity: 0, willChange: 'transform, opacity' }}
-          className="text-center mb-16"
+          style={{ opacity: 0 }}
+          className="text-center mb-16 transform-gpu"
         >
           <span className="inline-block px-4 py-2 rounded-full glass text-sm text-primary font-medium mb-4">
             {t('whyUs.badge')}
@@ -81,10 +81,10 @@ const WhyUsSection = () => {
                 key={item.titleKey}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
+                viewport={{ once: true, amount: 0.2 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                style={{ opacity: 0, willChange: 'transform, opacity' }}
-                className="glass-card group hover:border-primary/30 transition-all duration-300"
+                style={{ opacity: 0 }}
+                className="glass-card group hover:border-primary/30 transition-[border-color,box-shadow,background-color] duration-300 transform-gpu"
               >
                 <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors duration-300">
                   <Icon className="w-6 h-6 text-primary" />
@@ -100,10 +100,10 @@ const WhyUsSection = () => {
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: true, amount: 0.15 }}
           transition={{ duration: 0.6 }}
-          style={{ opacity: 0, willChange: 'transform, opacity' }}
-          className="glass-card"
+          style={{ opacity: 0 }}
+          className="glass-card transform-gpu"
         >
           <h3 className="text-2xl font-bold text-foreground mb-2 text-center">{t('whyUs.tech.title')}</h3>
           <p className="text-muted-foreground text-center mb-8">
@@ -116,10 +116,10 @@ const WhyUsSection = () => {
                 key={tech.name}
                 initial={{ opacity: 0, scale: 0.8 }}
                 whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
+                viewport={{ once: true, amount: 0.1 }}
                 transition={{ duration: 0.3, delay: index * 0.05 }}
-                style={{ opacity: 0, willChange: 'transform, opacity' }}
-                className="px-4 py-2 rounded-xl bg-secondary hover:bg-primary/20 hover:text-primary transition-all duration-300 text-sm font-medium cursor-default"
+                style={{ opacity: 0 }}
+                className="px-4 py-2 rounded-xl bg-secondary hover:bg-primary/20 hover:text-primary transition-[background-color,color] duration-300 text-sm font-medium cursor-default transform-gpu"
               >
                 {tech.name}
               </motion.span>

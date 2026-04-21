@@ -70,8 +70,8 @@ const ServicesSection = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={isHeaderInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          style={{ opacity: 0, willChange: 'transform, opacity' }}
-          className="text-center mb-16"
+          style={{ opacity: 0 }}
+          className="text-center mb-16 transform-gpu"
         >
           <span className="inline-block px-4 py-2 rounded-full glass text-sm text-primary font-medium mb-4">
             {t('services.badge')}
@@ -185,8 +185,8 @@ const ServiceCard = ({
       initial={{ opacity: 0, y: 50 }}
       animate={shouldAnimate ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
-      style={{ opacity: 0, willChange: 'transform, opacity' }}
-      className="group glass-card hover:border-primary/30 transition-all duration-500 relative overflow-hidden cursor-pointer"
+      style={{ opacity: 0 }}
+      className="group glass-card hover:border-primary/30 transition-[border-color,box-shadow,background-color] duration-500 relative overflow-hidden cursor-pointer transform-gpu"
       onClick={handleClick}
     >
       <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-accent/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />

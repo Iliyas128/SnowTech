@@ -106,10 +106,28 @@
     box-shadow:
       inset 0 1px 0 rgba(255, 255, 255, 0.08),
       0 12px 28px rgba(2, 8, 20, 0.28);
+    /* Pre-promote to its own compositor layer so that the very first paint
+       of backdrop-filter doesn't "pop" when the card fades in on mobile. */
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
+    isolation: isolate;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
   }
 
   .glass-card {
     @apply glass rounded-2xl p-6;
+  }
+
+  @media (max-width: 768px) {
+    .glass {
+      /* iOS Safari / Android Chrome flicker heavy blur during opacity
+         animations. Use a lighter blur + slightly more opaque background
+         to keep the silver look without the rasterization flash. */
+      -webkit-backdrop-filter: blur(8px);
+      backdrop-filter: blur(8px);
+      background: linear-gradient(180deg, rgba(45, 56, 74, 0.55) 0%, rgba(14, 22, 36, 0.78) 100%);
+    }
   }
 
   .gradient-text {
