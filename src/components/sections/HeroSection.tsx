@@ -30,6 +30,7 @@ const HeroSection = () => {
               initial={{ opacity: 0, scale: 0.85 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 1 }}
+              style={{ opacity: 0, willChange: 'transform, opacity' }}
               src="/images/sneg.png"
               alt=""
               aria-hidden="true"
@@ -40,6 +41,7 @@ const HeroSection = () => {
               initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.1 }}
+              style={{ opacity: 0, willChange: 'transform, opacity' }}
               className="hero-title relative z-20 font-extrabold leading-[1.02] tracking-tight text-[clamp(2.2rem,8.2vw,6.4rem)]"
             >
               <span>{t('hero.title1')}</span>{' '}
@@ -51,6 +53,7 @@ const HeroSection = () => {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
+            style={{ opacity: 0, willChange: 'transform, opacity' }}
             className="hero-description relative z-20 mx-auto text-balance text-[clamp(0.9rem,1.8vw,1.15rem)] max-w-[clamp(18rem,70vw,60rem)] mt-[clamp(1.25rem,3vw,2rem)] leading-relaxed"
           >
             {t('hero.description')}
@@ -60,6 +63,7 @@ const HeroSection = () => {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
+            style={{ opacity: 0, willChange: 'transform, opacity' }}
             className="relative z-20 mt-[clamp(1.5rem,3.5vw,2.25rem)] flex flex-col sm:flex-row items-center justify-center gap-[clamp(0.6rem,1.4vw,1rem)]"
           >
             <a href="/#contacts">
@@ -79,6 +83,7 @@ const HeroSection = () => {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.5 }}
+            style={{ opacity: 0, willChange: 'transform, opacity' }}
             className="relative z-20 mx-auto mt-[clamp(2rem,5vw,3.2rem)] grid grid-cols-2 md:grid-cols-4 gap-[clamp(0.75rem,2vw,1.5rem)] w-full max-w-[clamp(20rem,85vw,58rem)]"
           >
             {stats.map((stat, index) => (
@@ -106,6 +111,7 @@ const HeroSection = () => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.2 }}
+        style={{ opacity: 0 }}
         className="absolute bottom-[clamp(1rem,3vw,2rem)] left-1/2 -translate-x-1/2 z-10"
       >
         <div className="w-[clamp(1.1rem,1.6vw,1.5rem)] h-[clamp(1.9rem,2.6vw,2.5rem)] rounded-full border-2 border-muted-foreground/30 flex justify-center pt-2">
