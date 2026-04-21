@@ -1,24 +1,45 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef } from 'react';
-import { Shield, Zap, Users, Award, Clock, HeadphonesIcon } from 'lucide-react';
+import { Shield, Zap, Users, Award } from 'lucide-react';
+import {
+  SiReact,
+  SiNextdotjs,
+  SiTypescript,
+  SiNodedotjs,
+  SiPython,
+  SiFastapi,
+  SiPostgresql,
+  SiMongodb,
+  SiTensorflow,
+  SiPytorch,
+  SiOpenai,
+  SiLangchain,
+  SiDocker,
+  SiTailwindcss,
+  SiFigma,
+} from 'react-icons/si';
+import { FaAws } from 'react-icons/fa';
 import { useLanguage } from '@/contexts/LanguageContext';
+import LogoLoop, { type LogoItem } from '@/components/LogoLoop';
 
-const techStack = [
-  { name: 'React', category: 'Frontend' },
-  { name: 'Next.js', category: 'Frontend' },
-  { name: 'TypeScript', category: 'Frontend' },
-  { name: 'Node.js', category: 'Backend' },
-  { name: 'Python', category: 'Backend' },
-  { name: 'FastAPI', category: 'Backend' },
-  { name: 'PostgreSQL', category: 'Database' },
-  { name: 'MongoDB', category: 'Database' },
-  { name: 'TensorFlow', category: 'AI/ML' },
-  { name: 'PyTorch', category: 'AI/ML' },
-  { name: 'OpenAI', category: 'AI/ML' },
-  { name: 'LangChain', category: 'AI/ML' },
-  { name: 'Docker', category: 'DevOps' },
-  { name: 'AWS', category: 'Cloud' },
+const techLogos: LogoItem[] = [
+  { name: 'React', icon: <SiReact /> },
+  { name: 'Next.js', icon: <SiNextdotjs /> },
+  { name: 'TypeScript', icon: <SiTypescript /> },
+  { name: 'Tailwind', icon: <SiTailwindcss /> },
+  { name: 'Node.js', icon: <SiNodedotjs /> },
+  { name: 'Python', icon: <SiPython /> },
+  { name: 'FastAPI', icon: <SiFastapi /> },
+  { name: 'PostgreSQL', icon: <SiPostgresql /> },
+  { name: 'MongoDB', icon: <SiMongodb /> },
+  { name: 'TensorFlow', icon: <SiTensorflow /> },
+  { name: 'PyTorch', icon: <SiPytorch /> },
+  { name: 'OpenAI', icon: <SiOpenai /> },
+  { name: 'LangChain', icon: <SiLangchain /> },
+  { name: 'Docker', icon: <SiDocker /> },
+  { name: 'AWS', icon: <FaAws /> },
+  { name: 'Figma', icon: <SiFigma /> },
 ];
 
 const WhyUsSection = () => {
@@ -52,7 +73,7 @@ const WhyUsSection = () => {
   return (
     <section id="why-us" className="py-24 relative">
       <div className="absolute inset-0 bg-gradient-to-b from-background via-secondary/30 to-background" />
-      
+
       <div className="container mx-auto px-4 relative z-10">
         <motion.div
           ref={headerRef}
@@ -96,7 +117,7 @@ const WhyUsSection = () => {
           })}
         </div>
 
-        {/* Tech Stack */}
+        {/* Tech Stack — infinite logo loop */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -105,26 +126,15 @@ const WhyUsSection = () => {
           style={{ opacity: 0 }}
           className="glass-card transform-gpu"
         >
-          <h3 className="text-2xl font-bold text-foreground mb-2 text-center">{t('whyUs.tech.title')}</h3>
-          <p className="text-muted-foreground text-center mb-8">
+          <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-2 text-center">
+            {t('whyUs.tech.title')}
+          </h3>
+          <p className="text-muted-foreground text-center mb-6 md:mb-8 text-[clamp(0.85rem,1.2vw,1rem)]">
             {t('whyUs.tech.description')}
           </p>
-          
-          <div className="flex flex-wrap justify-center gap-3">
-            {techStack.map((tech, index) => (
-              <motion.span
-                key={tech.name}
-                initial={{ opacity: 0, scale: 0.8 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true, amount: 0.1 }}
-                transition={{ duration: 0.3, delay: index * 0.05 }}
-                style={{ opacity: 0 }}
-                className="px-4 py-2 rounded-xl bg-secondary hover:bg-primary/20 hover:text-primary transition-[background-color,color] duration-300 text-sm font-medium cursor-default transform-gpu"
-              >
-                {tech.name}
-              </motion.span>
-            ))}
-          </div>
+
+          <LogoLoop logos={techLogos} speed={40} />
+          <LogoLoop logos={techLogos} speed={55} reverse />
         </motion.div>
       </div>
     </section>

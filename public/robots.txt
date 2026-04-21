@@ -1,18 +1,28 @@
 User-agent: *
 Allow: /
 
-# Sitemap
-Sitemap: https://snowtech.kz/sitemap.xml
+# Googlebot
+User-agent: Googlebot
+Allow: /
+
+# Yandex
+User-agent: Yandex
+Allow: /
+Clean-param: utm_source&utm_medium&utm_campaign&utm_content&utm_term /
+
+# Bing
+User-agent: Bingbot
+Allow: /
 
 # Disallow admin and private areas (if any)
 Disallow: /admin/
 Disallow: /api/
 Disallow: /_next/
 Disallow: /private/
+Disallow: /*.json$
+Disallow: /*?*utm_
 
-# Allow important pages
-Allow: /
-Allow: /pricing
-Allow: /blog
-Allow: /cases
-Allow: /about
+# Sitemap
+Sitemap: https://snowtech.asia/sitemap.xml
+
+Host: https://snowtech.asia

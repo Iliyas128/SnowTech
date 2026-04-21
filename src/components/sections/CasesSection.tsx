@@ -1,61 +1,22 @@
-import { motion } from 'framer-motion';
-import { useInView } from 'framer-motion';
+import { motion, useInView } from 'framer-motion';
 import { useRef, useState, useEffect } from 'react';
-import { ExternalLink, TrendingUp, Clock, Users } from 'lucide-react';
+import { ExternalLink, TrendingUp } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useLanguage } from '@/contexts/LanguageContext';
-import { Link, useNavigate } from 'react-router-dom';
-import eCommerceImage from '@/assets/supratrade.jpg';
-import cars from '@/assets/cars.jpg';
-import hongkong from '@/assets/hongGong.jpg';
+import { Link } from 'react-router-dom';
+import CaseModal from '@/components/CaseModal';
+import { featuredCases, type CaseItem } from '@/data/casesData';
 
 const CasesSection = () => {
   const { t } = useLanguage();
   const headerRef = useRef(null);
   const isHeaderInView = useInView(headerRef, { once: true });
 
-  const cases = [
-    {
-      titleKey: 'cases.ecommerce.title',
-      clientKey: 'cases.ecommerce.client',
-      descriptionKey: 'cases.ecommerce.description',
-      image: eCommerceImage,
-      results: [
-        { icon: TrendingUp, labelKey: 'cases.ecommerce.result1' },
-        { icon: Clock, labelKey: 'cases.ecommerce.result2' },
-        { icon: Users, labelKey: 'cases.ecommerce.result3' },
-      ],
-      tags: ['React', 'Node.js', 'ML', 'PostgreSQL'],
-    },
-    {
-      titleKey: 'cases.carRental.title',
-      clientKey: 'cases.carRental.client',
-      descriptionKey: 'cases.carRental.description',
-      image: cars,
-      results: [
-        { icon: TrendingUp, labelKey: 'cases.carRental.result1' },
-        { icon: Clock, labelKey: 'cases.carRental.result2' },
-        { icon: Users, labelKey: 'cases.carRental.result3' },
-      ],
-      tags: ['React', 'Node.js', 'MongoDB', 'Stripe'],
-    },
-    {
-      titleKey: 'cases.realEstate.title',
-      clientKey: 'cases.realEstate.client',
-      descriptionKey: 'cases.realEstate.description',
-      image: hongkong,
-      results: [
-        { icon: TrendingUp, labelKey: 'cases.realEstate.result1' },
-        { icon: Clock, labelKey: 'cases.realEstate.result2' },
-        { icon: Users, labelKey: 'cases.realEstate.result3' },
-      ],
-      tags: ['React', 'Next.js', 'PostgreSQL', 'Map API'],
-    },
-  ];
+  const [activeCase, setActiveCase] = useState<CaseItem | null>(null);
 
   return (
     <section id="cases" className="py-24 relative">
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto px-4 relative z-10">
         <motion.div
           ref={headerRef}
           initial={{ opacity: 0, y: 30 }}
@@ -75,8 +36,14 @@ const CasesSection = () => {
         </motion.div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {cases.map((caseItem, index) => (
-            <CaseCard key={caseItem.titleKey} caseItem={caseItem} index={index} t={t} />
+          {featuredCases.map((caseItem, index) => (
+            <CaseCard
+              key={caseItem.id}
+              caseItem={caseItem}
+              index={index}
+              t={t}
+              onOpen={() => setActiveCase(caseItem)}
+            />
           ))}
         </div>
 
@@ -95,51 +62,44 @@ const CasesSection = () => {
           </Link>
         </motion.div>
       </div>
+
+      <CaseModal
+        caseItem={activeCase}
+        open={activeCase !== null}
+        onClose={() => setActiveCase(null)}
+      />
     </section>
   );
 };
 
-const CaseCard = ({ 
-  caseItem, 
-  index, 
-  t 
-}: { 
-  caseItem: {
-    titleKey: string;
-    clientKey: string;
-    descriptionKey: string;
-    image: string;
-    results: { icon: typeof TrendingUp; labelKey: string }[];
-    tags: string[];
-  }; 
+type CaseCardProps = {
+  caseItem: CaseItem;
   index: number;
   t: (key: string) => string;
-}) => {
+  onOpen: () => void;
+};
+
+const CaseCard = ({ caseItem, index, t, onOpen }: CaseCardProps) => {
   const ref = useRef<HTMLDivElement>(null);
-  const navigate = useNavigate();
   const hasAnimatedRef = useRef(false);
   const [shouldAnimate, setShouldAnimate] = useState(false);
 
   useEffect(() => {
     if (!ref.current || hasAnimatedRef.current) return;
 
-    let timeoutId: NodeJS.Timeout;
+    let timeoutId: ReturnType<typeof setTimeout>;
     let isAnimating = false;
-    
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          // Более строгая проверка для мобильных устройств
           if (
-            entry.isIntersecting && 
-            !hasAnimatedRef.current && 
+            entry.isIntersecting &&
+            !hasAnimatedRef.current &&
             !isAnimating &&
             entry.intersectionRatio >= 0.2
           ) {
-            // Очищаем предыдущий таймаут
             clearTimeout(timeoutId);
-            
-            // Увеличиваем debounce для мобильных
             isAnimating = true;
             timeoutId = setTimeout(() => {
               if (!hasAnimatedRef.current && ref.current) {
@@ -150,13 +110,12 @@ const CaseCard = ({
               isAnimating = false;
             }, 300);
           } else if (!entry.isIntersecting && isAnimating) {
-            // Если элемент вышел из viewport во время debounce, отменяем
             clearTimeout(timeoutId);
             isAnimating = false;
           }
         });
       },
-      { threshold: 0.2, rootMargin: '0px' }
+      { threshold: 0.2, rootMargin: '0px' },
     );
 
     observer.observe(ref.current);
@@ -167,8 +126,11 @@ const CaseCard = ({
     };
   }, []);
 
-  const handleClick = () => {
-    navigate('/pricing');
+  const handleKey = (e: React.KeyboardEvent<HTMLDivElement>) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      onOpen();
+    }
   };
 
   return (
@@ -177,15 +139,20 @@ const CaseCard = ({
       initial={{ opacity: 0, y: 50 }}
       animate={shouldAnimate ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
       transition={{ duration: 0.6, delay: index * 0.2 }}
-      className="group cursor-pointer"
-      onClick={handleClick}
+      className="group cursor-pointer transform-gpu h-full"
+      onClick={onOpen}
+      onKeyDown={handleKey}
+      role="button"
+      tabIndex={0}
     >
-      <div className="glass rounded-3xl overflow-hidden hover:border-primary/30 transition-all duration-500">
-        <div className="relative h-56 overflow-hidden">
+      <div className="glass rounded-3xl overflow-hidden hover:border-primary/30 transition-[border-color,box-shadow,background-color] duration-500 h-full flex flex-col">
+        <div className="relative h-56 overflow-hidden flex-shrink-0">
           <img
-            src={caseItem.image}
+            src={caseItem.cover}
             alt={t(caseItem.titleKey)}
             className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+            loading="lazy"
+            decoding="async"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-background via-background/50 to-transparent" />
           <div className="absolute bottom-4 left-4 right-4">
@@ -194,12 +161,12 @@ const CaseCard = ({
           </div>
         </div>
 
-        <div className="p-6">
-          <p className="text-muted-foreground text-sm mb-5">{t(caseItem.descriptionKey)}</p>
+        <div className="p-6 flex-1 flex flex-col">
+          <p className="text-muted-foreground text-sm mb-5 flex-1">{t(caseItem.descriptionKey)}</p>
 
           <div className="grid grid-cols-3 gap-3 mb-5">
             {caseItem.results.map((result, i) => {
-              const Icon = result.icon;
+              const Icon = result.icon ?? TrendingUp;
               return (
                 <div key={i} className="text-center p-3 rounded-xl bg-secondary/50">
                   <Icon className="w-4 h-4 text-primary mx-auto mb-1" />

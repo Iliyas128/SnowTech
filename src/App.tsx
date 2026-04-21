@@ -15,6 +15,8 @@ import About from "./pages/About";
 import AboutNurtore from "./pages/AboutNurtore";
 import NotFound from "./pages/NotFound";
 import ScrollToTop from "./components/ScrollToTop";
+import ParticlesBackground from "./components/ParticlesBackground";
+import FloatingWhatsApp from "./components/FloatingWhatsApp";
 
 // Create a stable query client instance
 const queryClient = new QueryClient();
@@ -27,6 +29,7 @@ const App = () => (
           <Toaster />
           <Sonner />
           
+          <ParticlesBackground />
           <BrowserRouter>
             <ScrollToTop />
             <Routes>
@@ -41,6 +44,7 @@ const App = () => (
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
             </Routes>
+            <FloatingWhatsApp />
           </BrowserRouter>
         </TooltipProvider>
       </QueryClientProvider>

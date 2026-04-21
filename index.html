@@ -2,30 +2,41 @@
 <html lang="ru">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    
-    <!-- Favicons for different devices and sizes -->
-    <link rel="icon" type="image/x-icon" href="/public/snowTech.ico" />
-    <link rel="icon" type="image/png" sizes="16x16" href="/public/snowTech.ico" />
-    <link rel="icon" type="image/png" sizes="32x32" href="/public/snowTech.ico" />
-    <link rel="icon" type="image/png" sizes="96x96" href="/public/snowTech.ico" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/public/snowTech.ico" />
-    <link rel="icon" type="image/png" sizes="192x192" href="/public/snowTech.ico" />
-    <link rel="icon" type="image/png" sizes="512x512" href="/public/snowTech.ico" />
-    <meta name="msapplication-TileImage" content="/public/snowTech.ico" />
-    <meta name="msapplication-TileColor" content="#ffffff" />
-    <meta name="theme-color" content="#ffffff" />
-    
-    <!-- Primary Meta Tags -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#030812" />
+    <meta name="color-scheme" content="dark" />
+
+    <!-- Favicons -->
+    <link rel="icon" type="image/x-icon" href="/snowTech.ico" />
+    <link rel="shortcut icon" type="image/x-icon" href="/snowTech.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/snowTech.ico" />
+    <link rel="mask-icon" href="/favicon.svg" color="#030812" />
+
+    <!-- Primary Meta Tags (overridden per-page via react-helmet) -->
     <title>SnowTech — разработка сайтов и таргетированная реклама в Казахстане</title>
     <meta name="title" content="SnowTech — разработка сайтов и таргетированная реклама в Казахстане" />
-    <meta name="description" content="IT-компания SnowTEch в Казахстане. Разработка сайтов под ключ, настройка таргетированной рекламы в Instagram и TikTok, создание AI-ботов и ML-решений для бизнеса." />
-    <meta name="keywords" content="разработка сайтов Казахстан, создать сайт, таргетированная реклама Instagram, реклама TikTok, AI-боты, чат-боты, разработка мобильных приложений, ML-решения, Computer Vision, RAG-боты" />
+    <meta
+      name="description"
+      content="IT-компания SnowTech в Казахстане. Разработка сайтов под ключ, настройка таргетированной рекламы в Instagram и TikTok, создание AI-ботов и ML-решений для бизнеса."
+    />
+    <meta
+      name="keywords"
+      content="разработка сайтов Казахстан, создать сайт Астана, создать сайт Алматы, таргетированная реклама Instagram, реклама TikTok, AI-боты, чат-боты, RAG-бот, разработка мобильных приложений, ML-решения, Computer Vision, IT-компания Казахстан"
+    />
     <meta name="author" content="SnowTech" />
-    <meta name="robots" content="index, follow" />
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+    <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+    <meta name="yandex" content="index, follow" />
     <meta name="language" content="Russian" />
-    <meta name="geo.region" content="KZ" />
-    <meta name="geo.placename" content="Kazakhstan" />
+    <meta name="geo.region" content="KZ-AST" />
+    <meta name="geo.placename" content="Astana, Kazakhstan" />
+    <meta name="geo.position" content="51.1694;71.4491" />
+    <meta name="ICBM" content="51.1694, 71.4491" />
+
+    <!-- Performance: preconnect to critical 3rd parties -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
@@ -33,6 +44,9 @@
     <meta property="og:title" content="SnowTech — IT-решения для бизнеса в Казахстане" />
     <meta property="og:description" content="Разработка сайтов, AI-ботов и ML-систем. Превращаем идеи в цифровые продукты." />
     <meta property="og:image" content="https://snowtech.asia/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="SnowTech — IT-компания в Казахстане" />
     <meta property="og:site_name" content="SnowTech" />
     <meta property="og:locale" content="ru_RU" />
     <meta property="og:locale:alternate" content="en_US" />
@@ -44,12 +58,10 @@
     <meta name="twitter:title" content="SnowTech — IT-решения для бизнеса" />
     <meta name="twitter:description" content="Разработка сайтов, AI-ботов и ML-систем. Превращаем идеи в цифровые продукты." />
     <meta name="twitter:image" content="https://snowtech.asia/og-image.png" />
-    <meta name="twitter:site" content="@SnowTech" />
-    <meta name="twitter:creator" content="@SnowTech" />
 
     <!-- Canonical URL -->
     <link rel="canonical" href="https://snowtech.asia/" />
-    
+
     <!-- Alternate Languages -->
     <link rel="alternate" hreflang="ru" href="https://snowtech.asia/" />
     <link rel="alternate" hreflang="en" href="https://snowtech.asia/" />

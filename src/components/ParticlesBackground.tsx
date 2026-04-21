@@ -206,7 +206,7 @@ const ParticlesBackground = () => {
     };
   }, []);
 
-  return <canvas ref={canvasRef} className="hero-particles" aria-hidden="true" />;
+  return <canvas ref={canvasRef} className="global-particles" aria-hidden="true" />;
 };
 
 export default ParticlesBackground;

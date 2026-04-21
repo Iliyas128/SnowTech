@@ -39,21 +39,21 @@ const PricingCard = ({ plan, index, onOrderClick }: PricingCardProps) => {
       initial={{ opacity: 0, y: 50 }}
       animate={isInView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.5, delay: index * 0.1 }}
-      className={`relative glass-card ${plan.popular ? 'border-primary/50 shadow-[0_0_40px_hsl(var(--primary)/0.2)]' : ''}`}
+      className={`relative glass-card h-full flex flex-col ${plan.popular ? 'border-primary/50 shadow-[0_0_40px_hsl(var(--primary)/0.2)]' : ''}`}
     >
       {plan.popular && (
         <div className="absolute -top-4 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full bg-gradient-to-r from-primary to-accent text-primary-foreground text-sm font-medium">
           Популярный выбор
         </div>
       )}
-      
+
       <div className="text-center mb-6">
         <h3 className="text-xl font-semibold text-foreground mb-2">{plan.name}</h3>
         <p className="text-muted-foreground text-sm mb-4">{plan.description}</p>
         <div className="text-3xl font-bold gradient-text">{plan.price}</div>
       </div>
 
-      <ul className="space-y-3 mb-8">
+      <ul className="space-y-3 mb-8 flex-1">
         {plan.features.map((feature, i) => (
           <li key={i} className="flex items-center gap-3 text-muted-foreground text-sm">
             <Check className="w-5 h-5 text-primary flex-shrink-0" />
@@ -62,9 +62,9 @@ const PricingCard = ({ plan, index, onOrderClick }: PricingCardProps) => {
         ))}
       </ul>
 
-      <Button 
-        variant={plan.popular ? 'hero' : 'glass'} 
-        className="w-full"
+      <Button
+        variant={plan.popular ? 'hero' : 'glass'}
+        className="w-full mt-auto"
         onClick={onOrderClick}
       >
         Заказать

@@ -3,23 +3,20 @@ import { ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Link } from 'react-router-dom';
-import ParticlesBackground from '@/components/ParticlesBackground';
 
 const HeroSection = () => {
   const { t } = useLanguage();
 
   const stats = [
-    { value: '2+', label: t('hero.stats.projects') },
+    { value: '20+', label: t('hero.stats.projects') },
     { value: '3+', label: t('hero.stats.years') },
-    { value: '2+', label: t('hero.stats.clients') },
-    { value: '100%', label: t('hero.stats.clients') },
+    { value: '20+', label: t('hero.stats.clients') },
+    { value: '99.9%', label: t('hero.stats.clients') },
   ];
 
   return (
     <section className="hero-section relative flex items-center justify-center overflow-hidden min-h-screen pt-[clamp(5rem,10vw,7rem)] pb-[clamp(3rem,7vw,5rem)]">
-      <div className="absolute inset-0 z-0">
-        <ParticlesBackground />
-
+      <div className="absolute inset-0 z-0 pointer-events-none">
         <div className="hero-vignette" />
       </div>
 

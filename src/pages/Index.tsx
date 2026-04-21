@@ -4,10 +4,16 @@ import HeroSection from '@/components/sections/HeroSection';
 import ServicesSection from '@/components/sections/ServicesSection';
 import WhyUsSection from '@/components/sections/WhyUsSection';
 import CasesSection from '@/components/sections/CasesSection';
+import TestimonialsSection from '@/components/sections/TestimonialsSection';
 import ContactSection from '@/components/sections/ContactSection';
 import Footer from '@/components/layout/Footer';
 import { useLanguage } from '@/contexts/LanguageContext';
-import { generateOrganizationSchema, generateWebSiteSchema } from '@/utils/seo';
+import {
+  generateOrganizationSchema,
+  generateWebSiteSchema,
+  generateFaqSchema,
+  generateOfferCatalogSchema,
+} from '@/utils/seo';
 
 const Index = () => {
   const { language } = useLanguage();
@@ -35,6 +41,8 @@ const Index = () => {
   const structuredData = [
     generateOrganizationSchema(),
     generateWebSiteSchema(),
+    generateOfferCatalogSchema(),
+    generateFaqSchema(),
   ];
 
   return (
@@ -59,6 +67,7 @@ const Index = () => {
           <ServicesSection />
           <WhyUsSection />
           <CasesSection />
+          <TestimonialsSection />
           <ContactSection />
         </main>
         <Footer />

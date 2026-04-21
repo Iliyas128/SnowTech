@@ -64,7 +64,7 @@ const ServicesSection = () => {
 
   return (
     <section id="services" className="py-24 relative">
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto px-4 relative z-10">
         <motion.div
           ref={headerRef}
           initial={{ opacity: 0, y: 30 }}
