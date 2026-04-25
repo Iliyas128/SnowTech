@@ -1,11 +1,12 @@
 import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { PointerHighlight } from '@/components/ui/pointer-highlight';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Link } from 'react-router-dom';
 
 const HeroSection = () => {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
 
   const stats = [
     { value: '20+', label: t('hero.stats.projects') },
@@ -15,19 +16,34 @@ const HeroSection = () => {
   ];
 
   return (
-    <section className="hero-section relative flex items-center justify-center overflow-hidden min-h-screen pt-[clamp(5rem,10vw,7rem)] pb-[clamp(3rem,7vw,5rem)]">
-      <div className="absolute inset-0 z-0 pointer-events-none">
-        <div className="hero-vignette" />
-      </div>
+    <section className="hero-section relative flex items-center justify-center overflow-hidden min-h-[72vh] md:min-h-screen pt-24 md:pt-[clamp(5rem,10vw,7rem)] pb-10 md:pb-[clamp(3rem,7vw,5rem)]">
+      <div className="relative z-10 w-full px-2 md:px-[clamp(1rem,4vw,2rem)]">
+        <div className="mx-auto text-center w-full max-w-none md:max-w-[clamp(20rem,90vw,76rem)]">
+          {/* Mobile-only snowflake on top */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.85 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.9, ease: 'easeOut' }}
+            style={{ willChange: 'transform, opacity' }}
+            className="md:hidden mx-auto mb-6 w-[min(58vw,15rem)] aspect-square"
+            aria-hidden="true"
+          >
+            <img
+              src="/images/sneg.png"
+              alt=""
+              aria-hidden="true"
+              loading="eager"
+              decoding="async"
+              className="hero-mobile-snowflake w-full h-full object-contain"
+            />
+          </motion.div>
 
-      <div className="relative z-10 w-full px-[clamp(1rem,4vw,2rem)]">
-        <div className="mx-auto text-center w-full max-w-[clamp(20rem,90vw,76rem)]">
           <div className="relative mx-auto w-full">
             <motion.div
               initial={{ opacity: 0, scale: 0.9, x: '-50%', y: '-34%' }}
               animate={{ opacity: 1, scale: 1, x: '-50%', y: '-34%' }}
               transition={{ duration: 0.9, ease: 'easeOut' }}
-              className="hero-snowflake-wrap"
+              className="hero-snowflake-wrap hidden md:block"
               aria-hidden="true"
             >
               <img
@@ -45,10 +61,41 @@ const HeroSection = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.1 }}
               style={{ opacity: 0, willChange: 'transform, opacity' }}
-              className="hero-title relative z-20 font-extrabold leading-[1.02] tracking-tight text-[clamp(2.2rem,8.2vw,6.4rem)]"
+              className="hero-title relative z-20 tracking-tight"
             >
-              <span>{t('hero.title1')}</span>{' '}
-              <span className="hero-title-accent">{t('hero.title2')}</span>
+              <span className="hero-title-mobile md:hidden block w-full leading-[1.18] text-[clamp(2.05rem,8.6vw,2.7rem)]">
+                {language === 'kz' ? (
+                  <>
+                    <PointerHighlight
+                      containerClassName="px"
+                      rectangleClassName="border-white/45"
+                      pointerClassName="text-slate-200"
+                    >
+                      <span className="hero-title-mobile-highlight">
+                        {t('hero.titleMobile.highlight')}
+                      </span>
+                    </PointerHighlight>{' '}
+                    {t('hero.titleMobile.before')}
+                  </>
+                ) : (
+                  <>
+                    {t('hero.titleMobile.before')}{' '}
+                    <PointerHighlight
+                      containerClassName="px"
+                      rectangleClassName="border-white/45"
+                      pointerClassName="text-slate-200"
+                    >
+                      <span className="hero-title-mobile-highlight">
+                        {t('hero.titleMobile.highlight')}
+                      </span>
+                    </PointerHighlight>
+                  </>
+                )}
+              </span>
+              <span className="hidden md:inline font-extrabold leading-[1.02] text-[clamp(2.2rem,8.2vw,6.4rem)]">
+                <span>{t('hero.title1')}</span>{' '}
+                <span className="hero-title-accent">{t('hero.title2')}</span>
+              </span>
             </motion.h1>
           </div>
 
@@ -57,7 +104,7 @@ const HeroSection = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
             style={{ opacity: 0, willChange: 'transform, opacity' }}
-            className="hero-description relative z-20 mx-auto text-balance text-[clamp(0.9rem,1.8vw,1.15rem)] max-w-[clamp(18rem,70vw,60rem)] mt-[clamp(1.25rem,3vw,2rem)] leading-relaxed"
+            className="hero-description relative z-20 mx-auto text-balance text-[clamp(0.9rem,1.8vw,1.15rem)] max-w-[clamp(18rem,70vw,60rem)] mt-[clamp(1.25rem,3vw,2rem)] leading-relaxed hidden md:block"
           >
             {t('hero.description')}
           </motion.p>
@@ -67,7 +114,7 @@ const HeroSection = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
             style={{ opacity: 0, willChange: 'transform, opacity' }}
-            className="relative z-20 mt-[clamp(1.5rem,3.5vw,2.25rem)] flex flex-col sm:flex-row items-center justify-center gap-[clamp(0.6rem,1.4vw,1rem)]"
+            className="relative z-20 mt-[clamp(1.5rem,3.5vw,2.25rem)] hidden md:flex md:flex-row items-center justify-center gap-[clamp(0.6rem,1.4vw,1rem)]"
           >
             <a href="/#contacts">
               <Button className="hero-cta-primary group">
@@ -87,7 +134,7 @@ const HeroSection = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.5 }}
             style={{ opacity: 0, willChange: 'transform, opacity' }}
-            className="relative z-20 mx-auto mt-[clamp(2rem,5vw,3.2rem)] grid grid-cols-2 md:grid-cols-4 gap-[clamp(0.75rem,2vw,1.5rem)] w-full max-w-[clamp(20rem,85vw,58rem)]"
+            className="relative z-20 mx-auto mt-[clamp(2rem,5vw,3.2rem)] hidden md:grid md:grid-cols-4 gap-[clamp(0.75rem,2vw,1.5rem)] w-full max-w-[clamp(20rem,85vw,58rem)]"
           >
             {stats.map((stat, index) => (
               <motion.div
@@ -115,7 +162,7 @@ const HeroSection = () => {
         animate={{ opacity: 1 }}
         transition={{ delay: 1.2 }}
         style={{ opacity: 0 }}
-        className="absolute bottom-[clamp(1rem,3vw,2rem)] left-1/2 -translate-x-1/2 z-10"
+        className="hidden md:block absolute bottom-[clamp(1rem,3vw,2rem)] left-1/2 -translate-x-1/2 z-10"
       >
         <div className="w-[clamp(1.1rem,1.6vw,1.5rem)] h-[clamp(1.9rem,2.6vw,2.5rem)] rounded-full border-2 border-muted-foreground/30 flex justify-center pt-2">
           <motion.div

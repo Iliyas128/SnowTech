@@ -146,7 +146,7 @@ const ServicesSection = () => {
   );
 
   return (
-    <section id="services" className="py-24 relative">
+    <section id="services" className="pb-24 relative">
       <div className="container mx-auto px-4 relative z-10">
         <motion.div
           ref={headerRef}
@@ -154,16 +154,13 @@ const ServicesSection = () => {
           animate={isHeaderInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
           style={{ opacity: 0 }}
-          className="text-center mb-16 transform-gpu"
+          className="text-center mb-8 md:mb-16 transform-gpu"
         >
-          <span className="inline-block px-4 py-2 rounded-full glass text-sm text-primary font-medium mb-4">
-            {t('services.badge')}
-          </span>
-          <h2 className="text-3xl md:text-5xl font-bold text-foreground mb-4">
+          <h2 className="hidden md:block text-3xl md:text-5xl font-bold text-foreground mb-4">
             {t('services.title')}{' '}
             <span className="gradient-text">{t('services.titleHighlight')}</span>
           </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
+          <p className="hidden md:block text-muted-foreground max-w-2xl mx-auto">
             {t('services.description')}
           </p>
           <p className="mt-4 text-xs md:text-sm font-mono uppercase tracking-widest text-muted-foreground/70">
