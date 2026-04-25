@@ -2,19 +2,22 @@ import SEO from '@/components/SEO';
 import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useMemo, useRef, useState } from 'react';
-import { Check, Zap, ArrowRight, MessageCircle, Send } from 'lucide-react';
+import { Zap, ArrowRight, MessageCircle, Send, Globe, BookOpen, Building2, ShoppingCart } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { FlippingCard } from '@/components/ui/flipping-card';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { generateBreadcrumbSchema, generateServiceSchema } from '@/utils/seo';
 
-type PricingPlan = {
+type WebPlan = {
+  id: string;
   name: string;
   price: string;
-  description: string;
-  features: string[];
-  popular: boolean;
+  short: string;
+  back: string;
+  popular?: boolean;
+  Icon: typeof Globe;
 };
 
 type AdditionalService = {
@@ -23,105 +26,47 @@ type AdditionalService = {
   description: string;
 };
 
-interface PricingCardProps {
-  plan: PricingPlan;
-  index: number;
-  onOrderClick: () => void;
-}
-
-const PricingCard = ({ plan, index, onOrderClick }: PricingCardProps) => {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: '-100px' });
-
-  return (
-    <motion.div
-      ref={ref}
-      initial={{ opacity: 0, y: 50 }}
-      animate={isInView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.5, delay: index * 0.1 }}
-      className={`relative glass-card h-full flex flex-col ${plan.popular ? 'border-primary/50 shadow-[0_0_40px_hsl(var(--primary)/0.2)]' : ''}`}
-    >
-      {plan.popular && (
-        <div className="absolute -top-4 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full bg-gradient-to-r from-primary to-accent text-primary-foreground text-sm font-medium">
-          Популярный выбор
-        </div>
-      )}
-
-      <div className="text-center mb-6">
-        <h3 className="text-xl font-semibold text-foreground mb-2">{plan.name}</h3>
-        <p className="text-muted-foreground text-sm mb-4">{plan.description}</p>
-        <div className="text-3xl font-bold gradient-text">{plan.price}</div>
-      </div>
-
-      <ul className="space-y-3 mb-8 flex-1">
-        {plan.features.map((feature, i) => (
-          <li key={i} className="flex items-center gap-3 text-muted-foreground text-sm">
-            <Check className="w-5 h-5 text-primary flex-shrink-0" />
-            {feature}
-          </li>
-        ))}
-      </ul>
-
-      <Button
-        variant={plan.popular ? 'hero' : 'glass'}
-        className="w-full mt-auto"
-        onClick={onOrderClick}
-      >
-        Заказать
-        <ArrowRight className="w-4 h-4 ml-2" />
-      </Button>
-    </motion.div>
-  );
-};
-
 const Pricing = () => {
   const headerRef = useRef(null);
   const isHeaderInView = useInView(headerRef, { once: true });
   const { language, t } = useLanguage();
   const [showMessengerChoice, setShowMessengerChoice] = useState(false);
 
-  const pricingPlans: PricingPlan[] = useMemo(() => {
+  const webPlans: WebPlan[] = useMemo(() => {
     if (language === 'en') {
       return [
         {
-          name: 'Landing Page',
-          price: 'from 30 000 ₸',
-          description: 'One-page website to capture leads',
-          features: [
-            'Responsive design',
-            'Basic SEO setup',
-            'Lead capture form',
-            'Timeline: 5–7 days',
-          ],
-          popular: false,
+          id: 'landing',
+          name: 'Landing page',
+          price: 'from 60 000 ₸',
+          short: 'One-page site to capture leads',
+          back: 'Scope, design and timeline are tailored to your project. Let’s discuss the details one-on-one and put together a precise quote.',
+          Icon: Globe,
         },
         {
-          name: 'Corporate Website',
+          id: 'catalog',
+          name: 'E-catalog',
           price: 'from 120 000 ₸',
-          description: 'Multi-page website for your business',
-          features: [
-            'Up to 10 pages',
-            'CMS for content management',
-            'Blog and news section',
-            'CRM integration',
-            '1 month of support',
-            'Timeline: 2–4 weeks',
-          ],
-          popular: true,
+          short: 'Product catalog without a cart',
+          back: 'Built around your range of products and lead pipeline. Final price depends on number of items and integrations — we’ll align it personally.',
+          Icon: BookOpen,
         },
         {
-          name: 'Online Store',
+          id: 'corporate',
+          name: 'Corporate website',
+          price: 'from 120 000 ₸',
+          short: 'Multi-page website for your business',
+          back: 'Pages, CMS, integrations and support — assembled for your specific business. We confirm the final price after a short brief.',
+          popular: true,
+          Icon: Building2,
+        },
+        {
+          id: 'shop',
+          name: 'Online store',
           price: 'from 300 000 ₸',
-          description: 'Full-featured e-commerce platform',
-          features: [
-            'Product catalog',
-            'Cart and online payments',
-            'Customer account area',
-            'Kaspi/1C integration',
-            '3 months of support',
-            'Timeline: 1–2 months',
-          ],
-          popular: false,
+          short: 'Full-featured e-commerce platform',
+          back: 'Catalog, payments, accounts, Kaspi/1C, marketing tools — designed under your business model. Quote is set after a personal discussion.',
+          Icon: ShoppingCart,
         },
       ];
     }
@@ -129,44 +74,37 @@ const Pricing = () => {
     if (language === 'kz') {
       return [
         {
+          id: 'landing',
           name: 'Лендинг',
-          price: '30 000 ₸ бастап',
-          description: 'Клиенттерді тартуға арналған бір беттік сайт',
-          features: [
-            'Адаптивті дизайн',
-            'Негізгі SEO баптауы',
-            'Өтініш формасы',
-            'Мерзім: 5–7 күн',
-          ],
-          popular: false,
+          price: '60 000 ₸ бастап',
+          short: 'Клиенттерді тартуға арналған бір беттік сайт',
+          back: 'Жоба көлемі, дизайны және мерзімі сіздің мақсатыңызға бейімделеді. Толық бағаны жеке талқылаудан кейін айтамыз.',
+          Icon: Globe,
         },
         {
+          id: 'catalog',
+          name: 'Е-каталог',
+          price: '120 000 ₸ бастап',
+          short: 'Себетсіз тауар каталогы',
+          back: 'Өнім ассортиментіңіз бен өтініштерді жинау процесіне бейімделген. Соңғы баға тауар саны мен интеграцияларға байланысты — оны жеке талқылаймыз.',
+          Icon: BookOpen,
+        },
+        {
+          id: 'corporate',
           name: 'Корпоративтік сайт',
           price: '120 000 ₸ бастап',
-          description: 'Бизнеске арналған көп беттік сайт',
-          features: [
-            '10 бетке дейін',
-            'Мазмұнды басқару үшін CMS',
-            'Блог және жаңалықтар',
-            'CRM интеграциясы',
-            '1 айлық қолдау',
-            'Мерзім: 2–4 апта',
-          ],
+          short: 'Бизнеске арналған көп беттік сайт',
+          back: 'Беттер, CMS, интеграциялар және қолдау — бизнесіңізге арнайы құрастырылады. Соңғы бағаны қысқа брифтен кейін бекітеміз.',
           popular: true,
+          Icon: Building2,
         },
         {
+          id: 'shop',
           name: 'Интернет-дүкен',
           price: '300 000 ₸ бастап',
-          description: 'Толыққанды e-commerce платформа',
-          features: [
-            'Тауарлар каталогы',
-            'Себет және онлайн төлемдер',
-            'Жеке кабинет',
-            'Kaspi/1C интеграциясы',
-            '3 айлық қолдау',
-            'Мерзім: 1–2 ай',
-          ],
-          popular: false,
+          short: 'Толыққанды e-commerce платформа',
+          back: 'Каталог, төлемдер, жеке кабинет, Kaspi/1C, маркетинг құралдары — бизнес-моделіңізге сай жасалады. Бағасы жеке талқылаудан кейін айтылады.',
+          Icon: ShoppingCart,
         },
       ];
     }
@@ -174,44 +112,37 @@ const Pricing = () => {
     // ru (default)
     return [
       {
+        id: 'landing',
         name: 'Лендинг',
-        price: 'от 30 000 ₸',
-        description: 'Одностраничный сайт для привлечения клиентов',
-        features: [
-          'Адаптивный дизайн',
-          'Базовая SEO-оптимизация',
-          'Форма заявки',
-          'Срок: 5–7 дней',
-        ],
-        popular: false,
+        price: 'от 60 000 ₸',
+        short: 'Одностраничный сайт для привлечения клиентов',
+        back: 'Объём, дизайн и сроки подбираются под вашу задачу. Финальную стоимость согласуем лично — после короткого брифа.',
+        Icon: Globe,
       },
       {
+        id: 'catalog',
+        name: 'Е-каталог',
+        price: 'от 120 000 ₸',
+        short: 'Каталог товаров без корзины',
+        back: 'Делаем под ваш ассортимент и сценарий заявок. Итоговая цена зависит от количества позиций и интеграций — обсудим индивидуально.',
+        Icon: BookOpen,
+      },
+      {
+        id: 'corporate',
         name: 'Корпоративный сайт',
         price: 'от 120 000 ₸',
-        description: 'Многостраничный сайт для бизнеса',
-        features: [
-          'До 10 страниц',
-          'CMS для управления',
-          'Блог и новости',
-          'Интеграция с CRM',
-          'Техподдержка 1 месяц',
-          'Срок: 2–4 недели',
-        ],
+        short: 'Многостраничный сайт для бизнеса',
+        back: 'Структура страниц, CMS, интеграции и поддержка — собираем под ваш бизнес. Итоговую стоимость закрепляем после короткого брифа.',
         popular: true,
+        Icon: Building2,
       },
       {
+        id: 'shop',
         name: 'Интернет-магазин',
         price: 'от 300 000 ₸',
-        description: 'Полноценная e-commerce платформа',
-        features: [
-          'Каталог товаров',
-          'Корзина и оплата',
-          'Личный кабинет',
-          'Интеграция с Kaspi/1C',
-          'Техподдержка 3 месяца',
-          'Срок: 1–2 месяца',
-        ],
-        popular: false,
+        short: 'Полноценная e-commerce платформа',
+        back: 'Каталог, оплата, личный кабинет, Kaspi/1C, маркетинг — собираем под вашу бизнес-модель. Итоговая цена обсуждается лично.',
+        Icon: ShoppingCart,
       },
     ];
   }, [language]);
@@ -408,15 +339,31 @@ const Pricing = () => {
               </p>
             </motion.div>
 
-            {/* Main pricing cards */}
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
-              {pricingPlans.map((plan, index) => (
-                <PricingCard
-                  key={plan.name}
-                  plan={plan}
-                  index={index}
-                  onOrderClick={() => setShowMessengerChoice(true)}
-                />
+            {/* Web development plans — flipping cards */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 mb-20">
+              {webPlans.map((plan, index) => (
+                <motion.div
+                  key={plan.id}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.2 }}
+                  transition={{ duration: 0.5, delay: (index % 4) * 0.08 }}
+                  className="h-[340px] md:h-[360px] transform-gpu"
+                >
+                  <FlippingCard
+                    className="w-full h-full"
+                    frontContent={
+                      <WebPlanFront plan={plan} discussLabel={t('pricing.flipHint')} />
+                    }
+                    backContent={
+                      <WebPlanBack
+                        plan={plan}
+                        ctaLabel={t('pricing.discussCta')}
+                        onContactClick={() => setShowMessengerChoice(true)}
+                      />
+                    }
+                  />
+                </motion.div>
               ))}
             </div>
 
@@ -542,5 +489,79 @@ const Pricing = () => {
     </>
   );
 };
+
+/* ---------- FlippingCard front/back content ---------- */
+
+const WebPlanFront = ({
+  plan,
+  discussLabel,
+}: {
+  plan: WebPlan;
+  discussLabel: string;
+}) => {
+  const { Icon } = plan;
+  return (
+    <div className="relative h-full w-full p-6 md:p-7 flex flex-col">
+      {plan.popular && (
+        <span className="absolute top-4 right-4 px-2.5 py-0.5 rounded-full bg-gradient-to-r from-primary to-accent text-primary-foreground text-[10px] uppercase tracking-widest font-semibold">
+          Top
+        </span>
+      )}
+      <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-5">
+        <Icon className="w-6 h-6 text-primary" />
+      </div>
+      <h3 className="text-xl md:text-2xl font-semibold text-foreground mb-1.5 leading-tight">
+        {plan.name}
+      </h3>
+      <p className="text-sm text-muted-foreground mb-auto line-clamp-3">
+        {plan.short}
+      </p>
+      <div className="mt-6">
+        <div className="text-2xl md:text-3xl font-bold gradient-text leading-none">
+          {plan.price}
+        </div>
+        <p className="text-[11px] md:text-xs font-mono uppercase tracking-widest text-muted-foreground/70 mt-3">
+          {discussLabel}
+        </p>
+      </div>
+    </div>
+  );
+};
+
+const WebPlanBack = ({
+  plan,
+  ctaLabel,
+  onContactClick,
+}: {
+  plan: WebPlan;
+  ctaLabel: string;
+  onContactClick: () => void;
+}) => (
+  <div className="relative h-full w-full p-6 md:p-7 flex flex-col bg-gradient-to-br from-primary/[0.07] via-card to-accent/[0.05]">
+    <h3 className="text-lg md:text-xl font-semibold text-foreground mb-3">
+      {plan.name}
+    </h3>
+    <p className="text-sm text-muted-foreground leading-relaxed mb-auto">
+      {plan.back}
+    </p>
+    <div className="mt-6 flex items-center justify-between gap-3">
+      <span className="text-base md:text-lg font-bold gradient-text whitespace-nowrap">
+        {plan.price}
+      </span>
+      <Button
+        variant="hero"
+        size="sm"
+        onClick={(e) => {
+          e.stopPropagation();
+          onContactClick();
+        }}
+        className="shrink-0"
+      >
+        {ctaLabel}
+        <ArrowRight className="w-4 h-4 ml-1.5" />
+      </Button>
+    </div>
+  </div>
+);
 
 export default Pricing;

@@ -1,7 +1,6 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef } from 'react';
-import { Shield, Zap, Users, Award } from 'lucide-react';
 import {
   SiReact,
   SiNextdotjs,
@@ -22,6 +21,7 @@ import {
 import { FaAws } from 'react-icons/fa';
 import { useLanguage } from '@/contexts/LanguageContext';
 import LogoLoop, { type LogoItem } from '@/components/LogoLoop';
+import { Testimonial, type TestimonialItem } from '@/components/ui/design-testimonial';
 
 const techLogos: LogoItem[] = [
   { name: 'React', icon: <SiReact /> },
@@ -47,28 +47,18 @@ const WhyUsSection = () => {
   const headerRef = useRef(null);
   const isHeaderInView = useInView(headerRef, { once: true });
 
-  const advantages = [
-    {
-      icon: Shield,
-      titleKey: 'whyUs.expertise.title',
-      descriptionKey: 'whyUs.expertise.description',
-    },
-    {
-      icon: Zap,
-      titleKey: 'whyUs.approach.title',
-      descriptionKey: 'whyUs.approach.description',
-    },
-    {
-      icon: Users,
-      titleKey: 'whyUs.deadlines.title',
-      descriptionKey: 'whyUs.deadlines.description',
-    },
-    {
-      icon: Award,
-      titleKey: 'whyUs.support.title',
-      descriptionKey: 'whyUs.support.description',
-    },
+  const advantageKeys = [
+    { titleKey: 'whyUs.expertise.title', descriptionKey: 'whyUs.expertise.description' },
+    { titleKey: 'whyUs.approach.title', descriptionKey: 'whyUs.approach.description' },
+    { titleKey: 'whyUs.deadlines.title', descriptionKey: 'whyUs.deadlines.description' },
+    { titleKey: 'whyUs.support.title', descriptionKey: 'whyUs.support.description' },
   ];
+
+  const advantageItems: TestimonialItem[] = advantageKeys.map((item) => ({
+    quote: t(item.descriptionKey),
+    author: t(item.titleKey),
+    company: 'SnowTech',
+  }));
 
   return (
     <section id="why-us" className="py-24 relative">
@@ -81,7 +71,7 @@ const WhyUsSection = () => {
           animate={isHeaderInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
           style={{ opacity: 0 }}
-          className="text-center mb-16 transform-gpu"
+          className="text-center transform-gpu"
         >
           <span className="inline-block px-4 py-2 rounded-full glass text-sm text-primary font-medium mb-4">
             {t('whyUs.badge')}
@@ -89,33 +79,18 @@ const WhyUsSection = () => {
           <h2 className="text-3xl md:text-5xl font-bold text-foreground mb-4">
             {t('whyUs.title')} <span className="gradient-text">{t('whyUs.titleHighlight')}</span>
           </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
-            {t('whyUs.description')}
-          </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-20">
-          {advantages.map((item, index) => {
-            const Icon = item.icon;
-            return (
-              <motion.div
-                key={item.titleKey}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.2 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                style={{ opacity: 0 }}
-                className="glass-card group hover:border-primary/30 transition-[border-color,box-shadow,background-color] duration-300 transform-gpu"
-              >
-                <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors duration-300">
-                  <Icon className="w-6 h-6 text-primary" />
-                </div>
-                <h3 className="text-lg font-semibold text-foreground mb-2">{t(item.titleKey)}</h3>
-                <p className="text-sm text-muted-foreground">{t(item.descriptionKey)}</p>
-              </motion.div>
-            );
-          })}
-        </div>
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.15 }}
+          transition={{ duration: 0.6 }}
+          style={{ opacity: 0 }}
+          className="mb-20 mt-2 md:mb-28 transform-gpu"
+        >
+          <Testimonial items={advantageItems} label={t('whyUs.badge')} />
+        </motion.div>
 
         {/* Tech Stack — infinite logo loop */}
         <motion.div
