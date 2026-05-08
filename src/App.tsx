@@ -1,10 +1,12 @@
+import { useEffect } from "react";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
-import { LanguageProvider } from "@/contexts/LanguageContext";
+import { LanguageProvider, useLanguage } from "@/contexts/LanguageContext";
+import { useToast } from "@/hooks/use-toast";
 import Index from "./pages/Index";
 import Pricing from "./pages/Pricing";
 import Blog from "./pages/Blog";
@@ -18,14 +20,52 @@ import ScrollToTop from "./components/ScrollToTop";
 import ParticlesBackground from "./components/ParticlesBackground";
 import FloatingWhatsApp from "./components/FloatingWhatsApp";
 
+const PRODUCT_TOAST_SESSION_KEY = 'snowtech-law-product-toast-shown-v2';
+
 // Create a stable query client instance
 const queryClient = new QueryClient();
+
+const ProductToastTrigger = () => {
+  const { toast } = useToast();
+  const { t } = useLanguage();
+
+  useEffect(() => {
+    const timer = window.setTimeout(() => {
+      if (window.sessionStorage.getItem(PRODUCT_TOAST_SESSION_KEY)) return;
+
+      toast({
+        title: t('services.productToastTitle'),
+        description: (
+          <a
+            href="https://law-front1.vercel.app/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="underline underline-offset-2 font-medium"
+          >
+            {t('services.productToastDescription')}
+          </a>
+        ),
+        // Radix Toast: duration=0 closes immediately; keep it visible.
+        duration: 600_000,
+      });
+
+      window.sessionStorage.setItem(PRODUCT_TOAST_SESSION_KEY, '1');
+    }, 15000);
+
+    return () => {
+      window.clearTimeout(timer);
+    };
+  }, [toast, t]);
+
+  return null;
+};
 
 const App = () => (
   <HelmetProvider>
     <LanguageProvider>
       <QueryClientProvider client={queryClient}>
         <TooltipProvider>
+          <ProductToastTrigger />
           <Toaster />
           <Sonner />
           

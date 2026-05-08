@@ -22,8 +22,6 @@ const COUPON_POOL: CouponDef[] = [
 const TOTAL_CARDS = 7;
 const STORAGE_KEY = 'snowtech-coupon-lottery-v2';
 const WHATSAPP_PHONE = '77067007052';
-const PRODUCT_TOAST_SESSION_KEY = 'snowtech-law-product-toast-shown-v1';
-
 type LotteryState = {
   winningIndex: number;
   coupon: { code: string; discount: string; targetKey: CouponDef['targetKey'] };
@@ -117,28 +115,6 @@ const ServicesSection = () => {
     setLottery(initial);
     setHydrated(true);
   }, []);
-
-  useEffect(() => {
-    if (!hydrated || typeof window === 'undefined') return;
-    const alreadyShown = window.sessionStorage.getItem(PRODUCT_TOAST_SESSION_KEY);
-    if (alreadyShown) return;
-
-    toast({
-      title: t('services.productToastTitle'),
-      description: (
-        <a
-          href="https://law-front1.vercel.app/"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="underline underline-offset-2 font-medium"
-        >
-          {t('services.productToastDescription')}
-        </a>
-      ),
-    });
-
-    window.sessionStorage.setItem(PRODUCT_TOAST_SESSION_KEY, '1');
-  }, [hydrated, t, toast]);
 
   const markBroken = useCallback((index: number) => {
     const current = lotteryRef.current;
