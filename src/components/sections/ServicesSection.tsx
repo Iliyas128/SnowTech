@@ -2,6 +2,7 @@ import { motion, useInView } from 'framer-motion';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { BreakableCard } from '@/components/ui/kinetic-shatter-box-section';
+import { useToast } from '@/hooks/use-toast';
 
 type CouponDef = {
   code: string;
@@ -21,6 +22,7 @@ const COUPON_POOL: CouponDef[] = [
 const TOTAL_CARDS = 7;
 const STORAGE_KEY = 'snowtech-coupon-lottery-v2';
 const WHATSAPP_PHONE = '77067007052';
+const PRODUCT_TOAST_SESSION_KEY = 'snowtech-law-product-toast-shown-v1';
 
 type LotteryState = {
   winningIndex: number;
@@ -63,6 +65,7 @@ function buildWhatsAppHref(messageTemplate: string, coupon: LotteryState['coupon
 
 const ServicesSection = () => {
   const { t } = useLanguage();
+  const { toast } = useToast();
   const headerRef = useRef(null);
   const isHeaderInView = useInView(headerRef, { once: true });
 
@@ -115,6 +118,28 @@ const ServicesSection = () => {
     setHydrated(true);
   }, []);
 
+  useEffect(() => {
+    if (!hydrated || typeof window === 'undefined') return;
+    const alreadyShown = window.sessionStorage.getItem(PRODUCT_TOAST_SESSION_KEY);
+    if (alreadyShown) return;
+
+    toast({
+      title: t('services.productToastTitle'),
+      description: (
+        <a
+          href="https://law-front1.vercel.app/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="underline underline-offset-2 font-medium"
+        >
+          {t('services.productToastDescription')}
+        </a>
+      ),
+    });
+
+    window.sessionStorage.setItem(PRODUCT_TOAST_SESSION_KEY, '1');
+  }, [hydrated, t, toast]);
+
   const markBroken = useCallback((index: number) => {
     const current = lotteryRef.current;
     if (!current) return;
@@ -163,7 +188,7 @@ const ServicesSection = () => {
           <p className="hidden md:block text-muted-foreground max-w-2xl mx-auto">
             {t('services.description')}
           </p>
-          <p className="mt-4 text-xs md:text-sm font-mono uppercase tracking-widest text-muted-foreground/70">
+          <p className="mt-4 text-xl md:text-2xl font-mono uppercase tracking-widest text-muted-foreground/70">
             {t('services.shatterHint')}
           </p>
         </motion.div>

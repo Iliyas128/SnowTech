@@ -46,6 +46,7 @@ const PHYSICS = {
   DAMAGE_THRESHOLD: 2.5,
   DAMAGE_INCREMENT: 0.15,
   RECOVERY_RATE: 0.05,
+  DRAG_ACTIVATION_DISTANCE_PX: 8,
   RESPAWN_TIME_MS: 7000,
   DEBRIS_DISAPPEAR_MS: 3000,
   HEALING_DURATION_MS: 10000,
@@ -91,6 +92,8 @@ const useBreakableCard = (
   const velocityRef = useRef({ x: 0, y: 0 });
   const crackLevelRef = useRef(0);
   const isBrokenRef = useRef(initiallyBroken);
+  const movedDistanceRef = useRef(0);
+  const dragActivatedRef = useRef(false);
   /** True only for cards that mounted already broken — used to skip fall animation. */
   const wasInitiallyBroken = useRef(initiallyBroken);
 
@@ -112,6 +115,11 @@ const useBreakableCard = (
 
     onBreak?.();
   }, [onBreak]);
+
+  const handleCardClick = useCallback(() => {
+    if (isBrokenRef.current) return;
+    triggerBreak();
+  }, [triggerBreak]);
 
   const spawnDebris = useCallback(
     (level: number) => {
@@ -138,6 +146,7 @@ const useBreakableCard = (
   const handleDragStart = useCallback(
     (e: React.MouseEvent | React.TouchEvent) => {
       if (isBrokenRef.current) return;
+      if ("button" in e && e.button !== 0) return;
       setIsDragging(true);
       const clientX =
         "touches" in e ? e.touches[0].clientX : (e as React.MouseEvent).clientX;
@@ -151,6 +160,8 @@ const useBreakableCard = (
       lastPos.current = { x: clientX, y: clientY };
       lastTime.current = Date.now();
       shakeIntensity.current = 0;
+      movedDistanceRef.current = 0;
+      dragActivatedRef.current = false;
     },
     [position.x, position.y]
   );
@@ -168,6 +179,10 @@ const useBreakableCard = (
       const vy = dy / dt;
 
       velocityRef.current = { x: vx * 100, y: vy * 100 };
+      movedDistanceRef.current += Math.hypot(dx, dy);
+      if (!dragActivatedRef.current && movedDistanceRef.current >= PHYSICS.DRAG_ACTIVATION_DISTANCE_PX) {
+        dragActivatedRef.current = true;
+      }
 
       const newX = clientX - startPos.current.x;
       const newY = clientY - startPos.current.y;
@@ -175,6 +190,11 @@ const useBreakableCard = (
       const clampedY = Math.max(-PHYSICS.MAX_RANGE, Math.min(PHYSICS.MAX_RANGE, newY));
 
       setPosition({ x: clampedX, y: clampedY });
+      if (!dragActivatedRef.current) {
+        lastPos.current = { x: clientX, y: clientY };
+        lastTime.current = now;
+        return;
+      }
 
       const pushedRight = clampedX >= PHYSICS.MAX_RANGE && vx > 0;
       const pushedLeft = clampedX <= -PHYSICS.MAX_RANGE && vx < 0;
@@ -215,6 +235,8 @@ const useBreakableCard = (
     setIsDragging(false);
     setPosition({ x: 0, y: 0 });
     shakeIntensity.current = 0;
+    movedDistanceRef.current = 0;
+    dragActivatedRef.current = false;
   }, [isDragging]);
 
   useEffect(() => {
@@ -292,6 +314,7 @@ const useBreakableCard = (
     fallState,
     debrisChunks,
     handleDragStart,
+    handleCardClick,
     respawnProgress,
     isFlashing,
     wasInitiallyBroken,
@@ -400,6 +423,7 @@ export const BreakableCard = ({
     fallState,
     debrisChunks,
     handleDragStart,
+    handleCardClick,
     respawnProgress,
     isFlashing,
     wasInitiallyBroken,
@@ -464,6 +488,7 @@ export const BreakableCard = ({
       <div
         onMouseDown={handleDragStart}
         onTouchStart={handleDragStart}
+        onClick={handleCardClick}
         className={cn(
           "relative z-10 bg-white border-4 border-black p-4 md:p-6 shadow-neo cursor-grab active:cursor-grabbing select-none h-full flex flex-col justify-between overflow-hidden transition-[background-color] text-black",
           !isDragging && !isBroken && "hover:animate-[hover-wiggle_0.8s_ease-in-out_infinite]",
