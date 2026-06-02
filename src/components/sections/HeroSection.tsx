@@ -1,9 +1,10 @@
 import { motion } from 'framer-motion';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, MessageSquare } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { PointerHighlight } from '@/components/ui/pointer-highlight';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Link } from 'react-router-dom';
+import { LAW_AI_BASE_PATH } from '@/lib/lawAi';
 
 const HeroSection = () => {
   const { t, language } = useLanguage();
@@ -114,17 +115,24 @@ const HeroSection = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
             style={{ opacity: 0, willChange: 'transform, opacity' }}
-            className="relative z-20 mt-[clamp(1.5rem,3.5vw,2.25rem)] hidden md:flex md:flex-row items-center justify-center gap-[clamp(0.6rem,1.4vw,1rem)]"
+            className="relative z-20 mt-[clamp(1.5rem,3.5vw,2.25rem)] flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-[clamp(0.6rem,1.4vw,1rem)] px-4 md:px-0"
           >
-            <a href="/#contacts">
-              <Button className="hero-cta-primary group">
+            <a href="/#contacts" className="w-full sm:w-auto">
+              <Button className="hero-cta-primary group w-full sm:w-auto">
                 {t('hero.cta1')}
                 <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
               </Button>
             </a>
-            <Link to="/cases">
-              <Button className="hero-cta-secondary">
+            <Link to="/cases" className="w-full sm:w-auto">
+              <Button className="hero-cta-secondary w-full sm:w-auto">
                 {t('hero.cta2')}
+              </Button>
+            </Link>
+            <Link to={LAW_AI_BASE_PATH} className="w-full sm:w-auto">
+              <Button variant="outline" className="hero-cta-secondary w-full sm:w-auto group">
+                <MessageSquare className="w-4 h-4" />
+                {t('hero.ctaLawAi')}
+                <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
               </Button>
             </Link>
           </motion.div>

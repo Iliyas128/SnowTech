@@ -1,0 +1,71 @@
+/* Scoped theme for the embedded legal AI section (does not override main site tokens). */
+.law-ai-root {
+  --background: 218 32% 97%;
+  --foreground: 222 47% 11%;
+  --card: 0 0% 100%;
+  --card-foreground: 222 47% 11%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 222 47% 11%;
+  --primary: 217 71% 48%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 215 25% 93%;
+  --secondary-foreground: 222 47% 11%;
+  --muted: 215 20% 94%;
+  --muted-foreground: 220 14% 40%;
+  --accent: 215 28% 92%;
+  --accent-foreground: 222 47% 11%;
+  --destructive: 0 84% 60%;
+  --destructive-foreground: 0 0% 100%;
+  --border: 215 22% 88%;
+  --input: 215 22% 88%;
+  --ring: 217 71% 48%;
+  --radius: 0.75rem;
+
+  @apply bg-background text-foreground antialiased min-h-dvh;
+}
+
+.law-ai-root.dark {
+  --background: 226 56% 5%;
+  --foreground: 210 36% 96%;
+  --card: 224 42% 9%;
+  --card-foreground: 210 36% 96%;
+  --popover: 224 42% 9%;
+  --popover-foreground: 210 36% 96%;
+  --primary: 214 82% 58%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 217 33% 17%;
+  --secondary-foreground: 210 40% 96%;
+  --muted: 217 33% 17%;
+  --muted-foreground: 215 20% 65%;
+  --accent: 217 33% 17%;
+  --accent-foreground: 210 40% 96%;
+  --destructive: 0 63% 31%;
+  --destructive-foreground: 210 40% 96%;
+  --border: 217 33% 17%;
+  --input: 217 33% 17%;
+  --ring: 217 91% 60%;
+}
+
+.law-ai-root .chat-scroll {
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-y: contain;
+  scrollbar-gutter: stable;
+}
+
+.law-ai-root .safe-pb {
+  padding-bottom: max(1rem, env(safe-area-inset-bottom, 0px));
+}
+
+.law-ai-root .safe-pt {
+  padding-top: env(safe-area-inset-top, 0px);
+}
+
+.law-ai-root .safe-px {
+  padding-left: max(1rem, env(safe-area-inset-left, 0px));
+  padding-right: max(1rem, env(safe-area-inset-right, 0px));
+}
+
+.law-ai-root .chat-message-input {
+  font-size: 16px;
+  touch-action: manipulation;
+}

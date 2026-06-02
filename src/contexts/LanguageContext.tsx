@@ -21,6 +21,7 @@ export const translations = {
     'nav.about': 'About Us',
     'nav.contacts': 'Contacts',
     'nav.discuss': 'Discuss Project',
+    'nav.lawAi': 'AI Legal Chat',
     'nav.back': 'Back',
 
     // Hero Section
@@ -34,6 +35,7 @@ export const translations = {
     'hero.description': 'Website development, mobile apps, chatbots, AI solutions, and targeted advertising. We turn ideas into working products.',
     'hero.cta1': 'Start Project',
     'hero.cta2': 'Our Cases',
+    'hero.ctaLawAi': 'AI Legal Chat',
     'hero.stats.projects': 'Projects',
     'hero.stats.clients': 'Happy Clients',
     'hero.stats.years': 'Years Experience',
@@ -44,8 +46,6 @@ export const translations = {
     'services.titleHighlight': 'Create',
     'services.description': 'Full cycle of digital product development — from idea to launch and support.',
     'services.shatterHint': 'Shake the cards to crack them — one of them hides a coupon',
-    'services.productToastTitle': 'New legal assistant demo',
-    'services.productToastDescription': 'Test the product: answers on major laws (KoAP and more)',
     'services.coupon.congrats': 'You won',
     'services.coupon.discountLabel': 'discount',
     'services.coupon.codeLabel': 'Coupon code',
@@ -334,6 +334,7 @@ export const translations = {
     'nav.about': 'О нас',
     'nav.contacts': 'Контакты',
     'nav.discuss': 'Обсудить проект',
+    'nav.lawAi': 'ИИ-чат по законам',
     'nav.back': 'Назад',
 
     // Hero Section
@@ -347,6 +348,7 @@ export const translations = {
     'hero.description': 'Разработка сайтов, мобильных приложений, чат-ботов, AI-решений и таргетированной рекламы. Превращаем идеи в работающие продукты.',
     'hero.cta1': 'Начать проект',
     'hero.cta2': 'Наши кейсы',
+    'hero.ctaLawAi': 'ИИ-чат по законам',
     'hero.stats.projects': 'Проектов',
     'hero.stats.clients': 'Довольных клиентов',
     'hero.stats.years': 'Лет опыта',
@@ -357,8 +359,6 @@ export const translations = {
     'services.titleHighlight': 'создаём',
     'services.description': 'Полный цикл разработки цифровых продуктов — от идеи до запуска и поддержки.',
     'services.shatterHint': 'Потрясите карточки — одна из них прячет купон со скидкой',
-    'services.productToastTitle': 'Новое демо юридического ассистента',
-    'services.productToastDescription': 'Протестируйте продукт: отвечает по основным законам (КоАП и др.)',
     'services.coupon.congrats': 'Поздравляем',
     'services.coupon.discountLabel': 'скидка',
     'services.coupon.codeLabel': 'Код купона',
@@ -647,6 +647,7 @@ export const translations = {
     'nav.about': 'Біз туралы',
     'nav.contacts': 'Байланыс',
     'nav.discuss': 'Жобаны талқылау',
+    'nav.lawAi': 'Заң бойынша AI-чат',
     'nav.back': 'Кері',
 
     // Hero Section
@@ -660,6 +661,7 @@ export const translations = {
     'hero.description': 'Сайттар, мобильді қосымшалар, чат-боттар, AI-шешімдер және таргеттелген жарнама. Идеяларды жұмыс істейтін өнімдерге айналдырамыз.',
     'hero.cta1': 'Жобаны бастау',
     'hero.cta2': 'Біздің кейстер',
+    'hero.ctaLawAi': 'Заң бойынша AI-чат',
     'hero.stats.projects': 'Жобалар',
     'hero.stats.clients': 'Риза клиенттер',
     'hero.stats.years': 'Жыл тәжірибе',
@@ -670,8 +672,6 @@ export const translations = {
     'services.titleHighlight': 'жасаймыз',
     'services.description': 'Цифрлық өнімдерді жасаудың толық циклі — идеядан іске қосу мен қолдауға дейін.',
     'services.shatterHint': 'Карталарды шайқаңыз — олардың бірі жеңілдік купонын жасырады',
-    'services.productToastTitle': 'Заңгерлік ассистенттің жаңа демосы',
-    'services.productToastDescription': 'Өнімді тексеріп көріңіз: негізгі заңдар бойынша жауап береді (ӘҚБтК және т.б.)',
     'services.coupon.congrats': 'Құттықтаймыз',
     'services.coupon.discountLabel': 'жеңілдік',
     'services.coupon.codeLabel': 'Купон коды',

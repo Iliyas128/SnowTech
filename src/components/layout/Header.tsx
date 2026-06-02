@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Link, useLocation } from 'react-router-dom';
 import { useLanguage } from '@/contexts/LanguageContext';
 import LanguageSwitcher from '@/components/LanguageSwitcher';
+import { LAW_AI_BASE_PATH } from '@/lib/lawAi';
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -19,6 +20,7 @@ const Header = () => {
     { label: t('nav.blog'), href: '/blog' },
     { label: t('nav.about'), href: '/about' },
     { label: t('nav.contacts'), href: '/#contacts' },
+    { label: t('nav.lawAi'), href: LAW_AI_BASE_PATH },
   ];
 
   useEffect(() => {
